@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.activity.Cadastro3">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/black_fundo2">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="200dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/voltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:onClick="OpenCadastro2"
+                android:src="?attr/actionModeCloseDrawable"
+                app:tint="#FFFFFF" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/title.cadastro"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="cadastre sua empresa"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:id="@+id/text.cadastro1"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/poppins"
+                android:text="Lorem Ipsum dolor sit amet"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="430dp"
+    android:layout_marginTop="30dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantos funcionários tem em média:"
+            android:fontFamily="@font/poppins"
+            android:textSize="12sp"
+            android:textColor="@color/cinza_font2"></TextView>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Menos de 10"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de 10"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de 50"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de 100"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qual foi sua renda em média no último mês?"
+            android:fontFamily="@font/poppins"
+            android:textSize="12sp"
+            android:textColor="@color/cinza_font2"></TextView>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Menos de R$1000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de R$1000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de R$5000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de R$10000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quanto foi gasto em média com despesas no último mês?"
+            android:fontFamily="@font/poppins"
+            android:textSize="12sp"
+            android:textColor="@color/cinza_font2"></TextView>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Menos de R$1000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de R$1000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de R$10000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de R$50000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qual é sua estimativa atual para sua empresa?"
+            android:fontFamily="@font/poppins"
+            android:textSize="12sp"
+            android:textColor="@color/cinza_font2"></TextView>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Menos de R$10000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de R$10000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de R$50000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de R$1000000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantas vendas em média foram feitas no último mês?"
+            android:fontFamily="@font/poppins"
+            android:textSize="12sp"
+            android:textColor="@color/cinza_font2"></TextView>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Menos de 1000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de 1000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de 5000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/cinza_btn"
+                android:text="Mais de 10000"
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/cinza_font2"></RadioButton>
+        </RadioGroup>
+    </LinearLayout>
+</ScrollView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp">
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="300dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/azulbt"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="continuar"
+                android:onClick="OpenCadastro4"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="23sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/text.login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:text="Já tem uma conta?"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/btcadastro.login"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_light"
+                android:onClick="OpenLogin"
+                android:text="Faça o login"
+                android:textColor="#B9CCFE"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

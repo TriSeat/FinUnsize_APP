@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.activity.Login">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black_fundo2"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp">
+
+        <TextView
+            android:id="@+id/title.login"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="FAÇA O LOGIN USANDO SUA SENHA"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:id="@+id/text.login1"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/poppins"
+            android:text="Lorem Ipsum dolor sit amet"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center">
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:fontFamily="@font/poppins"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="15dp"
+            android:singleLine="false"
+            android:textColor="@color/white"
+            android:textColorHint="#CCCCCC"
+            android:textSize="12sp"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:fontFamily="@font/poppins"
+            android:hint="Password"
+            android:inputType="text|textPassword"
+            android:paddingLeft="15dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="#CCCCCC"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:buttonTint="@color/cinza_btn"
+            android:fontFamily="@font/poppins_light"
+            android:text="Lembrar de mim"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp" />
+
+        <Button
+            android:id="@+id/login2"
+            android:background="@color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="5dp"
+            android:layout_marginStart="20dp"
+            android:onClick="RedefinaSenha"
+            android:fontFamily="@font/poppins_light"
+            android:text="Esqueceu sua senha?"
+            android:textColor="#B9CCFE"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="300dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/azulbt"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="login"
+            android:onClick="OpenHome"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="23sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="110dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp">
+
+        <TextView
+            android:id="@+id/text.login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="Você é novo por aqui?"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/btcadastro.login"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/poppins_light"
+            android:onClick="OpenCadastro"
+            android:text="Crie uma conta"
+            android:textAllCaps="false"
+            android:textColor="#B9CCFE"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

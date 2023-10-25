@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activity.Produtos">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black_fundo">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Produtos"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="40dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Listagem de produtos em estoque:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="OpenConfig"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="65dp"
+                android:background="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/config" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="620dp"
+            android:background="@color/white_fundo"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="25dp"
+                    android:gravity="start"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="144"
+                        android:textAllCaps="true"
+                        android:textColor="@color/cinza"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="Produtos Cadastrados"
+                        android:textColor="@color/cinza"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="67dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="30dp"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:onClick="CadastroProd"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/green_btn"
+                        android:src="@drawable/add"></ImageButton>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center|top">
+
+                <LinearLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="310dp"
+                    android:layout_height="85dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/retangulo">
+
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/produto1_img"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:srcCompat="@drawable/produto_img" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/validade_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:text="Vence em 30/08/2023"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="12sp"
+                            android:textColor="@color/red_font"></TextView>
+
+                        <TextView
+                            android:id="@+id/nome_produto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="27dp"
+                            android:text="Feijão Camil"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"></TextView>
+
+                        <TextView
+                            android:id="@+id/fabricação_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="11dp"
+                            android:text="Criado em 22/07/2023"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="8sp"
+                            android:textColor="@color/cinza_font"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/description_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="25dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/pontos_descricao" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="310dp"
+                    android:layout_height="85dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/retangulo">
+
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/produto2_img"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:srcCompat="@drawable/produto_img" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/validade_text2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:text="Vence em 30/08/2023"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="12sp"
+                            android:textColor="@color/red_font"></TextView>
+
+                        <TextView
+                            android:id="@+id/nome_produto2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="27dp"
+                            android:text="Feijão Camil"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"></TextView>
+
+                        <TextView
+                            android:id="@+id/fabricação_text2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="11dp"
+                            android:text="Criado em 22/07/2023"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="8sp"
+                            android:textColor="@color/cinza_font"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/description_btn2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="25dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/pontos_descricao" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="310dp"
+                    android:layout_height="85dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/retangulo">
+
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/produto3_img"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:srcCompat="@drawable/produto_img" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/validade_text3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:text="Vence em 30/08/2023"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="12sp"
+                            android:textColor="@color/red_font"></TextView>
+
+                        <TextView
+                            android:id="@+id/nome_produto3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="27dp"
+                            android:text="Feijão Camil"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"></TextView>
+
+                        <TextView
+                            android:id="@+id/fabricação_text3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="11dp"
+                            android:text="Criado em 22/07/2023"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="8sp"
+                            android:textColor="@color/cinza_font"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/description_btn3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="25dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/pontos_descricao" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="310dp"
+                    android:layout_height="85dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/retangulo">
+
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/produto4_img"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:srcCompat="@drawable/produto_img" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/validade_text4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:text="Vence em 30/08/2023"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="12sp"
+                            android:textColor="@color/red_font"></TextView>
+
+                        <TextView
+                            android:id="@+id/nome_produto4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="27dp"
+                            android:text="Feijão Camil"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"></TextView>
+
+                        <TextView
+                            android:id="@+id/fabricação_text4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="11dp"
+                            android:text="Criado em 22/07/2023"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="8sp"
+                            android:textColor="@color/cinza_font"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/description_btn4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="25dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/pontos_descricao" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="310dp"
+                    android:layout_height="85dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/retangulo">
+
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/produto5_img"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:srcCompat="@drawable/produto_img" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/validade_text5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:text="Vence em 30/08/2023"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="12sp"
+                            android:textColor="@color/red_font"></TextView>
+
+                        <TextView
+                            android:id="@+id/nome_produto5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="27dp"
+                            android:text="Feijão Camil"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"></TextView>
+
+                        <TextView
+                            android:id="@+id/fabricação_text5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="11dp"
+                            android:text="Criado em 22/07/2023"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="8sp"
+                            android:textColor="@color/cinza_font"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/description_btn5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="25dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/pontos_descricao" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="310dp"
+                    android:layout_height="85dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/retangulo">
+
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/produto6_img"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:srcCompat="@drawable/produto_img" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/validade_text6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:text="Vence em 30/08/2023"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="12sp"
+                            android:textColor="@color/red_font"></TextView>
+
+                        <TextView
+                            android:id="@+id/nome_produto6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="27dp"
+                            android:text="Feijão Camil"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"></TextView>
+
+                        <TextView
+                            android:id="@+id/fabricação_text6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="11dp"
+                            android:text="Criado em 22/07/2023"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="8sp"
+                            android:textColor="@color/cinza_font"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/description_btn6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="25dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/pontos_descricao" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            </ScrollView>
+        </LinearLayout>
+
+
+        <include layout="@layout/menu_fixo" />
+
+        </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
