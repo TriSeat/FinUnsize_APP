@@ -19,4 +19,6 @@
     <color name="cinza_font">#D7D7D7</color>
     <color name="cinza_font2">#CCCCCC</color>
     <color name="cinza_btn">#d9d9d9</color>
+    <color name="blue">#678DF1</color>
+    <color name="gray">#A9A9A9</color>
 </resources>
