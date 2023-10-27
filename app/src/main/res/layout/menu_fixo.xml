@@ -25,7 +25,9 @@
                 android:background="#00FFFFFF"
                 android:drawableTop="@drawable/compras_menu"
                 android:gravity="bottom|center"
-                android:padding="5dp"
+                android:paddingBottom="5dp"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
                 android:text="Compras"
                 android:textColor="@color/white"
                 android:onClick="OpenCompras"
@@ -39,7 +41,9 @@
                 android:background="#00FFFFFF"
                 android:drawableTop="@drawable/produtos_menu"
                 android:gravity="bottom|center"
-                android:padding="5dp"
+                android:paddingBottom="5dp"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
                 android:text="Produtos"
                 android:textColor="@color/white"
                 android:onClick="OpenProdutos"
@@ -56,19 +60,6 @@
                 android:background="#00FFFFFF"
                 app:srcCompat="@drawable/home_menu" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:background="#00FFFFFF"
-                android:drawableTop="@drawable/caixa_menu"
-                android:gravity="bottom|center"
-                android:padding="5dp"
-                android:text="Caixa"
-                android:textColor="@color/white"
-                android:onClick="OpenCaixa"
-                android:textAlignment="center"
-                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/button3"
@@ -77,10 +68,26 @@
                 android:background="#00FFFFFF"
                 android:drawableTop="@drawable/stats_menu"
                 android:gravity="bottom|center"
-                android:padding="5dp"
+                android:paddingBottom="5dp"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
                 android:textColor="@color/white"
                 android:text="Estatísticas"
                 android:onClick="OpenStats"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="#00FFFFFF"
+                android:drawableTop="@drawable/baseline_person_24"
+                android:gravity="bottom|center"
+                android:padding="5dp"
+                android:text="Usuário"
+                android:textColor="@color/white"
+                android:onClick="OpenCaixa"
                 android:textAlignment="center"
                 android:textSize="12sp" />
 

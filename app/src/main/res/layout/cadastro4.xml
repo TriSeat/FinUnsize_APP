@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:background="#00FFFFFF"
                 android:onClick="OpenCadastro3"
-                android:src="?attr/actionModeCloseDrawable"
+                android:src="@drawable/baseline_arrow_back_24"
                 app:tint="#FFFFFF" />
 
         </LinearLayout>
