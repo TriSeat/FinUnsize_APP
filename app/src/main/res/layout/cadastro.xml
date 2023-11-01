@@ -18,8 +18,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="200dp"
+            android:layout_marginStart="-180dp"
             android:orientation="horizontal">
 
             <ImageButton
@@ -90,13 +89,16 @@
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/azulbt"
+                app:backgroundTint="@color/azulbt"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="continuar"
                 android:onClick="OpenCadastro2"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
                 android:textSize="23sp"/>
+
+            <!-- android:background="@drawable/roundedbutton" -->
+
         </LinearLayout>
 
         <LinearLayout

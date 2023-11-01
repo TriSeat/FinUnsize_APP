@@ -278,6 +278,8 @@
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
                     android:textSize="23sp"/>
+
+                <!-- android:background="@drawable/roundedbutton" -->
             </LinearLayout>
 
             <include layout="@layout/menu_fixo" />

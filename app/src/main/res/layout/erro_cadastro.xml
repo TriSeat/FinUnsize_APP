@@ -210,6 +210,8 @@
                 android:textAllCaps="true"
                 android:fontFamily="@font/poppins_medium"/>
 
+            <!-- android:background="@drawable/roundedbutton" -->
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
@@ -219,6 +221,8 @@
                 android:onClick="OpenCadastro2"
                 android:textAllCaps="true"
                 android:fontFamily="@font/poppins_medium"/>
+
+            <!-- android:background="@drawable/roundedbutton" -->
             </LinearLayout>
 
 </LinearLayout>

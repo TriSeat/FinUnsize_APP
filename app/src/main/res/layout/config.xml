@@ -1,6 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/black_fundo"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="20dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:onClick="Voltar"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/baseline_arrow_back_24"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Configuração"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
+                    android:textSize="28sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_marginStart="55dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="Logout"
+                    android:layout_gravity="center"
+                    android:background="@color/transparent"
+                    android:src="@drawable/baseline_logout_24"/>
+            </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_fundo"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imagem_perfil"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@color/transparent"
+                android:onClick="OpenImage"
+                app:srcCompat="@drawable/radius" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="-186dp"
+                android:layout_marginTop="9dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/person_perfil" />
+
+            <ImageButton
+                android:id="@+id/editimg_perfil"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="-35dp"
+                android:onClick="EditImage"
+                android:layout_marginBottom="8dp"
+                android:background="@color/transparent"
+                app:srcCompat="@drawable/radius2" />
+
+            <ImageButton
+                android:id="@+id/edit_perfil"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="bottom"
+                android:onClick="EditImage"
+                android:layout_marginStart="-37dp"
+                android:layout_marginBottom="11dp"
+                android:background="@color/transparent"
+                app:srcCompat="@drawable/edit_perfil" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/radius3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome:"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/blue_font"
+                android:textSize="18sp"
+                android:gravity="center|start"
+                android:paddingLeft="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="abcivhjpw"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:paddingRight="10dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/radius3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email:"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/blue_font"
+                android:textSize="18sp"
+                android:gravity="center|start"
+                android:paddingLeft="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="abcdef@gmail.com"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:paddingRight="10dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/radius3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Senha:"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/blue_font"
+                android:textSize="18sp"
+                android:gravity="center|start"
+                android:paddingLeft="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="abcivhjpf8wrp80w"
+                android:inputType="textPassword"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:paddingRight="10dp"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="30dp">
+
+                <Button
+                    android:id="@+id/cadastarProd_btn"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:backgroundTint="@color/blue"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="atualizar dados"
+                    android:onClick="AtualizarDados"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
+                    android:textSize="23sp"/>
+
+                <!-- android:background="@drawable/roundedbutton" -->
+            </LinearLayout>
+
+            <include layout="@layout/menu_fixo" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

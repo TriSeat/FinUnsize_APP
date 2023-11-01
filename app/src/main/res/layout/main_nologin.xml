@@ -134,8 +134,9 @@
                     android:onClick="OpenCadastro2"
                     android:backgroundTint="@color/azulbt"
                     android:layout_marginStart="20dp"
-                    android:layout_marginBottom="15dp">
-                </Button>
+                    android:layout_marginBottom="15dp"/>
+
+                    <!-- android:background="@drawable/roundedbutton" -->
             </LinearLayout>
 
 
