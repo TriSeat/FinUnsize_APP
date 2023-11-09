@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
 
-import persistence.Database;
-
 public class Login extends AppCompatActivity {
 
     EditText email, password;

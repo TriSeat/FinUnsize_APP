@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import com.example.finunsize.R;
 
-import persistence.Database;
-
 public class Cadastro4 extends AppCompatActivity {
 
     EditText email, password, repassword;

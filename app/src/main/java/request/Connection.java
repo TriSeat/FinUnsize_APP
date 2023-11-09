@@ -1,5 +1,4 @@
 package request;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8,9 +7,7 @@ import java.net.URL;
 
 public class Connection {
 
-    private static final String BASE_URL = "";
-    private static final String API_KEY = "";
-    private static final String API_HOST = "";
+    private static final String BASE_URL = "https://finunsize.onrender.com";
 
     public static String connectHttp(String end_Point) {
         String return_api = null;
@@ -20,8 +17,6 @@ public class Connection {
             URL url = new URL(url_amount);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("X-RapidAPI-Key", API_KEY);
-            connection.setRequestProperty("X-RapidAPI-Host", API_HOST);
             int responseCode = connection.getResponseCode();
 
             if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -34,13 +29,12 @@ public class Connection {
                 }
                 reader.close();
                 return_api = stringBuilder.toString();
-            }
-            else
+            } else {
                 System.out.println("Error, code of return: " + responseCode);
+            }
 
             connection.disconnect();
-        }
-        catch (Exception error) {
+        } catch (Exception error) {
             error.printStackTrace();
         }
         return return_api;

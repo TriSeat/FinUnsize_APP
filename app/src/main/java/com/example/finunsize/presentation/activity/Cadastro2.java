@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
 
-import persistence.Database;
-
 public class Cadastro2 extends AppCompatActivity {
 
     EditText empresa, segmento, telefoneemp, rendaatual, despesaatual, vendas;

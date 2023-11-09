@@ -3,15 +3,12 @@ package com.example.finunsize.presentation.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
-
-import persistence.Database;
 
 public class CadastroProdutos extends AppCompatActivity {
 
