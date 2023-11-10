@@ -2,9 +2,8 @@ package persistence.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
-
-import persistence.models.InfoProductModel;
 
 public class ProductModel implements Serializable {
         private static final long serialVersionUID = 1L;
@@ -22,7 +21,7 @@ public class ProductModel implements Serializable {
         private String cnpj;
 
         // Construtores
-        public ProductModel() {
+        public ProductModel(String cod_barras, String nome, int quantidade, InfoProductModel informacoes, LocalDate validade, String descricao, BigDecimal varejo, BigDecimal atacado, LocalDate data_cadastro, String url_image, String cnpj) {
         }
 
         public ProductModel(String cod_barras, String nome, int quantidade, InfoProductModel informacoes,
