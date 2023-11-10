@@ -29,7 +29,7 @@ public class Cadastro4 extends AppCompatActivity {
 
     public void OpenCadastroPerfil (View view) {
 
-        MainActivity.redirect(this, Cadastro.class);
+        MainActivity.redirect(this, MainActivity.class);
     }
 
     public void OpenLogin (View view) {

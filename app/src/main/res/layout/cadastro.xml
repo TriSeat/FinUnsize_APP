@@ -110,6 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
+                android:textColor="@color/white"
                 android:fontFamily="@font/poppins_light"
                 android:text="@string/sublinhado"
                 android:onClick="OpenErroCadastro"

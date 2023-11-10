@@ -22,10 +22,10 @@ public class Produtos extends AppCompatActivity {
     }
 
     // Intents para as outras activities
-    /* public void OpenCompras(View view){
+    public void OpenCompras(View view){
         Intent intent = new Intent(this, Compras.class);
         startActivity(intent);
-    } */
+    }
 
     public void OpenProdutos(View view){
         Intent intent = new Intent(this, Produtos.class);
@@ -42,8 +42,8 @@ public class Produtos extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /* public void OpenStats(View view){
+    public void OpenStats(View view){
         Intent intent = new Intent(this, Estatisticas.class);
         startActivity(intent);
-    } */
+    }
 }

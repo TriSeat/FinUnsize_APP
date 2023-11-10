@@ -34,16 +34,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void OpenNotif(View view) {
+        Intent intent = new Intent(this, Notification.class);
+        startActivity(intent);
+    }
+
+    public void OpenConfig(View view) {
+        Intent intent = new Intent(this, Config.class);
+        startActivity(intent);
+    }
+
     public static void redirect(Activity activity, Class Class) {
         Intent intent = new Intent(activity, Class);
         activity.startActivity(intent);
     }
 
     // Intents para as outras activities
-    /* public void OpenCompras(View view){
+    public void OpenCompras(View view){
         Intent intent = new Intent(this, Compras.class);
         startActivity(intent);
-    } */
+    }
 
     public void OpenProdutos(View view){
         Intent intent = new Intent(this, Produtos.class);
@@ -55,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void OpenCaixa(View view){
-        Intent intent = new Intent(this, Produtos.class);
+    public void OpenStats(View view){
+        Intent intent = new Intent(this, Estatisticas.class);
         startActivity(intent);
     }
 
-    /* public void OpenStats(View view){
-        Intent intent = new Intent(this, Estatisticas.class);
+    public void OpenUser(View view){
+        Intent intent = new Intent(this, Config.class);
         startActivity(intent);
-    } */
+    }
 
 }

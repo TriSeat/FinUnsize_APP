@@ -17,15 +17,27 @@ public class MainActivityNoLogin extends AppCompatActivity {
         setContentView(R.layout.main_nologin);
     }
 
-    public void OpenCadastro2 (View view) {
-        MainActivity.redirect(this, Cadastro.class);
+    public void OpenCadastro2(View view) {
+        Intent intent = new Intent(this, Cadastro2.class);
+        startActivity(intent);
     }
 
+    public void OpenNotif(View view) {
+        Intent intent = new Intent(this, Notification.class);
+        startActivity(intent);
+    }
+
+    public void OpenConfig(View view) {
+        Intent intent = new Intent(this, Config.class);
+        startActivity(intent);
+    }
+
+
     // Intents para as outras activities
-    /* public void OpenCompras(View view){
+    public void OpenCompras(View view){
         Intent intent = new Intent(this, Compras.class);
         startActivity(intent);
-    } */
+    }
 
     public void OpenProdutos(View view){
         Intent intent = new Intent(this, Produtos.class);
@@ -42,8 +54,8 @@ public class MainActivityNoLogin extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /* public void OpenStats(View view){
+    public void OpenStats(View view){
         Intent intent = new Intent(this, Estatisticas.class);
         startActivity(intent);
-    } */
+    }
 }

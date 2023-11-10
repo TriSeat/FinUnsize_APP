@@ -87,7 +87,7 @@
                 android:padding="5dp"
                 android:text="Usuário"
                 android:textColor="@color/white"
-                android:onClick="OpenCaixa"
+                android:onClick="OpenUser"
                 android:textAlignment="center"
                 android:textSize="12sp" />
 

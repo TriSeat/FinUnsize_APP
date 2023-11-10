@@ -66,13 +66,13 @@
 
                 <ImageButton
                     android:id="@+id/settings_btn"
-                    android:layout_width="30dp"
+                    android:layout_width="35dp"
                     android:layout_height="30dp"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginStart="120dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="50dp"
                     android:backgroundTint="@color/transparent"
                     android:onClick="OpenConfig"
-                    android:layout_gravity="center|bottom"
                     app:srcCompat="@drawable/config" />
 
                 <ImageButton
