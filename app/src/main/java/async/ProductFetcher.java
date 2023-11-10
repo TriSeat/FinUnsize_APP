@@ -58,6 +58,8 @@ public class ProductFetcher {
                             listener.productFetchSuccess(product);
                         }
 
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                         if (listener != null) {
