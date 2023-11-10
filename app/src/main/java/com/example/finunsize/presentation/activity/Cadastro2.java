@@ -12,14 +12,11 @@ public class Cadastro2 extends AppCompatActivity {
 
     EditText empresa, segmento, telefoneemp, rendaatual, despesaatual, vendas;
 
-    Database db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastro2);
         get_resources();
-        db = new Database(this);
     }
 
     public void get_resources() {
@@ -33,23 +30,8 @@ public class Cadastro2 extends AppCompatActivity {
 
     public void OpenCadastro3 (View view) {
 
-            MainActivity.redirect(this, Cadastro3.class);
+        MainActivity.redirect(this, Cadastro3.class);;
 
-        String empresaa = empresa.getText().toString();
-        String segmentoo = segmento.getText().toString();
-        String telefone_emp = telefoneemp.getText().toString();
-        String renda_atual = rendaatual.getText().toString();
-        String despesa_atual = despesaatual.getText().toString();
-        String vendass = vendas.getText().toString();
-
-           /* if (TextUtils.isEmpty(empresaa) || TextUtils.isEmpty(segmentoo) || TextUtils.isEmpty(telefone_emp) || TextUtils.isEmpty(renda_atual) || TextUtils.isEmpty(despesa_atual) || TextUtils.isEmpty(vendass)) {
-                Toast.makeText(Cadastro3.this, "Todos os campos devem ser registrados", Toast.LENGTH_SHORT).show();
-                Boolean insert = db.insertDb1(empresaa, segmentoo, telefone_emp, renda_atual, despesa_atual, vendass);
-            }
-            if (insert == true) {
-                Toast.makeText(Cadastro3.this, "Cadastro realizado com sucesso", Toast.LENGTH_SHORT).show();
-                MainActivity.redirect(this, Cadastro2.class);
-            } */
         }
 
     public void OpenLogin (View view) {

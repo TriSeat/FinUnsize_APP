@@ -23,4 +23,6 @@
     <color name="blue">#678DF1</color>
     <color name="blue_font">#B0B3DC</color>
     <color name="gray">#A9A9A9</color>
+    <color name="blueBtn">#5178E1</color>
+    <color name="radiobtn">#668DF1</color>
 </resources>

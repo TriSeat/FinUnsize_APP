@@ -16,14 +16,11 @@ public class CadastroProdutos extends AppCompatActivity {
 
         EditText nome, marca, validade, quantidade, categoria, descricao;
 
-        Database db;
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.cadastro_produtos);
             get_resources();
-            db = new Database(this);
         }
 
         public void get_resources() {
@@ -36,21 +33,6 @@ public class CadastroProdutos extends AppCompatActivity {
         }
 
         public void ProdCadastrado (View view) {
-            String nomee = nome.getText().toString();
-            String marcaa = marca.getText().toString();
-            String validadee = validade.getText().toString();
-            String quantidadee = quantidade.getText().toString();
-            String categoriaa = categoria.getText().toString();
-            String descricaoo = descricao.getText().toString();
-
-           /* if (TextUtils.isEmpty(empresaa) || TextUtils.isEmpty(segmentoo) || TextUtils.isEmpty(telefone_emp) || TextUtils.isEmpty(renda_atual) || TextUtils.isEmpty(despesa_atual) || TextUtils.isEmpty(vendass)) {
-                Toast.makeText(Cadastro3.this, "Todos os campos devem ser registrados", Toast.LENGTH_SHORT).show();
-                Boolean insert = db.insertDb1(empresaa, segmentoo, telefone_emp, renda_atual, despesa_atual, vendass);
-            }
-            if (insert == true) {
-                Toast.makeText(Cadastro3.this, "Cadastro realizado com sucesso", Toast.LENGTH_SHORT).show();
-                MainActivity.redirect(this, Cadastro2.class);
-            } */
         }
 
 

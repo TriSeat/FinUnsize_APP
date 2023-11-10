@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">FinUnsize</string>
+
     <string name="sublinhado"><u>Fazer Depois</u></string>
+
+    <string name="text_splash1">
+<font color="#FFFFFFFF">Serviço de contabilidade</font>
+<font color="#678DF1">Único</font>
+</string>
+
+    <string name="text_splash2">
+<font color="#E3518B">Criatividade</font>
+<font color="#FFFFFFFF">, nosso segundo nome</font>
+</string>
+
+    <string name="text_splash3">
+<font color="#FFFFFFFF">Comece essa </font>
+<font color="#57B279">Aventura </font>
+<font color="#FFFFFFFF">incrível!</font>
+</string>
+
 </resources>
