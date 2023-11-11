@@ -3,8 +3,6 @@ package persistence.models;
 import java.io.Serializable;
 import java.util.UUID;
 
-import persistence.models.AddressModel;
-
 public class SupplierModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -16,7 +14,7 @@ public class SupplierModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public SupplierModel() {
+    public SupplierModel(UUID idFornecedor, String nome, String descricao, String urlImage) {
     }
 
     public SupplierModel(UUID id_fornecedor, String nome, AddressModel id_endereco,

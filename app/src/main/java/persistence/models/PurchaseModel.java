@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import persistence.models.PaymentModel;
-import persistence.models.PurchaseItemModel;
-import persistence.models.SupplierModel;
-
 public class PurchaseModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -24,7 +20,7 @@ public class PurchaseModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public PurchaseModel() {
+    public PurchaseModel(UUID idPurchase, String name, BigDecimal totalPrice, LocalDateTime date) {
     }
 
     public PurchaseModel(UUID id_compra, String nome, PaymentModel id_pagamento, BigDecimal preco_total,

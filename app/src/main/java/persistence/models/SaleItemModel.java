@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import persistence.models.ProductModel;
-
 public class SaleItemModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -16,7 +14,7 @@ public class SaleItemModel implements Serializable {
     private int quantidade;
 
     // Construtores
-    public SaleItemModel() {
+    public SaleItemModel(UUID idSaleItem) {
     }
 
     public SaleItemModel(UUID id_item_venda, SaleModel venda, ProductModel cod_barras,

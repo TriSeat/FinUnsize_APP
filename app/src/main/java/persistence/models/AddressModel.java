@@ -16,7 +16,7 @@ public class AddressModel implements Serializable {
     private String cidade;
 
     // Construtores
-    public AddressModel() {
+    public AddressModel(UUID idLogradouro) {
     }
 
     public AddressModel(UUID id_logradouro, int cep, String rua, String numero,

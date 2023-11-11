@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import persistence.models.TypeExpanseModel;
-
 public class ExpanseModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -21,7 +19,7 @@ public class ExpanseModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public ExpanseModel() {
+    public ExpanseModel(UUID idDespesa, String nome, BigDecimal valor, LocalDate dataVencimento, LocalDate dataPagamento, TypeExpanseModel tipoDespesa, String observacao, boolean aberto) {
     }
 
     public ExpanseModel(UUID id_despesa, String nome, BigDecimal valor, LocalDate data_vencimento,

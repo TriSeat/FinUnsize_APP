@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import persistence.models.AddressModel;
-import persistence.models.OfficeModel;
-
 public class EmployeeModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,7 +23,7 @@ public class EmployeeModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public EmployeeModel() {
+    public EmployeeModel(int idFuncionario, String nome) {
     }
 
     public EmployeeModel(int id_funcionario, String cpf, String nome, OfficeModel cargo,

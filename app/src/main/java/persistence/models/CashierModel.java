@@ -12,7 +12,7 @@ public class CashierModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public CashierModel() {
+    public CashierModel(int idCaixa, String nome, String status) {
     }
 
     public CashierModel(int id_caixa, String nome, String status, String cnpj) {

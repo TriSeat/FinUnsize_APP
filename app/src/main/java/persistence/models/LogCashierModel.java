@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import persistence.models.CashierModel;
-
 public class LogCashierModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -20,7 +18,7 @@ public class LogCashierModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public LogCashierModel() {
+    public LogCashierModel(UUID idLogCaixa, UUID idCaixa, LocalDateTime dataFuncionamento, BigDecimal valorInicial, BigDecimal valorFinal, LocalDateTime abertura, LocalDateTime fechamento, String cnpj) {
     }
 
     public LogCashierModel(UUID id_log_caixa, CashierModel id_caixa, LocalDateTime data_funcionamento,

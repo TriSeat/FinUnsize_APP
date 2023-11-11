@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import persistence.models.ProductModel;
-import persistence.models.PurchaseModel;
-
 public class PurchaseItemModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -17,7 +14,7 @@ public class PurchaseItemModel implements Serializable {
     private PurchaseModel purchase;
 
     // Construtores
-    public PurchaseItemModel() {
+    public PurchaseItemModel(UUID idPurchaseItem) {
     }
 
     public PurchaseItemModel(UUID id_item_compra, ProductModel cod_barras, BigDecimal valor_unitario,

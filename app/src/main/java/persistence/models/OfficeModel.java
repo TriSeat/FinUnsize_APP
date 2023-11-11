@@ -12,7 +12,7 @@ public class OfficeModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public OfficeModel() {
+    public OfficeModel(UUID idCargo, String nome, String descricao) {
     }
 
     public OfficeModel(UUID id_cargo, String nome, String descricao, String cnpj) {

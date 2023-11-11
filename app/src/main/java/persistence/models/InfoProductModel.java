@@ -12,7 +12,7 @@ public class InfoProductModel implements Serializable {
     private String tipo;
 
     // Construtores
-    public InfoProductModel() {
+    public InfoProductModel(UUID idItemProduto, String marca, String categoria, String tipo, String cnpj) {
     }
 
     public InfoProductModel(UUID id_item_produto, String marca, String categoria, String tipo) {

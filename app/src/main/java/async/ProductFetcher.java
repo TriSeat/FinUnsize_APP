@@ -1,18 +1,18 @@
 package async;
 
+
 import android.os.Handler;
 import android.os.HandlerThread;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
+
+import listener.OnProductFetchListener;
 import persistence.models.InfoProductModel;
 import persistence.models.ProductModel;
 import request.Connection;
-
 
 public class ProductFetcher {
 
@@ -49,27 +49,25 @@ public class ProductFetcher {
                         BigDecimal atacado = new BigDecimal(productJson.getString("atacado"));
                         LocalDate data_cadastro = LocalDate.parse(productJson.getString("data_cadastro"));
                         String url_image = productJson.optString("url_image", null);
-                        String cnpj = productJson.getString("cnpj");
+                        // String cnpj = productJson.getString("cnpj");
 
                         ProductModel product = new ProductModel(cod_barras, nome, quantidade, informacoes, validade,
-                                descricao, varejo, atacado, data_cadastro, url_image, cnpj);
+                                descricao, varejo, atacado, data_cadastro, url_image);
 
                         if (listener != null) {
-                            listener.productFetchSuccess(product);
+                            listener.onProductFetchSuccess(product);
                         }
-
-
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                         if (listener != null) {
-                            listener.productFetchError();
+                            listener.onProductFetchError();
                         }
                     }
 
                 } else {
                     if (listener != null) {
-                        listener.productFetchError();
+                        listener.onProductFetchError();
                     }
                 }
             }
@@ -83,10 +81,5 @@ public class ProductFetcher {
         String tipo = infoJson.getString("tipo");
 
         return new InfoProductModel(id_item_produto, marca, categoria, tipo);
-    }
-
-    public interface OnProductFetchListener {
-        void productFetchSuccess(ProductModel product);
-        void productFetchError();
     }
 }

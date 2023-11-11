@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import persistence.models.CashierModel;
-import persistence.models.PaymentModel;
-import persistence.models.SaleItemModel;
-
 public class SaleModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -24,7 +20,7 @@ public class SaleModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public SaleModel() {
+    public SaleModel(UUID idSale) {
     }
 
     public SaleModel(UUID id_venda, CashierModel id_caixa, BigDecimal valor_total, int quantidade,

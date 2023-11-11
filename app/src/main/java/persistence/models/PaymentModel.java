@@ -11,7 +11,7 @@ public class PaymentModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public PaymentModel() {
+    public PaymentModel(UUID idPayment, String nome) {
     }
 
     public PaymentModel(UUID id_pagamento, String nome, String cnpj) {

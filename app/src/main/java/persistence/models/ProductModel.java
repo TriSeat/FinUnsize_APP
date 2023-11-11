@@ -21,7 +21,7 @@ public class ProductModel implements Serializable {
         private String cnpj;
 
         // Construtores
-        public ProductModel(String cod_barras, String nome, int quantidade, InfoProductModel informacoes, LocalDate validade, String descricao, BigDecimal varejo, BigDecimal atacado, LocalDate data_cadastro, String url_image, String cnpj) {
+        public ProductModel(String cod_barras, String nome, int quantidade, InfoProductModel informacoes, LocalDate validade, String descricao, BigDecimal varejo, BigDecimal atacado, LocalDate data_cadastro, String url_image) {
         }
 
         public ProductModel(String cod_barras, String nome, int quantidade, InfoProductModel informacoes,

@@ -12,7 +12,7 @@ public class TypeExpanseModel implements Serializable {
     private String cnpj;
 
     // Construtores
-    public TypeExpanseModel() {
+    public TypeExpanseModel(UUID idTypeExpanse, String nome, String descricao) {
     }
 
     public TypeExpanseModel(UUID id_despesa, String nome, String descicao, String cnpj) {
