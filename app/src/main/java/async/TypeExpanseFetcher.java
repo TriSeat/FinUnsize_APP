@@ -1,4 +1,4 @@
-package async;
+/*package async;
 
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -74,3 +74,4 @@ public class TypeExpanseFetcher {
         });
     }
 }
+*/
