@@ -8,17 +8,17 @@ public class TypeExpanseModel implements Serializable {
 
     private UUID id_despesa;
     private String nome;
-    private String descicao;
+    private String descricao;
     private String cnpj;
 
     // Construtores
-    public TypeExpanseModel(UUID idTypeExpanse, String nome, String descricao) {
+    public TypeExpanseModel(UUID idTypeExpanse) {
     }
 
-    public TypeExpanseModel(UUID id_despesa, String nome, String descicao, String cnpj) {
+    public TypeExpanseModel(UUID id_despesa, String nome, String descricao, String cnpj) {
         this.id_despesa = id_despesa;
         this.nome = nome;
-        this.descicao = descicao;
+        this.descricao = descricao;
         this.cnpj = cnpj;
     }
 
@@ -39,12 +39,12 @@ public class TypeExpanseModel implements Serializable {
         this.nome = nome;
     }
 
-    public String getDescicao() {
-        return descicao;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescicao(String descicao) {
-        this.descicao = descicao;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getCnpj() {

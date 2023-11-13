@@ -18,6 +18,8 @@ public class TypeExpanseFetcher {
     private Handler handler;
     private OnTypeExpanseFetchListener listener;
 
+    String nome, descricao;
+
     public TypeExpanseFetcher(Handler handler, OnTypeExpanseFetchListener listener) {
         this.handler = handler;
         this.listener = listener;
@@ -44,11 +46,11 @@ public class TypeExpanseFetcher {
                             JSONObject typeExpanseJson = jsonArray.getJSONObject(i);
 
                             UUID idTypeExpanse = UUID.fromString(typeExpanseJson.getString("idTypeExpanse"));
-                            // TODO: Adicione o restante dos campos da TypeExpanseModel
 
-                            // Crie a instância de TypeExpanseModel e adicione à lista
+
+
                             TypeExpanseModel typeExpanse = new TypeExpanseModel(
-                                    idTypeExpanse, nome, descricao);
+                                    idTypeExpanse);
                             typeExpanses.add(typeExpanse);
                         }
 

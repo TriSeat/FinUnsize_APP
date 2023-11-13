@@ -88,6 +88,6 @@ public class ExpanseFetcher {
         String descricao = typeExpanseJson.getString("descricao");
        // String cnpj = typeExpanseJson.getString("cnpj");
 
-        return new TypeExpanseModel(idDespesa, nome, descricao);
+        return new TypeExpanseModel(idDespesa);
     }
 }
