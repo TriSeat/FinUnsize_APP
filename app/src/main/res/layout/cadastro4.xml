@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:layout_marginEnd="200dp"
             android:orientation="horizontal">
 
@@ -48,16 +48,8 @@
                 android:text="crie sua conta"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/text.cadastro1"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginStart="2dp"
-                android:fontFamily="@font/poppins"
-                android:text="Lorem Ipsum dolor sit amet"
-                android:textColor="@color/white"/>
         </LinearLayout>
 
         <LinearLayout
@@ -191,7 +183,7 @@
                 android:text="Ao se cadastrar você concorda com os termos de política de privacidade da nossa empresa"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="12sp"/>
+                android:textSize="13sp"/>
         </LinearLayout>
 
     </LinearLayout>
