@@ -1,6 +1,5 @@
 package async;
 
-
 import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONException;
@@ -9,6 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import exception.ProductFetchException;
 import listener.OnProductFetchListener;
 import persistence.models.InfoProductModel;
 import persistence.models.ProductModel;
@@ -32,10 +32,10 @@ public class ProductFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("products/" + barcode);
+                try {
+                    String result = Connection.connectHttp("products/" + barcode);
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONObject productJson = jsonObject.getJSONObject("data");
 
@@ -58,16 +58,14 @@ public class ProductFetcher {
                             listener.onProductFetchSuccess(product);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        if (listener != null) {
-                            listener.onProductFetchError();
-                        }
+                    } else {
+                        throw new ProductFetchException("Error fetching product");
                     }
 
-                } else {
+                } catch (JSONException | ProductFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
-                        listener.onProductFetchError();
+                        listener.onProductFetchError(e);
                     }
                 }
             }

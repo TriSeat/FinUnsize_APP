@@ -44,7 +44,8 @@ public class TypeExpanseFetcher {
                             JSONObject typeExpanseJson = jsonArray.getJSONObject(i);
 
                             UUID idTypeExpanse = UUID.fromString(typeExpanseJson.getString("idTypeExpanse"));
-                            // TODO: Adicione o restante dos campos da TypeExpanseModel
+                            String nome = typeExpanseJson.getString("nome");
+                            String descricao = typeExpanseJson.getString("descricao");
 
                             // Crie a instância de TypeExpanseModel e adicione à lista
                             TypeExpanseModel typeExpanse = new TypeExpanseModel(
