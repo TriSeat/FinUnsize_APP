@@ -14,30 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinUnsize"
         tools:targetApi="31">
-        <activity
-            android:name=".presentation.activity.Splash3"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.activity.Splash2"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.activity.Login"
-            android:exported="false">
-        </activity>
-
-        <activity
-            android:name=".presentation.activity.Splash1"
-            android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".presentation.activity.Cadastro4"
-            android:exported="false" />
         <activity
             android:name=".presentation.activity.Cadastro"
             android:exported="false" />
@@ -47,6 +28,21 @@
         <activity
             android:name=".presentation.activity.Cadastro3"
             android:exported="false" />
+        <activity
+            android:name=".presentation.activity.Splash3"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activity.Cadastro4"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activity.Splash2"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activity.Login"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activity.Splash1"
+            android:exported="true"/>
         <activity
             android:name=".presentation.activity.CadastroPerfil"
             android:exported="false" />
@@ -67,6 +63,9 @@
             android:exported="false" />
         <activity
             android:name=".presentation.activity.Produtos"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.activity.Compras"
             android:exported="false" />
     </application>
 

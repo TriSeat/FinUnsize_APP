@@ -1,4 +1,4 @@
-package async;
+/*package async;
 
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -17,6 +17,8 @@ public class TypeExpanseFetcher {
 
     private Handler handler;
     private OnTypeExpanseFetchListener listener;
+
+    String nome, descricao;
 
     public TypeExpanseFetcher(Handler handler, OnTypeExpanseFetchListener listener) {
         this.handler = handler;
@@ -44,12 +46,16 @@ public class TypeExpanseFetcher {
                             JSONObject typeExpanseJson = jsonArray.getJSONObject(i);
 
                             UUID idTypeExpanse = UUID.fromString(typeExpanseJson.getString("idTypeExpanse"));
+<<<<<<< HEAD
                             String nome = typeExpanseJson.getString("nome");
                             String descricao = typeExpanseJson.getString("descricao");
+=======
+>>>>>>> 1f3b5081a5bea2e13a30673e489782573354de5b
 
-                            // Crie a instância de TypeExpanseModel e adicione à lista
+
+
                             TypeExpanseModel typeExpanse = new TypeExpanseModel(
-                                    idTypeExpanse, nome, descricao);
+                                    idTypeExpanse);
                             typeExpanses.add(typeExpanse);
                         }
 
@@ -73,3 +79,4 @@ public class TypeExpanseFetcher {
         });
     }
 }
+*/
