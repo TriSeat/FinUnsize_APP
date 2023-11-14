@@ -11,7 +11,7 @@ public class TypeExpanseModel implements Serializable {
     private String descricao;
     private String cnpj;
 
-<<<<<<< HEAD
+
     public TypeExpanseModel(UUID idTypeExpanse, String nome, String descricao) {
         this.id_despesa = idTypeExpanse;
         this.nome = nome;
@@ -19,12 +19,12 @@ public class TypeExpanseModel implements Serializable {
     }
 
     // Outro construtor com o campo adicional "cnpj"
-=======
+
     // Construtores
     public TypeExpanseModel(UUID idTypeExpanse) {
     }
 
->>>>>>> 1f3b5081a5bea2e13a30673e489782573354de5b
+
     public TypeExpanseModel(UUID id_despesa, String nome, String descricao, String cnpj) {
         this.id_despesa = id_despesa;
         this.nome = nome;
