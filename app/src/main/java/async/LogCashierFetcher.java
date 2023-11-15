@@ -5,10 +5,11 @@ import android.os.HandlerThread;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import listener.OnLogCashierFetchListener;
 
+import listener.OnLogCashierFetchListener;
 import persistence.models.LogCashierModel;
 import request.Connection;
+import exception.LogCashierFetchException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -34,10 +35,10 @@ public class LogCashierFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("logCashiers");
+                try {
+                    String result = Connection.connectHttp("logCashiers");
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
 
@@ -55,7 +56,6 @@ public class LogCashierFetcher {
                             LocalDateTime fechamento = LocalDateTime.parse(logCashierJson.getString("fechamento"));
                             String cnpj = logCashierJson.getString("cnpj");
 
-
                             LogCashierModel logCashier = new LogCashierModel(idLogCaixa, idCaixa, dataFuncionamento,
                                     valorInicial, valorFinal, abertura, fechamento, cnpj);
                             logCashiers.add(logCashier);
@@ -65,14 +65,18 @@ public class LogCashierFetcher {
                             listener.onLogCashierFetchSuccess(logCashiers);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
                         if (listener != null) {
-                            listener.onLogCashierFetchError();
+                            throw new LogCashierFetchException("Failed to fetch log cashiers - result is null");
                         }
                     }
-
-                } else {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    if (listener != null) {
+                        listener.onLogCashierFetchError();
+                    }
+                } catch (LogCashierFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onLogCashierFetchError();
                     }

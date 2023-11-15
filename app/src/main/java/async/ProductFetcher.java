@@ -49,7 +49,6 @@ public class ProductFetcher {
                         BigDecimal atacado = new BigDecimal(productJson.getString("atacado"));
                         LocalDate data_cadastro = LocalDate.parse(productJson.getString("data_cadastro"));
                         String url_image = productJson.optString("url_image", null);
-                        // String cnpj = productJson.getString("cnpj");
 
                         ProductModel product = new ProductModel(cod_barras, nome, quantidade, informacoes, validade,
                                 descricao, varejo, atacado, data_cadastro, url_image);

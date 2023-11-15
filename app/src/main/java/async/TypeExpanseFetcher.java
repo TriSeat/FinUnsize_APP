@@ -1,24 +1,24 @@
-/*package async;
+package async;
 
 import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import listener.OnTypeExpanseFetchListener;
-import persistence.models.TypeExpanseModel;
-import request.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import exception.TypeExpanseFetchException;
+import listener.OnTypeExpanseFetchListener;
+import persistence.models.TypeExpanseModel;
+import request.Connection;
+
 public class TypeExpanseFetcher {
 
     private Handler handler;
     private OnTypeExpanseFetchListener listener;
-
-    String nome, descricao;
 
     public TypeExpanseFetcher(Handler handler, OnTypeExpanseFetchListener listener) {
         this.handler = handler;
@@ -33,10 +33,10 @@ public class TypeExpanseFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("expanse/type");
+                try {
+                    String result = Connection.connectHttp("expanse/type");
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
 
@@ -46,16 +46,11 @@ public class TypeExpanseFetcher {
                             JSONObject typeExpanseJson = jsonArray.getJSONObject(i);
 
                             UUID idTypeExpanse = UUID.fromString(typeExpanseJson.getString("idTypeExpanse"));
-<<<<<<< HEAD
                             String nome = typeExpanseJson.getString("nome");
                             String descricao = typeExpanseJson.getString("descricao");
-=======
->>>>>>> 1f3b5081a5bea2e13a30673e489782573354de5b
+                            String cnpj = typeExpanseJson.optString("cnpj", null);
 
-
-
-                            TypeExpanseModel typeExpanse = new TypeExpanseModel(
-                                    idTypeExpanse);
+                            TypeExpanseModel typeExpanse = new TypeExpanseModel(idTypeExpanse, nome, descricao, cnpj);
                             typeExpanses.add(typeExpanse);
                         }
 
@@ -63,14 +58,12 @@ public class TypeExpanseFetcher {
                             listener.onTypeExpanseFetchSuccess(typeExpanses);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        if (listener != null) {
-                            listener.onTypeExpanseFetchError();
-                        }
+                    } else {
+                        throw new TypeExpanseFetchException("Error fetching type expanses");
                     }
 
-                } else {
+                } catch (JSONException | TypeExpanseFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onTypeExpanseFetchError();
                     }
@@ -79,4 +72,3 @@ public class TypeExpanseFetcher {
         });
     }
 }
-*/

@@ -1,11 +1,11 @@
 package async;
 
-
 import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import exception.EmployeeCashierFetchException;
 import listener.OnEmployeeCashierFetchListener;
 import persistence.models.CashierModel;
 import persistence.models.EmployeeCashierModel;
@@ -22,7 +22,7 @@ public class EmployeeCashierFetcher {
         this.listener = listener;
     }
 
-    public void fetchEmployeeCashier(int idFuncionarioCaixa) {
+    public void fetchEmployeeCashier(int idFuncionarioCaixa) throws EmployeeCashierFetchException {
         HandlerThread handlerThread = new HandlerThread("EmployeeCashierFetcherThread");
         handlerThread.start();
 
@@ -49,8 +49,10 @@ public class EmployeeCashierFetcher {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        if (listener != null) {
-                            listener.onEmployeeCashierFetchError();
+                        try {
+                            throw new EmployeeCashierFetchException("Error fetching employee cashier data", e);
+                        } catch (EmployeeCashierFetchException ex) {
+                            throw new RuntimeException(ex);
                         }
                     }
 
@@ -68,14 +70,12 @@ public class EmployeeCashierFetcher {
         String nome = cashierJson.getString("nome");
         String status = cashierJson.getString("status");
 
-
         return new CashierModel(idCaixa, nome, status);
     }
 
     private EmployeeModel parseEmployeeModel(JSONObject employeeJson) throws JSONException {
         int idFuncionario = employeeJson.getInt("idFuncionario");
         String nome = employeeJson.getString("nome");
-
 
         return new EmployeeModel(idFuncionario, nome);
     }

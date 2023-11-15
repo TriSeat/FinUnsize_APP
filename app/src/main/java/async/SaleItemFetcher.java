@@ -1,6 +1,5 @@
 package async;
 
-
 import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONArray;
@@ -9,8 +8,8 @@ import org.json.JSONObject;
 import listener.OnSaleItemFetchListener;
 import persistence.models.SaleItemModel;
 import request.Connection;
+import exception.SaleItemFetchException;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -33,10 +32,10 @@ public class SaleItemFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("sales/" + saleId + "/items");
+                try {
+                    String result = Connection.connectHttp("sales/" + saleId + "/items");
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
 
@@ -47,8 +46,7 @@ public class SaleItemFetcher {
 
                             UUID idSaleItem = UUID.fromString(saleItemJson.getString("idSaleItem"));
 
-                            SaleItemModel saleItem = new SaleItemModel(
-                                    idSaleItem);
+                            SaleItemModel saleItem = new SaleItemModel(idSaleItem);
                             saleItems.add(saleItem);
                         }
 
@@ -56,14 +54,11 @@ public class SaleItemFetcher {
                             listener.onSaleItemFetchSuccess(saleItems);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        if (listener != null) {
-                            listener.onSaleItemFetchError();
-                        }
+                    } else {
+                        throw new SaleItemFetchException("Error fetching sale items");
                     }
-
-                } else {
+                } catch (JSONException | SaleItemFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onSaleItemFetchError();
                     }

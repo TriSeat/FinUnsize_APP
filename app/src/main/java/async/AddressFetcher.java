@@ -1,12 +1,12 @@
 package async;
 
-
 import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.UUID;
 
+import exception.AddressFetchException;
 import listener.OnAddressFetchListener;
 import persistence.models.AddressModel;
 import request.Connection;
@@ -29,10 +29,10 @@ public class AddressFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("addresses/" + idLogradouro);
+                try {
+                    String result = Connection.connectHttp("addresses/" + idLogradouro);
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONObject addressJson = jsonObject.getJSONObject("data");
 
@@ -48,17 +48,21 @@ public class AddressFetcher {
                         if (listener != null) {
                             listener.onAddressFetchSuccess(address);
                         }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
                         if (listener != null) {
                             listener.onAddressFetchError();
                         }
                     }
-
-                } else {
+                } catch (JSONException e) {
                     if (listener != null) {
+
                         listener.onAddressFetchError();
+                    }
+
+                    try {
+                        throw new AddressFetchException("Error fetching address", e);
+                    } catch (AddressFetchException ex) {
+                        throw new RuntimeException(ex);
                     }
                 }
             }

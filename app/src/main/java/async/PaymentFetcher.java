@@ -6,11 +6,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import listener.OnPaymentFetchListener;
-
 import persistence.models.PaymentModel;
 import request.Connection;
+import exception.PaymentFetchException;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -33,10 +32,10 @@ public class PaymentFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("payments");
+                try {
+                    String result = Connection.connectHttp("payments");
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
 
@@ -47,8 +46,6 @@ public class PaymentFetcher {
 
                             UUID idPayment = UUID.fromString(paymentJson.getString("idPayment"));
                             String nome = paymentJson.getString("nome");
-                         //   String cnpj = paymentJson.getString("cnpj");
-
 
                             PaymentModel payment = new PaymentModel(idPayment, nome);
                             payments.add(payment);
@@ -58,14 +55,18 @@ public class PaymentFetcher {
                             listener.onPaymentFetchSuccess(payments);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
                         if (listener != null) {
-                            listener.onPaymentFetchError();
+                            throw new PaymentFetchException("Failed to fetch payments - result is null");
                         }
                     }
-
-                } else {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    if (listener != null) {
+                        listener.onPaymentFetchError();
+                    }
+                } catch (PaymentFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onPaymentFetchError();
                     }

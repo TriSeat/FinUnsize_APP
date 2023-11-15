@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import exception.PurchaseFetchException;
 import listener.OnPurchaseFetchListener;
 import persistence.models.PurchaseModel;
 import request.Connection;
@@ -34,10 +35,10 @@ public class PurchaseFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("purchases");
+                try {
+                    String result = Connection.connectHttp("purchases");
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
 
@@ -59,14 +60,12 @@ public class PurchaseFetcher {
                             listener.onPurchaseFetchSuccess(purchases);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        if (listener != null) {
-                            listener.onPurchaseFetchError();
-                        }
+                    } else {
+                        throw new PurchaseFetchException("Error fetching purchases");
                     }
 
-                } else {
+                } catch (JSONException | PurchaseFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onPurchaseFetchError();
                     }

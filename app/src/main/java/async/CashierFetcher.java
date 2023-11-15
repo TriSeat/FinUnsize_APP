@@ -1,11 +1,11 @@
 package async;
 
-
 import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import exception.CashierFetchException;
 import listener.OnCashierFetchListener;
 import persistence.models.CashierModel;
 import request.Connection;
@@ -28,10 +28,10 @@ public class CashierFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("cashiers/" + idCaixa);
+                try {
+                    String result = Connection.connectHttp("cashiers/" + idCaixa);
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONObject cashierJson = jsonObject.getJSONObject("data");
 
@@ -44,17 +44,20 @@ public class CashierFetcher {
                         if (listener != null) {
                             listener.onCashierFetchSuccess(cashier);
                         }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
                         if (listener != null) {
                             listener.onCashierFetchError();
                         }
                     }
-
-                } else {
+                } catch (JSONException e) {
                     if (listener != null) {
                         listener.onCashierFetchError();
+                    }
+
+                    try {
+                        throw new CashierFetchException("Error fetching cashier", e);
+                    } catch (CashierFetchException ex) {
+                        throw new RuntimeException(ex);
                     }
                 }
             }

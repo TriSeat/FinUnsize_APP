@@ -55,7 +55,7 @@ public class ExpanseFetcher {
                             TypeExpanseModel tipoDespesa = parseTypeExpanseModel(expanseJson.getJSONObject("tipoDespesa"));
                             String observacao = expanseJson.optString("observacao", null);
                             boolean aberto = expanseJson.getBoolean("aberto");
-                          //  String cnpj = expanseJson.getString("cnpj");
+                            String cnpj = expanseJson.getString("cnpj");
 
 
                             ExpanseModel expanse = new ExpanseModel(idDespesa, nome, valor, dataVencimento, dataPagamento, tipoDespesa, observacao, aberto);
@@ -86,8 +86,8 @@ public class ExpanseFetcher {
         UUID idDespesa = UUID.fromString(typeExpanseJson.getString("idDespesa"));
         String nome = typeExpanseJson.getString("nome");
         String descricao = typeExpanseJson.getString("descricao");
-       // String cnpj = typeExpanseJson.getString("cnpj");
+        String cnpj = typeExpanseJson.getString("cnpj");
 
-        return new TypeExpanseModel(idDespesa);
+        return new TypeExpanseModel(idDespesa, nome, descricao, cnpj);
     }
 }

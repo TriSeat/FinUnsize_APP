@@ -1,4 +1,3 @@
-// InfoProductFetcher.java
 package async;
 
 import android.os.Handler;
@@ -6,8 +5,9 @@ import android.os.HandlerThread;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import listener.OnInfoProductFetchListener;
 
+import exception.InfoProductFetchException;
+import listener.OnInfoProductFetchListener;
 import persistence.models.InfoProductModel;
 import request.Connection;
 
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class InfoProductFetcher {
+public class  InfoProductFetcher {
 
     private Handler handler;
     private OnInfoProductFetchListener listener;
@@ -33,10 +33,10 @@ public class InfoProductFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("infoProducts");
+                try {
+                    String result = Connection.connectHttp("infoProducts");
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
 
@@ -49,9 +49,7 @@ public class InfoProductFetcher {
                             String marca = infoProductJson.getString("marca");
                             String categoria = infoProductJson.getString("categoria");
                             String tipo = infoProductJson.getString("tipo");
-                           // String cnpj = infoProductJson.getString("cnpj");
 
-                            // Crie a instância de InfoProductModel e adicione à lista
                             InfoProductModel infoProduct = new InfoProductModel(idItemProduto, marca, categoria, tipo);
                             infoProducts.add(infoProduct);
                         }
@@ -60,19 +58,22 @@ public class InfoProductFetcher {
                             listener.onInfoProductFetchSuccess(infoProducts);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
                         if (listener != null) {
-                            listener.onInfoProductFetchError();
+                            throw new InfoProductFetchException("Failed to fetch info products - result is null");
                         }
                     }
-
-                } else {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    if (listener != null) {
+                        listener.onInfoProductFetchError();
+                    }
+                } catch (InfoProductFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onInfoProductFetchError();
                     }
                 }
             }
         });
-    }
-}
+    }}

@@ -6,10 +6,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.UUID;
 
+import exception.SupplierFetchException;
 import listener.OnSupplierFetchListener;
 import persistence.models.SupplierModel;
 import request.Connection;
-
 
 public class SupplierFetcher {
 
@@ -29,17 +29,17 @@ public class SupplierFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("suppliers/" + idFornecedor);
+                try {
+                    String result = Connection.connectHttp("suppliers/" + idFornecedor);
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONObject supplierJson = jsonObject.getJSONObject("data");
 
                         String nome = supplierJson.getString("nome");
                         String descricao = supplierJson.getString("descricao");
                         String urlImage = supplierJson.optString("url_image", null);
-                       // String cnpj = supplierJson.getString("cnpj");
+                        // String cnpj = supplierJson.getString("cnpj");
 
                         SupplierModel supplier = new SupplierModel(idFornecedor, nome, descricao, urlImage);
 
@@ -47,14 +47,12 @@ public class SupplierFetcher {
                             listener.onSupplierFetchSuccess(supplier);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        if (listener != null) {
-                            listener.onSupplierFetchError();
-                        }
+                    } else {
+                        throw new SupplierFetchException("Error fetching supplier");
                     }
 
-                } else {
+                } catch (JSONException | SupplierFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onSupplierFetchError();
                     }

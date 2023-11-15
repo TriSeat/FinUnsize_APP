@@ -1,4 +1,3 @@
-// EmployeeFetcher.java
 package async;
 
 import android.os.Handler;
@@ -6,6 +5,8 @@ import android.os.HandlerThread;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import exception.EmployeeFetchException;
 import listener.OnEmployeeFetchListener;
 import persistence.models.AddressModel;
 import persistence.models.EmployeeModel;
@@ -26,7 +27,7 @@ public class EmployeeFetcher {
         this.listener = listener;
     }
 
-    public void fetchEmployees() {
+    public void fetchEmployees() throws EmployeeFetchException {
         HandlerThread handlerThread = new HandlerThread("EmployeeFetcherThread");
         handlerThread.start();
 
@@ -50,10 +51,8 @@ public class EmployeeFetcher {
                             String cpf = employeeJson.getString("cpf");
                             String nome = employeeJson.getString("nome");
 
-
                             OfficeModel cargo = parseOfficeModel(employeeJson.getJSONObject("cargo"));
                             AddressModel idLogradouro = parseAddressModel(employeeJson.getJSONObject("idLogradouro"));
-
 
                             EmployeeModel employee = new EmployeeModel(idFuncionario, cpf);
                             employees.add(employee);
@@ -65,8 +64,10 @@ public class EmployeeFetcher {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        if (listener != null) {
-                            listener.onEmployeeFetchError();
+                        try {
+                            throw new EmployeeFetchException("Error fetching employees data", e);
+                        } catch (EmployeeFetchException ex) {
+                            throw new RuntimeException(ex);
                         }
                     }
 
@@ -83,7 +84,6 @@ public class EmployeeFetcher {
         UUID idCargo = UUID.fromString(officeJson.getString("idCargo"));
         String nome = officeJson.getString("nome");
         String descricao = officeJson.getString("descricao");
-
 
         return new OfficeModel(idCargo, nome, descricao);
     }

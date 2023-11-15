@@ -13,9 +13,6 @@ public class EmployeeCashierModel implements Serializable {
     private EmployeeModel id_funcionario;
     private String cnpj;
 
-    // Construtores
-    public EmployeeCashierModel() {
-    }
 
     public EmployeeCashierModel(int id_funcionario_caixa, CashierModel id_caixa,
                                 EmployeeModel id_funcionario, String cnpj) {

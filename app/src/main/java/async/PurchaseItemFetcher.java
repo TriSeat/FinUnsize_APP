@@ -5,12 +5,12 @@ import android.os.HandlerThread;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import listener.OnPurchaseItemFetchListener;
 
+import exception.PurchaseItemFetchException;
+import listener.OnPurchaseItemFetchListener;
 import persistence.models.PurchaseItemModel;
 import request.Connection;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -33,10 +33,10 @@ public class PurchaseItemFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("purchases/" + purchaseId + "/items");
+                try {
+                    String result = Connection.connectHttp("purchases/" + purchaseId + "/items");
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
 
@@ -46,11 +46,9 @@ public class PurchaseItemFetcher {
                             JSONObject purchaseItemJson = jsonArray.getJSONObject(i);
 
                             UUID idPurchaseItem = UUID.fromString(purchaseItemJson.getString("idPurchaseItem"));
+                            // Parse other fields as needed from the JSON object
 
-
-
-                            PurchaseItemModel purchaseItem = new PurchaseItemModel(
-                                    idPurchaseItem);
+                            PurchaseItemModel purchaseItem = new PurchaseItemModel(idPurchaseItem);
                             purchaseItems.add(purchaseItem);
                         }
 
@@ -58,14 +56,12 @@ public class PurchaseItemFetcher {
                             listener.onPurchaseItemFetchSuccess(purchaseItems);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        if (listener != null) {
-                            listener.onPurchaseItemFetchError();
-                        }
+                    } else {
+                        throw new PurchaseItemFetchException("Error fetching purchase items");
                     }
 
-                } else {
+                } catch (JSONException | PurchaseItemFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onPurchaseItemFetchError();
                     }

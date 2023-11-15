@@ -5,9 +5,11 @@ import android.os.HandlerThread;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import listener.OnOfficeFetchListener;
 import persistence.models.OfficeModel;
 import request.Connection;
+import exception.OfficeFetchException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +33,10 @@ public class OfficeFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("offices");
+                try {
+                    String result = Connection.connectHttp("offices");
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
 
@@ -46,8 +48,6 @@ public class OfficeFetcher {
                             UUID idCargo = UUID.fromString(officeJson.getString("idCargo"));
                             String nome = officeJson.getString("nome");
                             String descricao = officeJson.getString("descricao");
-                           // String cnpj = officeJson.getString("cnpj");
-
 
                             OfficeModel office = new OfficeModel(idCargo, nome, descricao);
                             offices.add(office);
@@ -57,14 +57,18 @@ public class OfficeFetcher {
                             listener.onOfficeFetchSuccess(offices);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
                         if (listener != null) {
-                            listener.onOfficeFetchError();
+                            throw new OfficeFetchException("Failed to fetch offices - result is null");
                         }
                     }
-
-                } else {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    if (listener != null) {
+                        listener.onOfficeFetchError();
+                    }
+                } catch (OfficeFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onOfficeFetchError();
                     }

@@ -1,11 +1,12 @@
 package async;
 
-
 import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import exception.ProjectionFetchException;
 import listener.OnProjectionFetchListener;
 import persistence.models.ProjectionModel;
 import request.Connection;
@@ -34,10 +35,10 @@ public class ProjectionFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("projections");
+                try {
+                    String result = Connection.connectHttp("projections");
 
-                if (result != null) {
-                    try {
+                    if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
                         JSONArray jsonArray = jsonObject.getJSONArray("data");
 
@@ -55,7 +56,6 @@ public class ProjectionFetcher {
                             LocalDate data = LocalDate.parse(projectionJson.getString("data"));
                             String cnpj = projectionJson.getString("cnpj");
 
-                            // Crie a instância de ProjectionModel e adicione à lista
                             ProjectionModel projection = new ProjectionModel(
                                     idProjection, saldoLiquido, saldoBruto, numeroVenda, valorDespesa, descricao, data, cnpj
                             );
@@ -66,14 +66,12 @@ public class ProjectionFetcher {
                             listener.onProjectionFetchSuccess(projections);
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        if (listener != null) {
-                            listener.onProjectionFetchError();
-                        }
+                    } else {
+                        throw new ProjectionFetchException("Error fetching projections");
                     }
 
-                } else {
+                } catch (JSONException | ProjectionFetchException e) {
+                    e.printStackTrace();
                     if (listener != null) {
                         listener.onProjectionFetchError();
                     }
