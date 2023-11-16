@@ -28,21 +28,22 @@ public class MainActivityNoLogin extends AppCompatActivity {
     }
 
     public void OpenHome(View view){
-        Intent intent = new Intent(this, Compras.class);
+        Intent intent = new Intent(this, MainActivityNoLogin.class);
         startActivity(intent);
     }
 
+/*
     public void OpenCaixa(View view){
         Intent intent = new Intent(this, Produtos.class);
         startActivity(intent);
     }
-
+*/
     public void OpenStats(View view){
         Intent intent = new Intent(this, Estatisticas.class);
         startActivity(intent);
     }
 
-    public void OpenUser(View view){
+    public void OpenFunc(View view){
         Intent intent = new Intent(this, Config.class);
     }
 
