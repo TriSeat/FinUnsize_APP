@@ -68,9 +68,7 @@
                 android:background="#00FFFFFF"
                 android:drawableTop="@drawable/stats_menu"
                 android:gravity="bottom|center"
-                android:paddingBottom="5dp"
-                android:paddingEnd="5dp"
-                android:paddingStart="5dp"
+                android:padding="5dp"
                 android:textColor="@color/white"
                 android:text="Estatísticas"
                 android:onClick="OpenStats"
@@ -85,11 +83,11 @@
                 android:drawableTop="@drawable/baseline_person_24"
                 android:gravity="bottom|center"
                 android:padding="5dp"
-                android:text="Usuário"
+                android:text="Funcionários"
                 android:textColor="@color/white"
-                android:onClick="OpenUser"
+                android:onClick="OpenFunc"
                 android:textAlignment="center"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
 
         </LinearLayout>
     </LinearLayout>
