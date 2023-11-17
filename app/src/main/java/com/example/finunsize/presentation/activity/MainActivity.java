@@ -34,22 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void OpenNotif(View view) {
-        Intent intent = new Intent(this, Notification.class);
-        startActivity(intent);
-    }
-
-    public void OpenConfig(View view) {
-        Intent intent = new Intent(this, Config.class);
-        startActivity(intent);
-    }
-
     public static void redirect(Activity activity, Class Class) {
         Intent intent = new Intent(activity, Class);
         activity.startActivity(intent);
     }
 
-    // Intents para as outras activities
+
+
+    //INTENTS DO MENU
     public void OpenCompras(View view){
         Intent intent = new Intent(this, Compras.class);
         startActivity(intent);
@@ -61,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenHome(View view){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivityNoLogin.class);
         startActivity(intent);
     }
 
@@ -70,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void OpenUser(View view){
-        Intent intent = new Intent(this, Config.class);
+    public void OpenFunc(View view){
+        Intent intent = new Intent(this, Compras.class);
         startActivity(intent);
     }
 

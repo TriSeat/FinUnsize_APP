@@ -39,15 +39,26 @@
                         android:text="funcionários"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:textSize="30sp" />
+                        android:textSize="31sp" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="2dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Listagem de funcionários:"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
                     android:gravity="center|end"
                     android:orientation="horizontal">
 
@@ -68,9 +79,7 @@
                         android:background="#00FFFFFF"
                         app:srcCompat="@drawable/baseline_filter_alt_24" />
 
-
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -127,11 +136,88 @@
                         android:backgroundTint="@color/green_btn"
                         android:src="@drawable/add"></ImageButton>
 
-
                 </LinearLayout>
 
-
             </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="310dp"
+                    android:layout_height="85dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/retangulo">
+
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/produto1_img"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:srcCompat="@drawable/produto_img" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/validade_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="15dp"
+                            android:text="Vence em 30/08/2023"
+                            android:fontFamily="@font/poppins"
+                            android:textSize="12sp"
+                            android:textColor="@color/red_font"></TextView>
+
+                        <TextView
+                            android:id="@+id/nome_produto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="27dp"
+                            android:text="Feijão Camil"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"></TextView>
+
+                        <TextView
+                            android:id="@+id/fabricação_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="11dp"
+                            android:text="Criado em 22/07/2023"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="8sp"
+                            android:textColor="@color/cinza_font"></TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/description_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="25dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/pontos_descricao" />
+                    </LinearLayout>
+
+                </LinearLayout>
 
             <include layout="@layout/menu_fixo" />
         </LinearLayout>
