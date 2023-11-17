@@ -84,7 +84,7 @@
             android:layout_marginTop="20dp">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btncadastro"
                 android:layout_width="300dp"
                 android:gravity="center"
                 android:paddingTop="10dp"
