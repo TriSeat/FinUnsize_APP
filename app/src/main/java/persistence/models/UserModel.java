@@ -1,6 +1,8 @@
 package persistence.models;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,17 +21,23 @@ public class UserModel implements Serializable {
     private String url_image;
     private CompanyModel cnpj;
 
+    public UserModel(String alice) {
 
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    }
+
+
+    public List<String> getAuthorities() {
         if (this.role == Role.SERVICE) {
-            return List.of(
-                    new SimpleGrantedAuthority("ROLE_SERVICE"),
-                    new SimpleGrantedAuthority("ROLE_MANAGER"),
-                    new SimpleGrantedAuthority("ROLE_CASHIER")
-            );
+            return Arrays.asList("ROLE_SERVICE", "ROLE_MANAGER", "ROLE_CASHIER");
         } else {
-            return List.of(new SimpleGrantedAuthority("ROLE_MANAGER"));
+            return Collections.singletonList("ROLE_MANAGER");
         }
+    }
+
+
+
+    public boolean hasPermission(Role permission) {
+        return this.role == permission;
     }
 
     public String getUsername() {
