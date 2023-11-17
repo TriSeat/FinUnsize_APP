@@ -1,4 +1,4 @@
-package persistence.models;
+/* package persistence.models;
 
 import java.io.Serializable;
 import java.util.List;
@@ -56,3 +56,4 @@ public class UserModel implements Serializable {
         return cnpj;
     }
 }
+*/
