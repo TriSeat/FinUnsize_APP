@@ -22,16 +22,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginEnd="120dp">
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginEnd="90dp">
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="adicionar um novo produto"
+                    android:text="adicionar um novo funcionário"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
                     android:textSize="28sp" />
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="horizontal"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="10dp">
 
@@ -111,10 +111,10 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="30dp"
                     android:layout_height="50dp"
                     android:gravity="end"
                     android:orientation="horizontal">
@@ -151,13 +151,13 @@
                     android:layout_marginBottom="10dp">
 
                     <EditText
-                        android:id="@+id/marca"
+                        android:id="@+id/cargo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/retangulo"
                         android:ems="10"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Marca"
+                        android:hint="Cargo"
                         android:inputType="text"
                         android:paddingLeft="15dp"
                         android:singleLine="false"
@@ -173,13 +173,79 @@
                     android:layout_marginBottom="10dp">
 
                     <EditText
-                        android:id="@+id/validade"
+                        android:id="@+id/cpf"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/retangulo"
                         android:ems="10"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Validade"
+                        android:hint="CPF"
+                        android:inputType="text"
+                        android:paddingLeft="15dp"
+                        android:singleLine="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/cinza_font"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/turno"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/retangulo"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins_medium"
+                        android:hint="Turno"
+                        android:inputType="text"
+                        android:paddingLeft="15dp"
+                        android:singleLine="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/cinza_font"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/telefone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/retangulo"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins_medium"
+                        android:hint="Telefone"
+                        android:inputType="phone"
+                        android:paddingLeft="15dp"
+                        android:singleLine="false"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/cinza_font"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/emissao"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/retangulo"
+                        android:ems="10"
+                        android:fontFamily="@font/poppins_medium"
+                        android:hint="Data de Emissão"
                         android:inputType="datetime|date"
                         android:paddingLeft="15dp"
                         android:singleLine="false"
@@ -195,13 +261,13 @@
                     android:layout_marginBottom="10dp">
 
                     <EditText
-                        android:id="@+id/quantidade"
+                        android:id="@+id/salario"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/retangulo"
                         android:ems="10"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Quantidade"
+                        android:hint="Salário"
                         android:inputType="number"
                         android:paddingLeft="15dp"
                         android:singleLine="false"
@@ -210,45 +276,23 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
+
                 <LinearLayout
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="70dp"
                     android:orientation="horizontal"
                     android:layout_marginBottom="10dp">
 
                     <EditText
-                        android:id="@+id/categoria"
+                        android:id="@+id/obs"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/retangulo"
                         android:ems="10"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="Categoria"
-                        android:inputType="text|textFilter"
+                        android:hint="Observação"
+                        android:inputType="text|textLongMessage"
                         android:paddingLeft="15dp"
-                        android:singleLine="false"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/cinza_font"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="350dp"
-                    android:layout_height="100dp"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
-
-                    <EditText
-                        android:id="@+id/descricao"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/retangulo"
-                        android:ems="10"
-                        android:fontFamily="@font/poppins_medium"
-                        android:hint="Descrição"
-                        android:inputType="text|textLongMessage|textAutoComplete|textAutoCorrect|textMultiLine"
-                        android:paddingLeft="15dp"
-                        android:paddingBottom="50dp"
                         android:singleLine="false"
                         android:textColor="@color/white"
                         android:textColorHint="@color/cinza_font"
@@ -262,8 +306,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="35dp">
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="24dp">
 
                 <Button
                     android:id="@+id/cadastarProd_btn"
