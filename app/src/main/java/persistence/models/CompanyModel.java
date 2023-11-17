@@ -119,10 +119,6 @@ public class CompanyModel implements Serializable {
         return url_image;
     }
 
-    public void setUrl_image(String url_image) {
-        this.url_image = url_image;
-    }
-
     public String getCnpj() {
         return cnpj;
     }
