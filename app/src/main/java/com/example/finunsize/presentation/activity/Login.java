@@ -31,9 +31,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void OpenHome(View view) {
-
         MainActivity.redirect(this, MainActivity.class);
-
     }
 
     public void OpenCadastro (View view) {

@@ -141,9 +141,9 @@
             </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_width="310dp"
+                    android:layout_width="380dp"
                     android:layout_height="85dp"
                     android:orientation="horizontal"
                     android:gravity="center"
@@ -151,18 +151,17 @@
 
 
                     <LinearLayout
-                        android:layout_width="90dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/produto1_img"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/func"
+                            android:layout_width="50dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:srcCompat="@drawable/produto_img" />
+                            android:layout_height="50dp"
+                            app:srcCompat="@drawable/func_example" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -173,51 +172,357 @@
                         android:layout_marginBottom="16dp">
 
                         <TextView
-                            android:id="@+id/validade_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="15dp"
-                            android:text="Vence em 30/08/2023"
-                            android:fontFamily="@font/poppins"
-                            android:textSize="12sp"
-                            android:textColor="@color/red_font"></TextView>
-
-                        <TextView
-                            android:id="@+id/nome_produto"
+                            android:id="@+id/nome_func"
                             android:layout_width="wrap_content"
                             android:layout_height="27dp"
-                            android:text="Feijão Camil"
+                            android:layout_marginStart="10dp"
+                            android:text="Salin Ferreira"
                             android:fontFamily="@font/poppins_semibold"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textColor="@color/white"></TextView>
 
-                        <TextView
-                            android:id="@+id/fabricação_text"
+                          </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/turno"
                             android:layout_width="wrap_content"
-                            android:layout_height="11dp"
-                            android:text="Criado em 22/07/2023"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textSize="8sp"
-                            android:textColor="@color/cinza_font"></TextView>
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/baseline_dark_mode_24" />
+
+                        <ImageButton
+                            android:id="@+id/cargo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/baseline_person_pin_24" />
+
+                        <ImageButton
+                            android:id="@+id/salario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/baseline_attach_money_24" />
+
+                    </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginEnd="5dp">
+
+                            <TextView
+                                android:id="@+id/turno"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="23dp"
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                android:text="AM"/>
+
+                            <TextView
+                                android:id="@+id/turno"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="23dp"
+                                android:textAllCaps="true"
+                                android:textSize="13sp"
+                                android:textColor="@color/white"
+                                android:text="CAIXA"/>
+
+                            <TextView
+                                android:id="@+id/turno"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="5dp"
+                                android:textAlignment="center"
+                                android:textAllCaps="true"
+                                android:textSize="13sp"
+                                android:textColor="@color/white"
+                                android:text="r$ 3000"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="380dp"
+                android:layout_height="85dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/retangulo">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/func"
+                        android:layout_width="50dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="50dp"
+                        app:srcCompat="@drawable/func_example2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/nome_func"
+                        android:layout_width="wrap_content"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="10dp"
+                        android:text="Sarah Torres"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"></TextView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/turno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/baseline_dark_mode_24" />
+
+                        <ImageButton
+                            android:id="@+id/cargo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/baseline_person_pin_24" />
+
+                        <ImageButton
+                            android:id="@+id/salario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/baseline_attach_money_24" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="25dp"
                         android:layout_marginEnd="5dp">
 
-                        <ImageButton
-                            android:id="@+id/description_btn"
+                        <TextView
+                            android:id="@+id/turno"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="50dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginBottom="25dp"
-                            android:background="@color/transparent"
-                            android:src="@drawable/pontos_descricao" />
+                            android:layout_marginStart="23dp"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            android:text="AM"/>
+
+                        <TextView
+                            android:id="@+id/turno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="22dp"
+                            android:textAllCaps="true"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:text="CAIXA"/>
+
+                        <TextView
+                            android:id="@+id/turno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginEnd="7dp"
+                            android:textAlignment="center"
+                            android:textAllCaps="true"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:text="r$ 4000"/>
                     </LinearLayout>
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="380dp"
+                android:layout_height="85dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/retangulo">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/func"
+                        android:layout_width="50dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="50dp"
+                        app:srcCompat="@drawable/func_example3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/nome_func"
+                        android:layout_width="wrap_content"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="10dp"
+                        android:text="Marcos Augusto"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"></TextView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp">
+
+                        <ImageButton
+                            android:id="@+id/turno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/baseline_dark_mode_24" />
+
+                        <ImageButton
+                            android:id="@+id/cargo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/baseline_person_pin_24" />
+
+                        <ImageButton
+                            android:id="@+id/salario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@color/transparent"
+                            android:src="@drawable/baseline_attach_money_24" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp">
+
+                        <TextView
+                            android:id="@+id/turno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            android:text="PM"/>
+
+                        <TextView
+                            android:id="@+id/turno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="22dp"
+                            android:textAllCaps="true"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:text="CAIXA"/>
+
+                        <TextView
+                            android:id="@+id/turno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:textAlignment="center"
+                            android:textAllCaps="true"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:text="r$ 3000"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <include layout="@layout/menu_fixo" />
         </LinearLayout>

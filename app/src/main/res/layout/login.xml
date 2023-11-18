@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.activity.Login">
 
 
@@ -31,15 +32,6 @@
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="30sp"/>
-
-        <TextView
-            android:id="@+id/text.login1"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:layout_marginStart="2dp"
-            android:fontFamily="@font/poppins"
-            android:text="Lorem Ipsum dolor sit amet"
-            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
@@ -126,13 +118,15 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/azulbt"
+            app:backgroundTint="@color/azulbt"
             android:fontFamily="@font/poppins_semibold"
             android:text="login"
             android:onClick="OpenHome"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
-            android:textSize="23sp"/>
+            android:textSize="23sp"
+            android:background="@drawable/roundedbutton"/>
+
     </LinearLayout>
 
     <LinearLayout

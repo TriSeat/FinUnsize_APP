@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     //INTENTS DO MENU
     public void OpenCompras(View view){
         Intent intent = new Intent(this, Compras.class);

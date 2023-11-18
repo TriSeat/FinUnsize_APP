@@ -56,7 +56,7 @@
                 android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="OpenConfig"
+                android:onClick="OpenNotif"
                 android:layout_marginStart="150dp"
                 android:layout_marginTop="55dp"
                 android:layout_marginEnd="35dp"
@@ -65,7 +65,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/config" />
+                app:srcCompat="@drawable/notificacoes" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -135,7 +135,7 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="480dp">
+                android:layout_height="475dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -245,7 +245,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            app:srcCompat="@drawable/produto_img" />
+                            app:srcCompat="@drawable/produto2" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -268,7 +268,7 @@
                             android:id="@+id/nome_produto2"
                             android:layout_width="wrap_content"
                             android:layout_height="27dp"
-                            android:text="Feijão Camil"
+                            android:text="Arroz Camil"
                             android:fontFamily="@font/poppins_semibold"
                             android:textSize="20sp"
                             android:textColor="@color/white"></TextView>
@@ -325,7 +325,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            app:srcCompat="@drawable/produto_img" />
+                            app:srcCompat="@drawable/produto3" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -348,7 +348,7 @@
                             android:id="@+id/nome_produto3"
                             android:layout_width="wrap_content"
                             android:layout_height="27dp"
-                            android:text="Feijão Camil"
+                            android:text="Açúcar União"
                             android:fontFamily="@font/poppins_semibold"
                             android:textSize="20sp"
                             android:textColor="@color/white"></TextView>
@@ -405,7 +405,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            app:srcCompat="@drawable/produto_img" />
+                            app:srcCompat="@drawable/produto4" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -428,9 +428,9 @@
                             android:id="@+id/nome_produto4"
                             android:layout_width="wrap_content"
                             android:layout_height="27dp"
-                            android:text="Feijão Camil"
+                            android:text="Farinha de Trigo DB"
                             android:fontFamily="@font/poppins_semibold"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textColor="@color/white"></TextView>
 
                         <TextView
@@ -453,7 +453,7 @@
                             android:id="@+id/description_btn4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="50dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="30dp"
                             android:layout_marginBottom="25dp"
                             android:background="@color/transparent"
@@ -485,7 +485,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            app:srcCompat="@drawable/produto_img" />
+                            app:srcCompat="@drawable/produto5" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -508,7 +508,7 @@
                             android:id="@+id/nome_produto5"
                             android:layout_width="wrap_content"
                             android:layout_height="27dp"
-                            android:text="Feijão Camil"
+                            android:text="Café Pilão"
                             android:fontFamily="@font/poppins_semibold"
                             android:textSize="20sp"
                             android:textColor="@color/white"></TextView>

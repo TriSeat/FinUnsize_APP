@@ -17,8 +17,15 @@ public class Produtos extends AppCompatActivity {
         setContentView(R.layout.produtos);
     }
 
-    public void CadastroProd (View view) {
-        MainActivity.redirect(this, CadastroProdutos.class);
+
+    public void OpenNotif(View view){
+        Intent intent = new Intent(this, Notification.class);
+        startActivity(intent);
+    }
+
+    public void CadastroProd(View view){
+        Intent intent = new Intent(this, CadastroProdutos.class);
+        startActivity(intent);
     }
 
     //INTENTS DO MENU

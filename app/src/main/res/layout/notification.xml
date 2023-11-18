@@ -73,17 +73,17 @@
             android:background="@color/white_fundo"
             android:orientation="vertical">
 
-
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="580dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center|top"
-                    android:background="@color/white_fundo">
+                    android:background="@color/white_fundo"
+                    android:layout_marginTop="10dp">
 
                     <LinearLayout
                         android:layout_marginTop="10dp"
@@ -155,61 +155,6 @@
                             android:gravity="center">
 
                             <ImageView
-                                android:id="@+id/produto_notifi2"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                app:srcCompat="@drawable/baseline_check_circle_outline_24" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="5dp">
-
-                            <TextView
-                                android:id="@+id/notifi_produto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                android:text="Ocorreu um ERRO"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="20sp"
-                                android:textColor="@color/white"></TextView>
-
-                            <TextView
-                                android:id="@+id/descricao_noti"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="O produto informado acabou de ser cadastrado! Verifique-o"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="11sp"
-                                android:textColor="@color/cinza_font"></TextView>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="350dp"
-                        android:layout_height="80dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/retangulo">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <ImageView
                                 android:id="@+id/produto_notifi3"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
@@ -229,7 +174,7 @@
                             android:layout_marginBottom="5dp">
 
                             <TextView
-                                android:id="@+id/notifi_produto"
+                                android:id="@+id/notifi_produto3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:text="Ocorreu um ERRO"
@@ -238,10 +183,10 @@
                                 android:textColor="@color/white"></TextView>
 
                             <TextView
-                                android:id="@+id/descricao_noti"
+                                android:id="@+id/descricao_noti3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="O produto informado acabou de ser cadastrado! Verifique-o"
+                                android:text="O produto 'Feijão Camil' já existe, verifique a duplicidade e a remova"
                                 android:fontFamily="@font/poppins_semibold"
                                 android:textSize="11sp"
                                 android:textColor="@color/cinza_font"></TextView>
@@ -284,19 +229,19 @@
                             android:layout_marginBottom="5dp">
 
                             <TextView
-                                android:id="@+id/notifi_produto"
+                                android:id="@+id/notifi_produto1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
-                                android:text="Ocorreu um ERRO"
+                                android:text="Ocorreu tudo BEM"
                                 android:fontFamily="@font/poppins_semibold"
                                 android:textSize="20sp"
                                 android:textColor="@color/white"></TextView>
 
                             <TextView
-                                android:id="@+id/descricao_noti"
+                                android:id="@+id/descricao_noti1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="O produto informado acabou de ser cadastrado! Verifique-o"
+                                android:text="O erro anterior foi ajustado e não foi encontrado nenhum erro na aplicação"
                                 android:fontFamily="@font/poppins_semibold"
                                 android:textSize="11sp"
                                 android:textColor="@color/cinza_font"></TextView>
@@ -304,284 +249,34 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="350dp"
-                        android:layout_height="80dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/retangulo">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/produto_notifi3"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                app:srcCompat="@drawable/outline_cancel_24" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="5dp">
-
-                            <TextView
-                                android:id="@+id/notifi_produto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                android:text="Ocorreu um ERRO"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="20sp"
-                                android:textColor="@color/white"></TextView>
-
-                            <TextView
-                                android:id="@+id/descricao_noti"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="O produto informado acabou de ser cadastrado! Verifique-o"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="11sp"
-                                android:textColor="@color/cinza_font"></TextView>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="350dp"
-                        android:layout_height="80dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/retangulo">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/produto_notifi2"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                app:srcCompat="@drawable/baseline_check_circle_outline_24" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="5dp">
-
-                            <TextView
-                                android:id="@+id/notifi_produto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                android:text="Ocorreu um ERRO"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="20sp"
-                                android:textColor="@color/white"></TextView>
-
-                            <TextView
-                                android:id="@+id/descricao_noti"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="O produto informado acabou de ser cadastrado! Verifique-o"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="11sp"
-                                android:textColor="@color/cinza_font"></TextView>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="350dp"
-                        android:layout_height="80dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/retangulo">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/produto_notifi3"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                app:srcCompat="@drawable/outline_cancel_24" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="5dp">
-
-                            <TextView
-                                android:id="@+id/notifi_produto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                android:text="Ocorreu um ERRO"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="20sp"
-                                android:textColor="@color/white"></TextView>
-
-                            <TextView
-                                android:id="@+id/descricao_noti"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="O produto informado acabou de ser cadastrado! Verifique-o"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="11sp"
-                                android:textColor="@color/cinza_font"></TextView>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="350dp"
-                        android:layout_height="80dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/retangulo">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/produto_notifi3"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                app:srcCompat="@drawable/outline_cancel_24" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="5dp">
-
-                            <TextView
-                                android:id="@+id/notifi_produto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                android:text="Ocorreu um ERRO"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="20sp"
-                                android:textColor="@color/white"></TextView>
-
-                            <TextView
-                                android:id="@+id/descricao_noti"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="O produto informado acabou de ser cadastrado! Verifique-o"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="11sp"
-                                android:textColor="@color/cinza_font"></TextView>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="350dp"
-                        android:layout_height="80dp"
-                        android:orientation="horizontal"
-                        android:background="@drawable/retangulo">
-
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/produto_notifi3"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                app:srcCompat="@drawable/outline_cancel_24" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="5dp">
-
-                            <TextView
-                                android:id="@+id/notifi_produto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                android:text="Ocorreu um ERRO"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="20sp"
-                                android:textColor="@color/white"></TextView>
-
-                            <TextView
-                                android:id="@+id/descricao_noti"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="O produto informado acabou de ser cadastrado! Verifique-o"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textSize="11sp"
-                                android:textColor="@color/cinza_font"></TextView>
-                        </LinearLayout>
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
             </ScrollView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="35dp">
+
+                <Button
+                    android:id="@+id/limparnot"
+                    android:layout_width="300dp"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="@color/cinza_menu"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Clear all"
+                    android:onClick="ClearNotif"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
+                    android:textSize="23sp"
+                    android:background="@drawable/roundedbutton"/>
+            </LinearLayout>
         </LinearLayout>
 
             <include layout="@layout/menu_fixo" />
