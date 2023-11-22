@@ -4,27 +4,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import persistence.models.ProductModel;
 
 public class Produtos extends AppCompatActivity {
 
+    LinearLayout main_layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.produtos);
     }
 
-
     public void OpenNotif(View view){
         Intent intent = new Intent(this, Notification.class);
-        startActivity(intent);
-    }
-
-    public void CadastroProd(View view){
-        Intent intent = new Intent(this, CadastroProdutos.class);
         startActivity(intent);
     }
 

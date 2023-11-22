@@ -37,7 +37,9 @@ public class Cadastro4 extends AppCompatActivity {
         String senha = password.getText().toString();
         String resenha = repassword.getText().toString();
 
-        if (password.equals(resenha)) {
+        MainActivity.redirect(this, MainActivity.class);
+
+        /* if (password.equals(resenha)) {
             String token = UUID.randomUUID().toString();
 
             sendTokenToApi(token);
@@ -46,21 +48,15 @@ public class Cadastro4 extends AppCompatActivity {
         } else {
 
             Toast.makeText(Cadastro4.this, "As senhas não correspondem", Toast.LENGTH_SHORT).show();
-        }
+        } */
     }
 
     private void sendTokenToApi(String token) {
-        // Use an HTTP library like Retrofit or Volley to make the API request
-        // Pass the token as a parameter in the request
     }
 
     private void registerUser(String email, String password) {
-        // Implement user registration logic here
     }
 
-    public void OpenCadastroPerfil (View view) {
-        MainActivity.redirect(this, MainActivity.class);
-    }
     public void OpenLogin (View view) {
         MainActivity.redirect(this, Login.class);
     }

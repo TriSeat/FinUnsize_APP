@@ -96,47 +96,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="15dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center|start"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="adicionar mais"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:textColor="@color/cinza"
-                        android:textSize="27sp" />
-
-                </LinearLayout>
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
-                    android:gravity="end"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="25dp"
+                    android:gravity="start"
+                    android:orientation="vertical">
 
-                    <ImageButton
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:onClick="CadastroProd"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/green_btn"
-                        android:src="@drawable/add"></ImageButton>
+                    <TextView
+                        android:id="@+id/qtd_prod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="144"
+                        android:textAllCaps="true"
+                        android:textColor="@color/cinza"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="Funcinários Registrados"
+                        android:textColor="@color/cinza"
+                        android:textSize="15sp" />
 
                 </LinearLayout>
+
 
             </LinearLayout>
 

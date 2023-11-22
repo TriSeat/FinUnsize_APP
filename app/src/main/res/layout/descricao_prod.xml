@@ -130,9 +130,9 @@
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="OpenProdutos"
                         android:background="@color/transparent"
-                        android:src="@drawable/baseline_cancel_24"/>
+                        android:onClick="OpenProdutos"
+                        android:src="@drawable/baseline_cancel_24" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -207,6 +207,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:fontFamily="@font/poppins_medium"
+                                android:layout_marginEnd="28dp"
+                                android:textAlignment="textEnd"
                                 android:text="Feijão preto cozido, pronto para dar um toque final de tempero e ir à mesa, sem ter que passar pela panela de pressão. 100% natural e com grãos selecionados, não tem conservantes nem aditivos químicos. "
                                 android:textColor="@color/cinza_font"
                                 android:textSize="15sp" />
@@ -260,53 +262,6 @@
                                 android:textSize="15sp"/>
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="8dp"
-                                android:text="Tipo:"
-                                android:fontFamily="@font/poppins_medium"
-                                android:textColor="@color/cinza_font"
-                                android:textSize="15sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="1"
-                                android:fontFamily="@font/poppins_medium"
-                                android:textColor="@color/cinza_font"
-                                android:textSize="15sp"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="8dp"
-                                android:text="Categoria:"
-                                android:fontFamily="@font/poppins_medium"
-                                android:textColor="@color/cinza_font"
-                                android:textSize="15sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="Feijão"
-                                android:fontFamily="@font/poppins_medium"
-                                android:textColor="@color/cinza_font"
-                                android:textSize="15sp"/>
-                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
