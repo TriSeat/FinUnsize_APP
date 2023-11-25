@@ -37,7 +37,7 @@ public class Cadastro4 extends AppCompatActivity {
         String senha = password.getText().toString();
         String resenha = repassword.getText().toString();
 
-        MainActivity.redirect(this, MainActivity.class);
+        MainActivity.redirect(this, CadastroPerfil.class);
 
         /* if (password.equals(resenha)) {
             String token = UUID.randomUUID().toString();

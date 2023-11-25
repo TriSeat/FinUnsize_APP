@@ -19,7 +19,7 @@ public class ErroCadastro extends AppCompatActivity {
         MainActivity.redirect(this, MainActivityNoLogin.class);
     }
 
-    public void OpenCadastro2 (View view) {
+    public void OpenCadastro (View view) {
         MainActivity.redirect(this, Cadastro.class);
     }
 }

@@ -17,6 +17,11 @@ public class MainActivityNoLogin extends AppCompatActivity {
         setContentView(R.layout.main_nologin);
     }
 
+    public void OpenCadastro2(View view){
+        Intent intent = new Intent(this, Cadastro2.class);
+        startActivity(intent);
+    }
+
     //INTENTS DO MENU
     public void OpenCompras(View view){
         Intent intent = new Intent(this, Compras.class);
@@ -39,7 +44,7 @@ public class MainActivityNoLogin extends AppCompatActivity {
     }
 
     public void OpenFunc(View view){
-        Intent intent = new Intent(this, Compras.class);
+        Intent intent = new Intent(this, Funcionarios.class);
         startActivity(intent);
     }
 }

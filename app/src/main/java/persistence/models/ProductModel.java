@@ -3,7 +3,6 @@ package persistence.models;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class ProductModel implements Serializable {
         private static final long serialVersionUID = 1L;
@@ -12,21 +11,22 @@ public class ProductModel implements Serializable {
         private String nome;
         private int quantidade;
         private InfoProductModel informacoes;
-        private Date validade;
+        private LocalDate validade;
         private String descricao;
         private BigDecimal varejo;
         private BigDecimal atacado;
-        private Date data_cadastro;
+        private LocalDate data_cadastro;
         private String url_image;
         private String cnpj;
+        private SupplierModel fornecedor;
 
         // Construtores
-        public ProductModel(String cod_barras, String nome, int quantidade, InfoProductModel informacoes, LocalDate validade, String descricao, BigDecimal varejo, BigDecimal atacado, LocalDate data_cadastro, String url_image) {
+        public ProductModel(String cod_barras, String nome, int quantidade, InfoProductModel informacoes, LocalDate validade, String descricao, BigDecimal varejo, BigDecimal atacado, SupplierModel fornecedor, LocalDate data_cadastro, String url_image) {
         }
 
         public ProductModel(String cod_barras, int quantidade,
-                            Date validade, String descricao, BigDecimal varejo, BigDecimal atacado,
-                            Date data_cadastro) {
+                            LocalDate validade, String descricao, BigDecimal varejo, BigDecimal atacado,
+                            LocalDate data_cadastro) {
                 this.cod_barras = cod_barras;
                 this.nome = nome;
                 this.quantidade = quantidade;
@@ -35,6 +35,7 @@ public class ProductModel implements Serializable {
                 this.descricao = descricao;
                 this.varejo = varejo;
                 this.atacado = atacado;
+                this.fornecedor = fornecedor;
                 this.data_cadastro = data_cadastro;
                 this.url_image = url_image;
                 this.cnpj = cnpj;
@@ -73,11 +74,19 @@ public class ProductModel implements Serializable {
                 this.informacoes = informacoes;
         }
 
-        public Date getValidade() {
+        public SupplierModel getFornecedor() {
+                return fornecedor;
+        }
+
+        public void setFornecedor(SupplierModel fornecedor) {
+                this.fornecedor = fornecedor;
+        }
+
+        public LocalDate getValidade() {
                 return validade;
         }
 
-        public void setValidade(Date validade) {
+        public void setValidade(LocalDate validade) {
                 this.validade = validade;
         }
 
@@ -105,11 +114,11 @@ public class ProductModel implements Serializable {
                 this.atacado = atacado;
         }
 
-        public Date getData_cadastro() {
+        public LocalDate getData_cadastro() {
                 return data_cadastro;
         }
 
-        public void setData_cadastro(Date data_cadastro) {
+        public void setData_cadastro(LocalDate data_cadastro) {
                 this.data_cadastro = data_cadastro;
         }
 

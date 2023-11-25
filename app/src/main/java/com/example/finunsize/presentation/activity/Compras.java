@@ -37,7 +37,7 @@ public class Compras extends AppCompatActivity {
     }
 
     public void OpenFunc(View view){
-        Intent intent = new Intent(this, Compras.class);
+        Intent intent = new Intent(this, Funcionarios.class);
         startActivity(intent);
     }
 }

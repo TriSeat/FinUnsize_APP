@@ -28,14 +28,12 @@ public class CompanyModel implements Serializable {
 
     private String url_image;
 
-    private boolean inativo = false;
-
     public CompanyModel(String nome, String cnpj) {
     }
 
     public CompanyModel(String cnpj, String nome, String slogan, String segmento, int cep, BigDecimal renda_media,
                         BigDecimal balanco_atual, BigDecimal despesa_media,
-                        String razao, boolean inativo) {
+                        String razao) {
         this.cep = cep;
         this.nome = nome;
         this.slogan = slogan;
@@ -44,7 +42,6 @@ public class CompanyModel implements Serializable {
         this.balanco_atual = balanco_atual;
         this.despesa_media = despesa_media;
         this.razao = razao;
-        this.inativo = false;
         this.url_image = url_image;
         this.cnpj = cnpj;
     }

@@ -52,22 +52,6 @@
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="OpenConfig"
-                android:layout_marginStart="150dp"
-                android:layout_marginTop="55dp"
-                android:layout_marginEnd="35dp"
-                android:layout_marginBottom="65dp"
-                android:background="#00FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/config" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
@@ -145,6 +129,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/productName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Feijão Preto Camil 1kg"
@@ -203,6 +188,7 @@
                                 android:textSize="15sp"/>
 
                             <TextView
+                                android:id="@+id/DescicaoText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -229,13 +215,14 @@
                                 android:textSize="15sp"/>
 
                             <TextView
+                                android:id="@+id/MarcaText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="13dp"
-                                android:text="Camil"
                                 android:fontFamily="@font/poppins_medium"
+                                android:text="Camil"
                                 android:textColor="@color/cinza_font"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -253,6 +240,7 @@
                                 android:textSize="15sp"/>
 
                             <TextView
+                                android:id="@+id/validityText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -278,6 +266,7 @@
                                 android:textSize="15sp"/>
 
                             <TextView
+                                android:id="@+id/qtdText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -302,6 +291,7 @@
                                 android:textSize="15sp"/>
 
                             <TextView
+                                android:id="@+id/PrecoVar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -326,6 +316,7 @@
                                 android:textSize="15sp"/>
 
                             <TextView
+                                android:id="@+id/PrecoAta"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -350,6 +341,7 @@
                                 android:textSize="15sp"/>
 
                             <TextView
+                                android:id="@+id/FornecedorText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"

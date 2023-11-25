@@ -8,7 +8,7 @@ public class SupplierModel implements Serializable {
 
     private UUID id_fornecedor;
     private String nome;
-    private AddressModel id_endereco;
+    private String id_endereco;
     private String descricao;
     private String url_image;
     private String cnpj;
@@ -17,7 +17,7 @@ public class SupplierModel implements Serializable {
     public SupplierModel(UUID idFornecedor, String nome, String descricao, String urlImage) {
     }
 
-    public SupplierModel(UUID id_fornecedor, String nome, AddressModel id_endereco,
+    public SupplierModel(UUID id_fornecedor, String nome, String id_endereco,
                          String descricao, String url_image, String cnpj) {
         this.id_fornecedor = id_fornecedor;
         this.nome = nome;
@@ -44,11 +44,11 @@ public class SupplierModel implements Serializable {
         this.nome = nome;
     }
 
-    public AddressModel getId_endereco() {
+    public String getId_endereco() {
         return id_endereco;
     }
 
-    public void setId_endereco(AddressModel id_endereco) {
+    public void setId_endereco(String id_endereco) {
         this.id_endereco = id_endereco;
     }
 

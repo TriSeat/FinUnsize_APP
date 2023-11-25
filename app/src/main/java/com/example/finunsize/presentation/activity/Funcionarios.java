@@ -8,11 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
 
-public class Config extends AppCompatActivity {
+public class Funcionarios extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.config);
+        setContentView(R.layout.funcionarios);
     }
 
     //INTENTS DO MENU

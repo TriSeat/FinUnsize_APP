@@ -234,6 +234,7 @@
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <RadioButton
@@ -268,56 +269,6 @@
                 android:layout_height="wrap_content"
                 app:buttonTint="@color/cinza_btn"
                 android:text="Mais de R$1000000"
-                android:fontFamily="@font/poppins"
-                android:textSize="10sp"
-                android:textColor="@color/cinza_font2"></RadioButton>
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quantas vendas em média foram feitas no último mês?"
-            android:fontFamily="@font/poppins"
-            android:textSize="12sp"
-            android:textColor="@color/cinza_font2"></TextView>
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:buttonTint="@color/cinza_btn"
-                android:text="Menos de 1000"
-                android:fontFamily="@font/poppins"
-                android:textSize="10sp"
-                android:textColor="@color/cinza_font2"></RadioButton>
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:buttonTint="@color/cinza_btn"
-                android:text="Mais de 1000"
-                android:fontFamily="@font/poppins"
-                android:textSize="10sp"
-                android:textColor="@color/cinza_font2"></RadioButton>
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:buttonTint="@color/cinza_btn"
-                android:text="Mais de 5000"
-                android:fontFamily="@font/poppins"
-                android:textSize="10sp"
-                android:textColor="@color/cinza_font2"></RadioButton>
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:buttonTint="@color/cinza_btn"
-                android:text="Mais de 10000"
                 android:fontFamily="@font/poppins"
                 android:textSize="10sp"
                 android:textColor="@color/cinza_font2"></RadioButton>

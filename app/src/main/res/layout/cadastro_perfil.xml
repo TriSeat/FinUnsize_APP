@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
+            android:layout_marginStart="15dp"
             android:orientation="vertical">
 
             <TextView
@@ -54,10 +55,11 @@
             <TextView
                 android:id="@+id/text.cadastro1"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
+                android:layout_marginEnd="25dp"
                 android:fontFamily="@font/poppins"
-                android:text="Lorem Ipsum dolor sit amet"
+                android:text="Após esse cadastro, você poderá usufruir do aplicativo e dos seus dados"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -68,7 +70,7 @@
             android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imagem_perfil"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
@@ -86,7 +88,7 @@
                 app:srcCompat="@drawable/person_perfil" />
 
             <ImageButton
-                android:id="@+id/editimg_perfil"
+                android:id="@+id/btnEditImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="bottom"
@@ -146,15 +148,14 @@
                 android:gravity="center"
                 android:paddingTop="10dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/azulbt"
+                app:backgroundTint="@color/azulbt"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="finalizar"
                 android:onClick="OpenHome"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
-                android:textSize="23sp"/>
-
-            <!-- android:background="@drawable/roundedbutton" -->
+                android:textSize="23sp"
+                android:background="@drawable/roundedbutton"/>
         </LinearLayout>
 
         <LinearLayout

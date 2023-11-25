@@ -12,6 +12,7 @@ import exception.ProductFetchException;
 import listener.OnProductFetchListener;
 import persistence.models.InfoProductModel;
 import persistence.models.ProductModel;
+import persistence.models.SupplierModel;
 import request.Connection;
 
 public class ProductFetcher {
@@ -47,11 +48,12 @@ public class ProductFetcher {
                         String descricao = productJson.getString("descricao");
                         BigDecimal varejo = new BigDecimal(productJson.getString("varejo"));
                         BigDecimal atacado = new BigDecimal(productJson.getString("atacado"));
+                        SupplierModel fornecedor = parseSupplierModel(productJson.getJSONObject("fornecedor"));
                         LocalDate data_cadastro = LocalDate.parse(productJson.getString("data_cadastro"));
                         String url_image = productJson.optString("url_image", null);
 
                         ProductModel product = new ProductModel(cod_barras, nome, quantidade, informacoes, validade,
-                                descricao, varejo, atacado, data_cadastro, url_image);
+                                descricao, varejo, atacado, fornecedor, data_cadastro, url_image);
 
                         if (listener != null) {
                             listener.onProductFetchSuccess(product);
@@ -69,6 +71,17 @@ public class ProductFetcher {
                 }
             }
         });
+    }
+
+    private SupplierModel parseSupplierModel (JSONObject infoJson) throws JSONException{
+        UUID id_fornecedor = UUID.fromString(infoJson.getString("id_fornecedor"));
+        String nome = infoJson.getString("nome");
+        String id_endereco = infoJson.getString("id_endereco");
+        String descricao = infoJson.getString("descricao");
+        String url_image = infoJson.getString("url_image");
+        String cnpj = infoJson.getString("cnpj");
+
+        return new SupplierModel(id_fornecedor, nome, id_endereco, descricao, url_image, cnpj);
     }
 
     private InfoProductModel parseInfoProductModel(JSONObject infoJson) throws JSONException {

@@ -25,6 +25,10 @@ public class UserModel implements Serializable {
 
     }
 
+    /*public UserModel(String UUID id, String nome, String login, String password, String email, int telefone, int cep, boolean plano_padrao, Role role String url_image, CompanyModel cnpj;) {
+
+    }*/
+
 
     public List<String> getAuthorities() {
         if (this.role == Role.SERVICE) {

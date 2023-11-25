@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center">
 
             <TextView
@@ -49,23 +49,68 @@
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="30sp"/>
-
-            <TextView
-                android:id="@+id/text.cadastro1"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_marginStart="2dp"
-                android:fontFamily="@font/poppins"
-                android:text="Lorem Ipsum dolor sit amet"
-                android:textColor="@color/white"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="25dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imagem_perfil"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:background="@color/transparent"
+                android:onClick="OpenImage"
+                app:srcCompat="@drawable/radius" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="-160dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/baseline_business_24" />
+
+            <ImageButton
+                android:id="@+id/editimg_perfil"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="-35dp"
+                android:onClick="EditImage"
+                android:layout_marginBottom="12dp"
+                android:background="@color/transparent"
+                app:srcCompat="@drawable/radius2" />
+
+            <ImageButton
+                android:id="@+id/edit_perfil"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="bottom"
+                android:onClick="EditImage"
+                android:layout_marginStart="-37dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/transparent"
+                app:srcCompat="@drawable/edit_perfil" />
+
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="35dp"
-            android:layout_gravity="center">
+            android:gravity="center">
 
             <EditText
                 android:id="@+id/empresa"
@@ -101,7 +146,7 @@
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/telefoneemp"
+                android:id="@+id/slogan"
                 android:layout_width="360dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
@@ -109,16 +154,16 @@
                 android:background="@drawable/border"
                 android:ems="10"
                 android:fontFamily="@font/poppins"
-                android:hint="Telefone Empresarial"
-                android:inputType="phone"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:singleLine="true"
+                android:hint="Qual o slogan?"
                 android:textColor="@color/white"
                 android:textColorHint="#CCCCCC"
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/rendaatual"
+                android:id="@+id/cnpj"
                 android:layout_width="360dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
@@ -126,7 +171,7 @@
                 android:background="@drawable/border"
                 android:ems="10"
                 android:fontFamily="@font/poppins"
-                android:hint="Renda Atual (Começando do mês recorrente até hoje)"
+                android:hint="CNPJ"
                 android:inputType="number"
                 android:paddingLeft="15dp"
                 android:singleLine="true"
@@ -135,7 +180,7 @@
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/despesaatual"
+                android:id="@+id/cep"
                 android:layout_width="360dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
@@ -143,7 +188,7 @@
                 android:background="@drawable/border"
                 android:ems="10"
                 android:fontFamily="@font/poppins"
-                android:hint="Despesa Atual (Começando do mês recorrente até hoje)"
+                android:hint="CEP"
                 android:inputType="number"
                 android:paddingLeft="15dp"
                 android:singleLine="true"
@@ -152,23 +197,24 @@
                 android:textSize="12sp" />
 
             <EditText
-                android:id="@+id/vendas"
+                android:id="@+id/razao"
                 android:layout_width="360dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/border"
                 android:ems="10"
                 android:fontFamily="@font/poppins"
-                android:hint="Vendas (Começando do mês recorrente até hoje)"
-                android:inputType="number"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:singleLine="true"
+                android:hint="Qual é a razão Social?"
                 android:textColor="@color/white"
                 android:textColorHint="#CCCCCC"
                 android:textSize="12sp" />
+
         </LinearLayout>
-
+        </ScrollView>
 
         <LinearLayout
             android:layout_width="wrap_content"
