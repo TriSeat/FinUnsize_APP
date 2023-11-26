@@ -2,6 +2,8 @@ package async;
 
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +24,7 @@ public class EmployeeFetcher {
     private Handler handler;
     private OnEmployeeFetchListener listener;
 
-    public EmployeeFetcher(Handler handler, OnEmployeeFetchListener listener) {
+    public EmployeeFetcher(Looper handler, OnEmployeeFetchListener listener) {
         this.handler = handler;
         this.listener = listener;
     }
