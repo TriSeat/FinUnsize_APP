@@ -24,9 +24,9 @@ public class ProductModel implements Serializable {
         public ProductModel(String cod_barras, String nome, int quantidade, InfoProductModel informacoes, LocalDate validade, String descricao, BigDecimal varejo, BigDecimal atacado, SupplierModel fornecedor, LocalDate data_cadastro, String url_image) {
         }
 
-        public ProductModel(String cod_barras, int quantidade,
+        public ProductModel(String cod_barras, String nome, int quantidade, InfoProductModel informacoes,
                             LocalDate validade, String descricao, BigDecimal varejo, BigDecimal atacado,
-                            LocalDate data_cadastro) {
+                            SupplierModel fornecedor, LocalDate data_cadastro, String url_image, String cnpj) {
                 this.cod_barras = cod_barras;
                 this.nome = nome;
                 this.quantidade = quantidade;
