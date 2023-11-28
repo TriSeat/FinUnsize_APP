@@ -96,7 +96,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp">
 
                 <TextView
                     android:id="@+id/balança_text"
@@ -122,39 +123,48 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/up_or_down"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="5dp"
-                app:srcCompat="@drawable/up_verde" />
-
-            <TextView
-                android:id="@+id/porcentagem"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/poppins"
-                android:text="4,30%"
-                android:textColor="#3FA81A"
-                android:textSize="9sp"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
 
-            <TextView
-                android:id="@+id/comparação_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/poppins"
-                android:text="comparado ao mês passado"
-                android:textColor="@color/white"
-                android:textSize="8sp"/>
+                <ImageView
+                    android:id="@+id/up_or_down"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"
+                    app:srcCompat="@drawable/up_verde" />
+
+                <TextView
+                    android:id="@+id/porcentagem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="4,30%"
+                    android:textColor="#3FA81A"
+                    android:textSize="9sp"/>
+
+                <TextView
+                    android:id="@+id/comparação_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="comparado ao mês passado"
+                    android:textColor="@color/white"
+                    android:textSize="8sp"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 

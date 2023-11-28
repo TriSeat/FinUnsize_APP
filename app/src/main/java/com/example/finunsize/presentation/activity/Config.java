@@ -17,7 +17,7 @@ public class Config extends AppCompatActivity {
 
     //INTENTS DO MENU
     public void OpenCompras(View view){
-        Intent intent = new Intent(this, Compras.class);
+        Intent intent = new Intent(this, Caixa.class);
         startActivity(intent);
     }
 

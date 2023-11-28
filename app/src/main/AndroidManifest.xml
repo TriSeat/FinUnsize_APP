@@ -35,7 +35,7 @@
             android:name=".presentation.activity.Funcionarios"
             android:exported="false" />
         <activity
-            android:name=".presentation.activity.Compras"
+            android:name=".presentation.activity.Caixa"
             android:exported="false" />
         <activity
             android:name=".presentation.activity.Config"

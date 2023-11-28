@@ -64,9 +64,14 @@ public class Funcionarios extends AppCompatActivity {
         }
     }
 
+    public void OpenNotif(View view){
+        Intent intent = new Intent(this, Notification.class);
+        startActivity(intent);
+    }
+
     // Métodos de intents do menu (não alterados)
     public void OpenCompras(View view) {
-        Intent intent = new Intent(this, Compras.class);
+        Intent intent = new Intent(this, Caixa.class);
         startActivity(intent);
     }
 
