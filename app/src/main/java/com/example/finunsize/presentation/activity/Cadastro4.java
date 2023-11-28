@@ -3,6 +3,7 @@ package com.example.finunsize.presentation.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,12 +33,13 @@ public class Cadastro4 extends AppCompatActivity {
         btncadastro = findViewById(R.id.btncadastro);
     }
 
-    public void OpenCadastroPerfil() {
+    public void OpenCadastroPerfil(View view) {
         String emaill = email.getText().toString();
         String senha = password.getText().toString();
         String resenha = repassword.getText().toString();
 
-        MainActivity.redirect(this, CadastroPerfil.class);
+        Intent intent = new Intent(this, CadastroPerfil.class);
+        startActivity(intent);
 
         /* if (password.equals(resenha)) {
             String token = UUID.randomUUID().toString();

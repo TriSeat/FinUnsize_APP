@@ -42,6 +42,7 @@ public class Produtos extends AppCompatActivity {
 
         productList = fetchProductListFromApi();
 
+        qtdProdTextView = findViewById(R.id.qtd_prod);
         updateQtdProdTextView(productList.size());
 
         productAdapter = new ProductAdapter(this, productList);
@@ -138,7 +139,7 @@ public class Produtos extends AppCompatActivity {
     }
 
     public void OpenHome(View view){
-        Intent intent = new Intent(this, MainActivityNoLogin.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

@@ -21,7 +21,7 @@ import java.util.UUID;
 
 public class EmployeeFetcher {
 
-    private Handler handler;
+    private Looper handler;
     private OnEmployeeFetchListener listener;
 
     public EmployeeFetcher(Looper handler, OnEmployeeFetchListener listener) {

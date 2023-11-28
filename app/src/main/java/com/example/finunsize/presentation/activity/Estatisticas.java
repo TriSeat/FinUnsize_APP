@@ -27,7 +27,7 @@ public class Estatisticas extends AppCompatActivity {
     }
 
     public void OpenHome(View view){
-        Intent intent = new Intent(this, MainActivityNoLogin.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

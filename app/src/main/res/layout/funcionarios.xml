@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="start"
                     android:orientation="vertical"
                     tools:ignore="ExtraText">
@@ -112,8 +112,7 @@
                     <TextView
                         android:id="@+id/qtd_prod"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
+                        android:layout_height="40dp"
                         android:fontFamily="@font/poppins_bold"
                         android:text="0"
                         android:textAllCaps="true"
