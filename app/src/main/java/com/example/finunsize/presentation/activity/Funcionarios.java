@@ -28,7 +28,6 @@ public class Funcionarios extends AppCompatActivity {
         setContentView(R.layout.funcionarios);
 
         qtdFuncionarios = findViewById(R.id.qtd_prod);
-        listaFuncionarios = findViewById(R.id.lista_funcionarios); // Associe ao TextView no layout
 
         fetchEmployees();
     }
@@ -43,7 +42,11 @@ public class Funcionarios extends AppCompatActivity {
 
                 StringBuilder funcionariosText = new StringBuilder();
                 for (EmployeeModel employee : employees) {
-                    funcionariosText.append(employee.getNome()).append("\n");
+                    funcionariosText.append("Nome: ").append(employee.getNome())
+                            .append("\nCargo: ").append(employee.getCargo())
+                            .append("\nTelefone: ").append(employee.getTelefone())
+                            .append("\nSalário: ").append(employee.getSalario())
+                            .append("\n\n");
                 }
                 if (listaFuncionarios != null) {
                     listaFuncionarios.setText(funcionariosText.toString());
@@ -63,7 +66,6 @@ public class Funcionarios extends AppCompatActivity {
             Toast.makeText(this, "Exceção ao buscar funcionários", Toast.LENGTH_SHORT).show();
         }
     }
-
     // Métodos de intents do menu (não alterados)
     public void OpenCompras(View view) {
         Intent intent = new Intent(this, Compras.class);

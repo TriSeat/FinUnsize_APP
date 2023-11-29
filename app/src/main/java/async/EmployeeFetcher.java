@@ -15,13 +15,14 @@ import persistence.models.EmployeeModel;
 import persistence.models.OfficeModel;
 import request.Connection;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class EmployeeFetcher {
 
-    private Handler handler;
+    private Looper handler;
     private OnEmployeeFetchListener listener;
 
     public EmployeeFetcher(Looper handler, OnEmployeeFetchListener listener) {
@@ -52,14 +53,15 @@ public class EmployeeFetcher {
                             int idFuncionario = employeeJson.getInt("idFuncionario");
                             String cpf = employeeJson.getString("cpf");
                             String nome = employeeJson.getString("nome");
+                            String turno = employeeJson.getString("turno");
+                            BigDecimal salario = (BigDecimal) employeeJson.get("salario");
 
                             OfficeModel cargo = parseOfficeModel(employeeJson.getJSONObject("cargo"));
                             AddressModel idLogradouro = parseAddressModel(employeeJson.getJSONObject("idLogradouro"));
 
-                            EmployeeModel employee = new EmployeeModel(idFuncionario, cpf);
+                            EmployeeModel employee = new EmployeeModel(idFuncionario, cpf, nome, turno, salario);
                             employees.add(employee);
                         }
-
                         if (listener != null) {
                             listener.onEmployeeFetchSuccess(employees);
                         }

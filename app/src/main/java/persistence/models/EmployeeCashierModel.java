@@ -2,9 +2,6 @@ package persistence.models;
 
 import java.io.Serializable;
 
-import persistence.models.CashierModel;
-import persistence.models.EmployeeModel;
-
 public class EmployeeCashierModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -12,7 +9,6 @@ public class EmployeeCashierModel implements Serializable {
     private CashierModel id_caixa;
     private EmployeeModel id_funcionario;
     private String cnpj;
-
 
     public EmployeeCashierModel(int id_funcionario_caixa, CashierModel id_caixa,
                                 EmployeeModel id_funcionario, String cnpj) {

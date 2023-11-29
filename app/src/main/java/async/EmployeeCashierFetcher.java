@@ -5,6 +5,8 @@ import android.os.HandlerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+
 import exception.EmployeeCashierFetchException;
 import listener.OnEmployeeCashierFetchListener;
 import persistence.models.CashierModel;
@@ -39,6 +41,7 @@ public class EmployeeCashierFetcher {
 
                         CashierModel idCaixa = parseCashierModel(employeeCashierJson.getJSONObject("idCaixa"));
                         EmployeeModel idFuncionario = parseEmployeeModel(employeeCashierJson.getJSONObject("idFuncionario"));
+
                         String cnpj = employeeCashierJson.getString("cnpj");
 
                         EmployeeCashierModel employeeCashier = new EmployeeCashierModel(idFuncionarioCaixa, idCaixa, idFuncionario, cnpj);
@@ -49,11 +52,7 @@ public class EmployeeCashierFetcher {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        try {
-                            throw new EmployeeCashierFetchException("Error fetching employee cashier data", e);
-                        } catch (EmployeeCashierFetchException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        throw new RuntimeException(new EmployeeCashierFetchException("Error fetching employee cashier data", e));
                     }
 
                 } else {
@@ -76,7 +75,10 @@ public class EmployeeCashierFetcher {
     private EmployeeModel parseEmployeeModel(JSONObject employeeJson) throws JSONException {
         int idFuncionario = employeeJson.getInt("idFuncionario");
         String nome = employeeJson.getString("nome");
+        String cargo = employeeJson.getString("cargo");
+        String turno = employeeJson.getString("turno");
+        BigDecimal salario = (BigDecimal)employeeJson.get("salario");
 
-        return new EmployeeModel(idFuncionario, nome);
+        return new EmployeeModel(idFuncionario, nome, cargo, turno, salario);
     }
 }

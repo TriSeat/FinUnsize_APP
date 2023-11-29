@@ -22,8 +22,9 @@ public class EmployeeModel implements Serializable {
     private String url_image;
     private String cnpj;
 
+
     // Construtores
-    public EmployeeModel(int idFuncionario, String nome) {
+    public EmployeeModel(int idFuncionario, String nome, String s, String turno, BigDecimal salario) {
     }
 
     public EmployeeModel(int id_funcionario, String cpf, String nome, OfficeModel cargo,

@@ -23,7 +23,7 @@ public class CashierModel implements Serializable {
     }
 
     // Getters e setters
-    public int getId_caixa() {
+    public int getIdcaixa() {
         return id_caixa;
     }
 
@@ -53,5 +53,9 @@ public class CashierModel implements Serializable {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public String getIdCaixa() {
+        return null;
     }
 }

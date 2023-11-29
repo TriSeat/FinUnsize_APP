@@ -118,7 +118,7 @@
                         android:text="0"
                         android:textAllCaps="true"
                         android:textColor="@color/cinza"
-                        android:textSize="30sp" 
+                        android:textSize="30sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/func" />
 
@@ -139,134 +139,6 @@
 
 
             </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="380dp"
-                    android:layout_height="85dp"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:background="@drawable/retangulo">
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:id="@+id/func"
-                            android:layout_width="50dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_height="50dp"
-                            app:srcCompat="@drawable/func_example" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp">
-
-                        <TextView
-                            android:id="@+id/nome_func"
-                            android:layout_width="wrap_content"
-                            android:layout_height="27dp"
-                            android:layout_marginStart="10dp"
-                            android:text="Salin Ferreira"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textSize="18sp"
-                            android:textColor="@color/white"></TextView>
-
-                          </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginEnd="5dp">
-
-                        <ImageButton
-                            android:id="@+id/turno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:background="@color/transparent"
-                            android:src="@drawable/baseline_dark_mode_24" />
-
-                        <ImageButton
-                            android:id="@+id/cargo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:background="@color/transparent"
-                            android:src="@drawable/baseline_person_pin_24" />
-
-                        <ImageButton
-                            android:id="@+id/salario"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="10dp"
-                            android:background="@color/transparent"
-                            android:src="@drawable/baseline_attach_money_24" />
-
-                    </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginStart="25dp"
-                            android:layout_marginEnd="5dp">
-
-                            <TextView
-                                android:id="@+id/turno"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="23dp"
-                                android:textColor="@color/white"
-                                android:textSize="13sp"
-                                android:text="AM"/>
-
-                            <TextView
-                                android:id="@+id/turno"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="23dp"
-                                android:textAllCaps="true"
-                                android:textSize="13sp"
-                                android:textColor="@color/white"
-                                android:text="CAIXA"/>
-
-                            <TextView
-                                android:id="@+id/turno"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginEnd="5dp"
-                                android:textAlignment="center"
-                                android:textAllCaps="true"
-                                android:textSize="13sp"
-                                android:textColor="@color/white"
-                                android:text="r$ 3000"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
 
             <LinearLayout
                 android:layout_marginTop="15dp"
@@ -527,23 +399,70 @@
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/lista_funcionarios"
-                    android:layout_width="280dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                <!-- Layout para cada item de funcionário -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
+                    <!-- Nome do funcionário -->
+                    <TextView
+                        android:id="@+id/nome_funcionario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:text="Nome do Funcionário" />
+
+                    <!-- Cargo -->
+                    <TextView
+                        android:id="@+id/cargo_funcionario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        android:layout_marginStart="10dp"
+                        android:text="Cargo do Funcionário" />
+
+                    <!-- Telefone -->
+                    <TextView
+                        android:id="@+id/telefone_funcionario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        android:layout_marginStart="10dp"
+                        android:text="Telefone do Funcionário" />
+
+                    <!-- Salário -->
+                    <TextView
+                        android:id="@+id/salario_funcionario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        android:layout_marginStart="10dp"
+                        android:text="Salário do Funcionário" />
+
+                    <!-- Separador entre os funcionários -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/black"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+
+                <!-- Outros funcionários podem ser adicionados da mesma maneira -->
             </LinearLayout>
 
 
