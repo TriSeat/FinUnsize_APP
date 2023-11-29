@@ -21,38 +21,38 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import persistence.models.CashierModel;
 import persistence.models.ProductModel;
 import request.Connection;
 
-public class Produtos extends AppCompatActivity {
-
+public class Caixa extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private ProductAdapter productAdapter;
-    private List<ProductModel> productList;
-    private TextView qtdProdTextView;
+    private CashierAdapter cashierAdapter;
+    private List<CashierModel> cashierList;
+    private TextView lancaTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.produtos);
+        setContentView(R.layout.caixa);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        productList = fetchProductListFromApi();
+        cashierList = fetchCashierListFromApi();
 
-        qtdProdTextView = findViewById(R.id.qtd_prod);
-        updateQtdProdTextView(productList.size());
+        lancaTextView = findViewById(R.id.lanca);
+        updatelancaTextView(cashierList.size());
 
-        productAdapter = new ProductAdapter(this, productList);
-        recyclerView.setAdapter(productAdapter);
+        cashierAdapter = new CashierAdapter(this, cashierList);
+        recyclerView.setAdapter(cashierAdapter);
     }
 
+    public List<CashierModel> fetchCashierListFromApi() {
+        List<CashierModel> cashierList = new ArrayList<>();
 
-    public List<ProductModel> fetchProductListFromApi() {
-        List<ProductModel> productList = new ArrayList<>();
-
-        String apiUrl = "https://finunsize.onrender.com/product/";
+        String apiUrl = "https://finunsize.onrender.com/cashier/";
 
         try {
             String apiResponse = Connection.connectHttp(apiUrl);
@@ -63,24 +63,18 @@ public class Produtos extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                    int id_caixa = jsonObject.getInt("id_caixa");
                     String nome = jsonObject.getString("nome");
+                    String status = jsonObject.getString("status");
 
-                    // Tratamento de datas
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    LocalDate validade = LocalDate.parse(jsonObject.getString("validade"), formatter);
-                    LocalDate data_cadastro = LocalDate.parse(jsonObject.getString("data_cadastro"), formatter);
-
-                    String url_image = jsonObject.getString("url_image");
-
-                    // Construindo um objeto ProductModel com os dados obtidos da API
-                    ProductModel product = new ProductModel(null, nome, 0, null, validade, null, null, null, null, data_cadastro, url_image);
-                    productList.add(product);
+                    CashierModel cashier = new CashierModel(id_caixa, nome, status,null);
+                    cashierList.add(cashier);
                 }
             } else {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(Produtos.this, "Erro ao obter dados da API. Tente novamente.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Caixa.this, "Erro ao obter dados da API. Tente novamente.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -89,7 +83,7 @@ public class Produtos extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(Produtos.this, "Erro ao analisar dados da API.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Caixa.this, "Erro ao analisar dados da API.", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -97,27 +91,27 @@ public class Produtos extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(Produtos.this, "Erro inesperado. Tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Caixa.this, "Erro inesperado. Tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
-        return productList;
+        return cashierList;
     }
 
     public void verDescricao(View view) {
         // Obtém o item associado ao botão clicado na RecyclerView
         int position = recyclerView.getChildLayoutPosition((View) view.getParent());
-        ProductModel selectedProduct = productList.get(position);
+        CashierModel selectedCashier = cashierList.get(position);
 
         // Inicia a nova atividade para exibir a descrição do produto
-        Intent intent = new Intent(this, DescricaoProdutos.class);
-        intent.putExtra("selectedProduct", selectedProduct);
+        Intent intent = new Intent(this, DescricaoCaixa.class);
+        intent.putExtra("selectedCashier", selectedCashier);
         startActivity(intent);
     }
 
-    private void updateQtdProdTextView(int qtdProd) {
-        if (qtdProdTextView != null) {
-            qtdProdTextView.setText(String.valueOf(qtdProd));
+    private void updatelancaTextView(int lancamentos) {
+        if (lancaTextView != null) {
+            lancaTextView.setText(String.valueOf(lancamentos));
         }
     }
 

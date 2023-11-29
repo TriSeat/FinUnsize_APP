@@ -34,10 +34,10 @@
             android:name=".presentation.activity.CadastroPerfil"
             android:exported="false" />
         <activity
-            android:name=".presentation.activity.CadastroProdutos"
+            android:name=".presentation.activity.Funcionarios"
             android:exported="false" />
         <activity
-            android:name=".presentation.activity.Compras"
+            android:name=".presentation.activity.Caixa"
             android:exported="false" />
         <activity
             android:name=".presentation.activity.Config"

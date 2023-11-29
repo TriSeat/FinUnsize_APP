@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 
 import com.example.finunsize.R;
@@ -34,15 +33,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public static void redirect(Activity activity, Class Class) {
         Intent intent = new Intent(activity, Class);
         activity.startActivity(intent);
     }
 
 
+    public void OpenNotif(View view){
+        Intent intent = new Intent(this, Notification.class);
+        startActivity(intent);
+    }
+
+    public void OpenConfig(View view){
+        Intent intent = new Intent(this, Config.class);
+        startActivity(intent);
+    }
+    public void OpenCatálogo(View view){
+        Intent intent = new Intent(this, Caixa.class);
+        startActivity(intent);
+    }
+
     //INTENTS DO MENU
     public void OpenCompras(View view){
-        Intent intent = new Intent(this, Compras.class);
+        Intent intent = new Intent(this, Caixa.class);
         startActivity(intent);
     }
 
@@ -52,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenHome(View view){
-        Intent intent = new Intent(this, MainActivityNoLogin.class);
-        startActivity(intent);
     }
 
     public void OpenStats(View view){

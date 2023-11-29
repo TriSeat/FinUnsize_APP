@@ -61,23 +61,21 @@
                 android:textSize="8sp"></TextView>
         </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/descriptionButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="5dp"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/descriptionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="25dp"
-                android:onClick="verDescricao"
-                android:background="@color/transparent"
-                android:src="@drawable/pontos_descricao" />
-        </LinearLayout>
-
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:onClick="verDescricao"
+            android:layout_gravity="center"
+            android:background="@color/transparent"
+            android:src="@drawable/pontos_descricao" />
+    </LinearLayout>
 
     </LinearLayout>

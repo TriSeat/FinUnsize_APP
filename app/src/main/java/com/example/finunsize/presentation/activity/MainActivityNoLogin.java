@@ -22,9 +22,25 @@ public class MainActivityNoLogin extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void OpenNotif(View view){
+        Intent intent = new Intent(this, Notification.class);
+        startActivity(intent);
+    }
+
+    public void OpenConfig(View view){
+        Intent intent = new Intent(this, Config.class);
+        startActivity(intent);
+    }
+
+    public void OpenCatálogo(View view){
+        Intent intent = new Intent(this, Caixa.class);
+        startActivity(intent);
+    }
+
+
     //INTENTS DO MENU
     public void OpenCompras(View view){
-        Intent intent = new Intent(this, Compras.class);
+        Intent intent = new Intent(this, Caixa.class);
         startActivity(intent);
     }
 
@@ -34,8 +50,6 @@ public class MainActivityNoLogin extends AppCompatActivity {
     }
 
     public void OpenHome(View view){
-        Intent intent = new Intent(this, MainActivityNoLogin.class);
-        startActivity(intent);
     }
 
     public void OpenStats(View view){

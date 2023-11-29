@@ -67,7 +67,6 @@
                         android:id="@+id/search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="OpenSearch"
                         android:layout_marginEnd="10dp"
                         android:background="#00FFFFFF"
                         app:srcCompat="@drawable/baseline_search_24" />
@@ -76,9 +75,9 @@
                         android:id="@+id/filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="OpenFilter"
+                        android:onClick="OpenNotif"
                         android:background="#00FFFFFF"
-                        app:srcCompat="@drawable/baseline_filter_alt_24" />
+                        app:srcCompat="@drawable/notificacoes" />
 
                 </LinearLayout>
 
@@ -104,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="start"
                     android:orientation="vertical"
                     tools:ignore="ExtraText">
@@ -112,8 +111,7 @@
                     <TextView
                         android:id="@+id/qtd_prod"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
+                        android:layout_height="40dp"
                         android:fontFamily="@font/poppins_bold"
                         android:text="0"
                         android:textAllCaps="true"

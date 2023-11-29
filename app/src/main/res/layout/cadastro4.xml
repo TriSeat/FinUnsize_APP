@@ -122,18 +122,17 @@
             <Button
                 android:id="@+id/btncadastro"
                 android:layout_width="300dp"
-                android:gravity="center"
-                android:paddingTop="10dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/azulbt"
+                app:backgroundTint="@color/azulbt"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="continuar"
+                android:gravity="center"
                 android:onClick="OpenCadastroPerfil"
+                android:paddingTop="10dp"
+                android:text="continuar"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
-                android:textSize="23sp"/>
-
-            <!-- android:background="@drawable/roundedbutton" -->
+                android:textSize="23sp"
+                android:background="@drawable/roundedbutton" />
         </LinearLayout>
 
         <LinearLayout

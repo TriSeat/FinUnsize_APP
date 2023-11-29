@@ -66,9 +66,18 @@ public class Funcionarios extends AppCompatActivity {
             Toast.makeText(this, "Exceção ao buscar funcionários", Toast.LENGTH_SHORT).show();
         }
     }
+<<<<<<< HEAD
+=======
+
+    public void OpenNotif(View view){
+        Intent intent = new Intent(this, Notification.class);
+        startActivity(intent);
+    }
+
+>>>>>>> a7d33d120be16c01914ce30a2afb86b043bf2df7
     // Métodos de intents do menu (não alterados)
     public void OpenCompras(View view) {
-        Intent intent = new Intent(this, Compras.class);
+        Intent intent = new Intent(this, Caixa.class);
         startActivity(intent);
     }
 
@@ -78,7 +87,7 @@ public class Funcionarios extends AppCompatActivity {
     }
 
     public void OpenHome(View view) {
-        Intent intent = new Intent(this, MainActivityNoLogin.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

@@ -28,7 +28,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Produtos"
+                    android:text="caixa"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
                     android:textSize="30sp"
@@ -43,7 +43,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="40dp"
                     android:fontFamily="@font/poppins"
-                    android:text="Listagem de produtos em estoque:"
+                    android:text="Relatório de fluxo de caixa mensal:"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -56,16 +56,16 @@
                 android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="OpenNotif"
-                android:layout_marginStart="150dp"
+                android:layout_marginStart="160dp"
                 android:layout_marginTop="55dp"
-                android:layout_marginEnd="35dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="65dp"
                 android:background="#00FFFFFF"
+                android:onClick="OpenNotif"
+                app:srcCompat="@drawable/notificacoes"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/notificacoes" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -92,7 +92,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/qtd_prod"
+                        android:id="@+id/lanca"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:fontFamily="@font/poppins_bold"
@@ -106,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="Produtos Cadastrados"
+                        android:text="Lançamentos"
                         android:textColor="@color/cinza"
                         android:textSize="15sp" />
 
@@ -139,6 +139,6 @@
             </ScrollView>
             <include layout="@layout/menu_fixo" />
         </LinearLayout>
-        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

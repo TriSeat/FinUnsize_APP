@@ -33,6 +33,7 @@ public class DescricaoProdutos extends AppCompatActivity {
     public void preencherCamposDescricao(ProductModel product) {
 
         // Obtenha referências para os TextViews do layout
+        TextView nameText = findViewById(R.id.productName);
         TextView descricaoText = findViewById(R.id.DescicaoText);
         TextView marcaText = findViewById(R.id.MarcaText);
         TextView validityText = findViewById(R.id.validityText);
@@ -42,10 +43,11 @@ public class DescricaoProdutos extends AppCompatActivity {
         TextView fornecedorText = findViewById(R.id.FornecedorText);
 
         // Preencha os campos com os dados do produto
-        if (descricaoText != null && marcaText != null && validityText != null &&
+        if (nameText != null && descricaoText != null && marcaText != null && validityText != null &&
                 qtdText != null && precoVar != null && precoAta != null && fornecedorText != null) {
 
             // Preencha os campos com os dados do produto
+            nameText.setText(product.getNome());
             descricaoText.setText(product.getDescricao());
             marcaText.setText(product.getInformacoes().getMarca());
             validityText.setText(product.getValidade().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
