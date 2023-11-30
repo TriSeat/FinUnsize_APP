@@ -1,18 +1,25 @@
 package com.example.finunsize.presentation.activity;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
 
-import java.util.UUID;
+import integration.AuthResponse;
+import persistence.models.UserModel;
+import request.Connection;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Cadastro4 extends AppCompatActivity {
 
@@ -34,35 +41,56 @@ public class Cadastro4 extends AppCompatActivity {
     }
 
     public void OpenCadastroPerfil(View view) {
-        String emaill = email.getText().toString();
-        String senha = password.getText().toString();
-        String resenha = repassword.getText().toString();
+        String userEmail = email.getText().toString();
+        String userPassword = password.getText().toString();
+        String userRePassword = repassword.getText().toString();
 
-        Intent intent = new Intent(this, CadastroPerfil.class);
-        startActivity(intent);
-
-        /* if (password.equals(resenha)) {
-            String token = UUID.randomUUID().toString();
-
-            sendTokenToApi(token);
-
-            registerUser(emaill, senha);
+        if (userPassword.equals(userRePassword)) {
+            registerUser(userEmail, userPassword);
         } else {
-
             Toast.makeText(Cadastro4.this, "As senhas não correspondem", Toast.LENGTH_SHORT).show();
-        } */
-    }
-
-    private void sendTokenToApi(String token) {
+        }
     }
 
     private void registerUser(String email, String password) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("URL_DA_SUA_API")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Connection service = retrofit.create(Connection.class);
+        UserModel newUser = new UserModel(email, password);
+
+        Call<AuthResponse> call = service.registerUser(newUser);
+        call.enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                if (response.isSuccessful()) {
+                    AuthResponse authResponse = response.body();
+                    if (authResponse != null) {
+                        String token = authResponse.getToken();
+                        saveToken(token);
+                        Intent intent = new Intent(Cadastro4.this, Cadastro4.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(Cadastro4.this, "Resposta inválida da API", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(Cadastro4.this, "Falha ao registrar usuário", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+                Toast.makeText(Cadastro4.this, "Erro de conexão", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    public void OpenLogin (View view) {
-        MainActivity.redirect(this, Login.class);
-    }
-    public void OpenCadastro3 (View view) {
-        MainActivity.redirect(this, Cadastro3.class);
+    private void saveToken(String token) {
+        SharedPreferences sharedPreferences = getSharedPreferences("NomeDaSuaPreference", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token", token);
+        editor.apply();
     }
 }
