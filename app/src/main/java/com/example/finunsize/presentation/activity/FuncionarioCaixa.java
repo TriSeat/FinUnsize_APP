@@ -58,7 +58,7 @@ public class FuncionarioCaixa extends AppCompatActivity implements OnEmployeeCas
         CashierModel idCaixa = employeeCashier.getId_caixa();
         EmployeeModel idFuncionario = employeeCashier.getId_funcionario();
 
-        textViewIdCaixa.setText("ID Caixa: " + idCaixa.getIdCaixa());
+        textViewIdCaixa.setText("ID Caixa: " + idCaixa.getIdcaixa());
         textViewNomeCaixa.setText("Nome Caixa: " + idCaixa.getNome());
         textViewStatusCaixa.setText("Status Caixa: " + idCaixa.getStatus());
 

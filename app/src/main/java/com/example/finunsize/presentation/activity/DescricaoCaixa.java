@@ -49,7 +49,7 @@ public class DescricaoCaixa extends AppCompatActivity {
         if (NomeId != null && Status != null && dataFunc != null && ValorIni != null &&
                 ValorFin != null && DataAber != null && DataFecha != null) {
 
-            String nomeComId = cashier.getNome() + " (" + cashier.getId_caixa() + ")";
+            String nomeComId = cashier.getNome() + " (" + cashier.getIdcaixa() + ")";
 
             // Preencha os campos com os dados do produto
             NomeId.setText(nomeComId);

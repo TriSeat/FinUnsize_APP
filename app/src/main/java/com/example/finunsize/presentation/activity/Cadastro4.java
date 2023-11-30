@@ -40,7 +40,7 @@ public class Cadastro4 extends AppCompatActivity {
         btncadastro = findViewById(R.id.btncadastro);
     }
 
-    public void OpenCadastroPerfil(View view) {
+    /*public void OpenCadastroPerfil(View view) {
         String userEmail = email.getText().toString();
         String userPassword = password.getText().toString();
         String userRePassword = repassword.getText().toString();
@@ -92,5 +92,5 @@ public class Cadastro4 extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("token", token);
         editor.apply();
-    }
+    }*/
 }
