@@ -21,7 +21,7 @@ public class UserModel implements Serializable {
     private String url_image;
     private CompanyModel cnpj;
 
-    public UserModel(String alice) {
+    public UserModel(String alice, String password) {
 
     }
 

@@ -1,20 +1,18 @@
 package com.example.finunsize.presentation.activity;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
 
-import integration.AuthResponse;
 import persistence.models.UserModel;
-import request.Connection;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,21 +21,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Cadastro4 extends AppCompatActivity {
 
-    EditText email, password, repassword;
-    Button btncadastro;
+    private EditText email, password, repassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastro4);
-        get_resources();
+        getResources();
     }
 
-    public void get_resources() {
+    public Resources getResources() {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         repassword = findViewById(R.id.repassword);
-        btncadastro = findViewById(R.id.btncadastro);
+        return null;
     }
 
     public void OpenCadastroPerfil(View view) {
@@ -54,43 +51,32 @@ public class Cadastro4 extends AppCompatActivity {
 
     private void registerUser(String email, String password) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("URL_DA_SUA_API")
+                .baseUrl("https://sua_api_aqui.com/") // Substitua pela base URL da sua API
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Connection service = retrofit.create(Connection.class);
-        UserModel newUser = new UserModel(email, password);
+        ApiService apiService = retrofit.create(ApiService.class);
+        UserModel newUser = new UserModel(email, password); // Verifique como construir UserModel
 
-        Call<AuthResponse> call = service.registerUser(newUser);
-        call.enqueue(new Callback<AuthResponse>() {
+        Call<Void> call = apiService.registerUser(newUser);
+
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    AuthResponse authResponse = response.body();
-                    if (authResponse != null) {
-                        String token = authResponse.getToken();
-                        saveToken(token);
-                        Intent intent = new Intent(Cadastro4.this, Cadastro4.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(Cadastro4.this, "Resposta inválida da API", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(Cadastro4.this, "Usuário registrado com sucesso", Toast.LENGTH_SHORT).show();
+                    // Aqui você pode redirecionar para a próxima tela após o registro
+                    Intent intent = new Intent(Cadastro4.this, CadastroPerfil.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(Cadastro4.this, "Falha ao registrar usuário", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(Cadastro4.this, "Erro de conexão", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void saveToken(String token) {
-        SharedPreferences sharedPreferences = getSharedPreferences("NomeDaSuaPreference", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("token", token);
-        editor.apply();
     }
 }

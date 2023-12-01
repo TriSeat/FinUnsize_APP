@@ -4,6 +4,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+
+import integration.AuthResponse;
+import persistence.models.UserModel;
+import retrofit2.Call;
 
 public class Connection {
 
@@ -38,5 +43,14 @@ public class Connection {
             error.printStackTrace();
         }
         return return_api;
+    }
+
+
+    public Call<AuthResponse> registerUser(UserModel newUser) {
+        return (Call<AuthResponse>) newUser;
+    }
+
+    public Call<List<UserModel>> getUsers() {
+        return getUsers();
     }
 }
