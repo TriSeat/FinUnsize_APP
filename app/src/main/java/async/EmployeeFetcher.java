@@ -15,6 +15,7 @@ import persistence.models.EmployeeModel;
 import persistence.models.OfficeModel;
 import request.Connection;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,12 @@ public class EmployeeFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("employees");
+                String result = null;
+                try {
+                    result = Connection.connectHttp("employee");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
                 if (result != null) {
                     try {

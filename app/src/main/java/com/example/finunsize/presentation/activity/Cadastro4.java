@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
 
+import persistence.models.CompanyModel;
 import persistence.models.UserModel;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,73 +22,87 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Cadastro4 extends AppCompatActivity {
 
-    private EditText email, password, repassword;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastro4);
-        getResources();
     }
 
-    public Resources getResources() {
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        repassword = findViewById(R.id.repassword);
-        return null;
-    }
+    public void OpenCadastroPerfil(View view) {
+        String email = getEditTextValue(R.id.email);
+        String password = getEditTextValue(R.id.password);
+        String repassword = getEditTextValue(R.id.repassword);
 
-    /*public void OpenCadastroPerfil(View view) {
-        String userEmail = email.getText().toString();
-        String userPassword = password.getText().toString();
-        String userRePassword = repassword.getText().toString();
-
-        if (userPassword.equals(userRePassword)) {
-            registerUser(userEmail, userPassword);
-        } else {
-            Toast.makeText(Cadastro4.this, "As senhas não correspondem", Toast.LENGTH_SHORT).show();
+        // Verificar se as senhas coincidem
+        if (!password.equals(repassword)) {
+            Toast.makeText(this, "As senhas não coincidem. Por favor, verifique.", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        // Verificar se todos os campos estão preenchidos
+        if (email.isEmpty() || password.isEmpty() || repassword.isEmpty()) {
+            Toast.makeText(this, "Preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Adicione validação de e-mail
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "E-mail inválido. Por favor, insira um e-mail válido.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        UserModel userModel = new UserModel(null, null, null, password, email,0, 0, null, null, null);
+
+        sendCompanyData(userModel);
     }
 
-    private void registerUser(String email, String password) {
+    private String getEditTextValue(int editTextId) {
+        EditText editText = findViewById(editTextId);
+        return editText.getText().toString();
+    }
+
+
+    private void sendCompanyData(UserModel userModel) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://sua_api_aqui.com/") // Substitua pela base URL da sua API
+                .baseUrl("https://finunsize.onrender.com/") // Substitua pela base URL da sua API
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
-        UserModel newUser = new UserModel(email, password); // Verifique como construir UserModel
 
-        Call<Void> call = apiService.registerUser(newUser);
+        // Faça a chamada para o método da API
+        Call<Void> call = apiService.cadastrarUsuário(userModel);
 
+        // Faça a solicitação assíncrona
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(Cadastro4.this, "Usuário registrado com sucesso", Toast.LENGTH_SHORT).show();
-                    // Aqui você pode redirecionar para a próxima tela após o registro
+                    // Sucesso na requisição
+                    Toast.makeText(Cadastro4.this, "Cadastro realizado com sucesso", Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent(Cadastro4.this, CadastroPerfil.class);
                     startActivity(intent);
+                    finish();
                 } else {
-                    Toast.makeText(Cadastro4.this, "Falha ao registrar usuário", Toast.LENGTH_SHORT).show();
+                    // Erro na requisição
+                    Toast.makeText(Cadastro4.this, "Erro ao cadastrar empresa", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(Cadastro4.this, "Erro de conexão", Toast.LENGTH_SHORT).show();
+                // Falha na requisição
+                Toast.makeText(Cadastro4.this, "Falha na requisição", Toast.LENGTH_SHORT).show();
             }
         });
     }
-<<<<<<< HEAD
-}
-=======
 
-    private void saveToken(String token) {
-        SharedPreferences sharedPreferences = getSharedPreferences("NomeDaSuaPreference", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("token", token);
-        editor.apply();
-    }*/
+    public void OpenLogin (View view) {
+        MainActivity.redirect(this, Login.class);
+    }
+
+    public void OpenCadastro3 (View view) {
+        MainActivity.redirect(this, Cadastro3.class);
+    }
 }
->>>>>>> bd9709ce993a7d804ac028a8c5d510ef86a7034d

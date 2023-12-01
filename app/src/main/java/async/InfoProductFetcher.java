@@ -11,6 +11,7 @@ import listener.OnInfoProductFetchListener;
 import persistence.models.InfoProductModel;
 import request.Connection;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +35,7 @@ public class  InfoProductFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("infoProducts");
+                    String result = Connection.connectHttp("product");
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -73,6 +74,8 @@ public class  InfoProductFetcher {
                     if (listener != null) {
                         listener.onInfoProductFetchError();
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

@@ -42,7 +42,7 @@ public class Cadastro3 extends AppCompatActivity {
         // Verifique se alguma opção foi selecionada
         if (rendaValue == null || gastoValue == null || balancoValue == null) {
             // Nenhuma opção selecionada, exiba uma mensagem ou faça o tratamento adequado
-            Toast.makeText(this, "Por favor, selecione uma opção em cada categoria", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Por favor, selecione uma opção em cada categoria.", Toast.LENGTH_SHORT).show();
             return;
         }
 

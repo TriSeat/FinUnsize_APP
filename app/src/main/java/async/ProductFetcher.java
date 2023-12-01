@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -34,7 +36,7 @@ public class ProductFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("products/" + barcode);
+                    String result = Connection.connectHttp("product/" + barcode);
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -68,6 +70,8 @@ public class ProductFetcher {
                     if (listener != null) {
                         listener.onProductFetchError(e);
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

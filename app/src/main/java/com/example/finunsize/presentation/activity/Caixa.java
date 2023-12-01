@@ -2,6 +2,8 @@ package com.example.finunsize.presentation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,12 +19,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import persistence.models.CashierModel;
-import persistence.models.ProductModel;
 import request.Connection;
 
 public class Caixa extends AppCompatActivity {
@@ -30,12 +30,18 @@ public class Caixa extends AppCompatActivity {
     private CashierAdapter cashierAdapter;
     private List<CashierModel> cashierList;
     private TextView lancaTextView;
+    private String token;
+
+    private final Handler handler = new Handler(Looper.getMainLooper());
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.caixa);
+
+        // Obter token da intent
+        token = getIntent().getStringExtra("token");
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -55,9 +61,9 @@ public class Caixa extends AppCompatActivity {
         String apiUrl = "https://finunsize.onrender.com/cashier/";
 
         try {
-            String apiResponse = Connection.connectHttp(apiUrl);
+            String apiResponse = Connection.connectHttp(apiUrl, token);
 
-            if (apiResponse != null) {
+            if (apiResponse != null && isValidJsonArray(apiResponse)) {
                 JSONArray jsonArray = new JSONArray(apiResponse);
 
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -67,43 +73,44 @@ public class Caixa extends AppCompatActivity {
                     String nome = jsonObject.getString("nome");
                     String status = jsonObject.getString("status");
 
-                    CashierModel cashier = new CashierModel(id_caixa, nome, status,null);
+                    CashierModel cashier = new CashierModel(id_caixa, nome, status, null);
                     cashierList.add(cashier);
                 }
             } else {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(Caixa.this, "Erro ao obter dados da API. Tente novamente.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                showToast("Erro ao obter dados da API. Tente novamente.");
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(Caixa.this, "Erro ao analisar dados da API.", Toast.LENGTH_SHORT).show();
-                }
-            });
+            showToast("Erro ao analisar dados da API.");
         } catch (Exception e) {
             e.printStackTrace();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(Caixa.this, "Erro inesperado. Tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
-                }
-            });
+            showToast("Erro inesperado. Tente novamente mais tarde.");
         }
         return cashierList;
     }
 
+    private boolean isValidJsonArray(String json) {
+        try {
+            new JSONArray(json);
+            return true;
+        } catch (JSONException e) {
+            return false;
+        }
+    }
+
+    private void showToast(final String message) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(Caixa.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void verDescricao(View view) {
-        // Obtém o item associado ao botão clicado na RecyclerView
         int position = recyclerView.getChildLayoutPosition((View) view.getParent());
         CashierModel selectedCashier = cashierList.get(position);
 
-        // Inicia a nova atividade para exibir a descrição do produto
         Intent intent = new Intent(this, DescricaoCaixa.class);
         intent.putExtra("selectedCashier", selectedCashier);
         startActivity(intent);
@@ -115,8 +122,9 @@ public class Caixa extends AppCompatActivity {
         }
     }
 
-    public void OpenNotif(View view){
+    public void OpenNotif(View view) {
         Intent intent = new Intent(this, Notification.class);
+        intent.putExtra("token", token);
         startActivity(intent);
     }
 
@@ -128,6 +136,7 @@ public class Caixa extends AppCompatActivity {
 
     public void OpenProdutos(View view){
         Intent intent = new Intent(this, Produtos.class);
+        intent.putExtra("token", token); // Passa o token para a próxima atividade
         startActivity(intent);
     }
 

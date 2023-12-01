@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.UUID;
 
 import exception.AddressFetchException;
@@ -64,6 +66,8 @@ public class AddressFetcher {
                     } catch (AddressFetchException ex) {
                         throw new RuntimeException(ex);
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

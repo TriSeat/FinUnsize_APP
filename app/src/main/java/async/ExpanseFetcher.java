@@ -11,6 +11,7 @@ import persistence.models.ExpanseModel;
 import persistence.models.TypeExpanseModel;
 import request.Connection;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,7 +36,12 @@ public class ExpanseFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("expanses");
+                String result = null;
+                try {
+                    result = Connection.connectHttp("expanse");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
                 if (result != null) {
                     try {

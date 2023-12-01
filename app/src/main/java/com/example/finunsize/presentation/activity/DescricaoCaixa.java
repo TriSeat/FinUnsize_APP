@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import persistence.models.CashierModel;
 import persistence.models.LogCashierModel;
 import persistence.models.ProductModel;
+import request.Connection;
 
 public class DescricaoCaixa extends AppCompatActivity {
 
@@ -30,6 +32,19 @@ public class DescricaoCaixa extends AppCompatActivity {
             // Agora você pode usar selectedCashier e logCashier para preencher os campos
             preencherCamposDescricao(selectedCashier, logCashier);
         }
+
+        // Obtém o token da intent, se estiver presente
+        if (intent.hasExtra("token")) {
+            String token = intent.getStringExtra("token");
+
+            try {
+                String apiResponse = Connection.connectHttp("https://finunsize.onrender.com/cashier/", token);
+                // Lógica para processar a resposta da API, se necessário
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Erro ao obter dados da API", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void preencherCamposDescricao(CashierModel cashier, LogCashierModel logcashier) {
@@ -42,7 +57,6 @@ public class DescricaoCaixa extends AppCompatActivity {
         TextView ValorFin = findViewById(R.id.valor_final);
         TextView DataAber = findViewById(R.id.abertura);
         TextView DataFecha = findViewById(R.id.fechamento);
-
 
 
         // Preencha os campos com os dados do produto
@@ -61,7 +75,6 @@ public class DescricaoCaixa extends AppCompatActivity {
             DataFecha.setText(logcashier.getFechamento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
     }
-
 
     public void OpenCaixa (View view) {
         MainActivity.redirect(this, Caixa.class);

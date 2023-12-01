@@ -21,7 +21,7 @@ public class UserFetcher {
         this.listener = listener;
     }
 
-    public void fetchUsers() {
+    /*public void fetchUsers() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -52,5 +52,5 @@ public class UserFetcher {
                 }
             }
         });
-    }
+    }*/
 }

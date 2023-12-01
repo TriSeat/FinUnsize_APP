@@ -2,6 +2,8 @@ package com.example.finunsize.presentation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,16 +32,20 @@ public class Produtos extends AppCompatActivity {
     private ProductAdapter productAdapter;
     private List<ProductModel> productList;
     private TextView qtdProdTextView;
+    private String token;
+    private final Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.produtos);
 
+        token = getIntent().getStringExtra("token");
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        productList = fetchProductListFromApi();
+        productList = fetchProductListFromApi(token);
 
         qtdProdTextView = findViewById(R.id.qtd_prod);
         updateQtdProdTextView(productList.size());
@@ -48,16 +54,15 @@ public class Produtos extends AppCompatActivity {
         recyclerView.setAdapter(productAdapter);
     }
 
-
-    public List<ProductModel> fetchProductListFromApi() {
+    public List<ProductModel> fetchProductListFromApi(String token) {
         List<ProductModel> productList = new ArrayList<>();
 
         String apiUrl = "https://finunsize.onrender.com/product/";
 
         try {
-            String apiResponse = Connection.connectHttp(apiUrl);
+            String apiResponse = Connection.connectHttp(apiUrl, token);
 
-            if (apiResponse != null) {
+            if (apiResponse != null && isValidJsonArray(apiResponse)) {
                 JSONArray jsonArray = new JSONArray(apiResponse);
 
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -77,31 +82,34 @@ public class Produtos extends AppCompatActivity {
                     productList.add(product);
                 }
             } else {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(Produtos.this, "Erro ao obter dados da API. Tente novamente.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                showToast("Erro ao obter dados da API. Tente novamente.");
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(Produtos.this, "Erro ao analisar dados da API.", Toast.LENGTH_SHORT).show();
-                }
-            });
+            showToast("Erro ao analisar dados da API.");
         } catch (Exception e) {
             e.printStackTrace();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(Produtos.this, "Erro inesperado. Tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
-                }
-            });
+            showToast("Erro inesperado. Tente novamente mais tarde.");
         }
         return productList;
+    }
+
+    private boolean isValidJsonArray(String json) {
+        try {
+            new JSONArray(json);
+            return true;
+        } catch (JSONException e) {
+            return false;
+        }
+    }
+
+    private void showToast(final String message) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(Produtos.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void verDescricao(View view) {
@@ -121,33 +129,35 @@ public class Produtos extends AppCompatActivity {
         }
     }
 
-    public void OpenNotif(View view){
+    public void OpenNotif(View view) {
         Intent intent = new Intent(this, Notification.class);
+        intent.putExtra("token", token);
         startActivity(intent);
     }
 
     //INTENTS DO MENU
-    public void OpenCompras(View view){
+    public void OpenCompras(View view) {
         Intent intent = new Intent(this, Caixa.class);
         startActivity(intent);
     }
 
-    public void OpenProdutos(View view){
+    public void OpenProdutos(View view) {
         Intent intent = new Intent(this, Produtos.class);
+        intent.putExtra("token", token);
         startActivity(intent);
     }
 
-    public void OpenHome(View view){
+    public void OpenHome(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void OpenStats(View view){
+    public void OpenStats(View view) {
         Intent intent = new Intent(this, Estatisticas.class);
         startActivity(intent);
     }
 
-    public void OpenFunc(View view){
+    public void OpenFunc(View view) {
         Intent intent = new Intent(this, Funcionarios.class);
         startActivity(intent);
     }

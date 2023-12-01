@@ -5,6 +5,7 @@ import android.os.HandlerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 import exception.EmployeeCashierFetchException;
@@ -32,7 +33,12 @@ public class EmployeeCashierFetcher {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                String result = Connection.connectHttp("employeecashiers/" + idFuncionarioCaixa);
+                String result = null;
+                try {
+                    result = Connection.connectHttp("employee/cashier/" + idFuncionarioCaixa);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
                 if (result != null) {
                     try {

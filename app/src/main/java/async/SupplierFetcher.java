@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.UUID;
 
 import exception.SupplierFetchException;
@@ -30,7 +32,7 @@ public class SupplierFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("suppliers/" + idFornecedor);
+                    String result = Connection.connectHttp("product/supplier/" + idFornecedor);
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -56,6 +58,8 @@ public class SupplierFetcher {
                     if (listener != null) {
                         listener.onSupplierFetchError();
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

@@ -5,6 +5,8 @@ import android.os.HandlerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 import exception.CashierFetchException;
 import listener.OnCashierFetchListener;
 import persistence.models.CashierModel;
@@ -29,7 +31,7 @@ public class CashierFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("cashiers/" + idCaixa);
+                    String result = Connection.connectHttp("cashier/" + idCaixa);
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -59,6 +61,8 @@ public class CashierFetcher {
                     } catch (CashierFetchException ex) {
                         throw new RuntimeException(ex);
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

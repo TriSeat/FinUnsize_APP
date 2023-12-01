@@ -11,6 +11,7 @@ import persistence.models.OfficeModel;
 import request.Connection;
 import exception.OfficeFetchException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +35,7 @@ public class OfficeFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("offices");
+                    String result = Connection.connectHttp("employee/office");
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -72,6 +73,8 @@ public class OfficeFetcher {
                     if (listener != null) {
                         listener.onOfficeFetchError();
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

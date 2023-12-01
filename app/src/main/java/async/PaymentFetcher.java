@@ -10,6 +10,7 @@ import persistence.models.PaymentModel;
 import request.Connection;
 import exception.PaymentFetchException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -33,7 +34,7 @@ public class PaymentFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("payments");
+                    String result = Connection.connectHttp("payment");
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -70,6 +71,8 @@ public class PaymentFetcher {
                     if (listener != null) {
                         listener.onPaymentFetchError();
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

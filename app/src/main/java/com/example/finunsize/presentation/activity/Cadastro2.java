@@ -1,6 +1,7 @@
 package com.example.finunsize.presentation.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Cadastro2 extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int PERMISSION_REQUEST_CODE = 1;
     private ImageView imagemPerfil;
 
     @Override
@@ -40,7 +42,7 @@ public class Cadastro2 extends AppCompatActivity {
         imagemPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openGallery();
+                OpenImage();
             }
         });
     }
@@ -74,9 +76,9 @@ public class Cadastro2 extends AppCompatActivity {
             return;
         }
 
-        // Verifica se o CNPJ possui um formato válido (apenas para fins de exemplo)
+        // Verifica se o CNPJ possui um formato válido
         if (!isValidCNPJ(companyModel.getCnpj())) {
-            Toast.makeText(this, "CNPJ inválido", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "CNPJ inválido. Certifique-se de inserir um CNPJ válido.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -156,9 +158,33 @@ public class Cadastro2 extends AppCompatActivity {
     }
 
     private void openGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            // Se já tiver permissão, abra a galeria
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        } else {
+            // Se não tiver permissão, solicite ao usuário
+            requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    // Adicione este método para tratar a resposta da solicitação de permissão
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permissão concedida, abra a galeria
+                    openGallery();
+                } else {
+                    // Permissão negada, informe ao usuário
+                    Toast.makeText(this, "A permissão é necessária para acessar a galeria.", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
     }
 
     private void OpenImage() {
@@ -185,23 +211,31 @@ public class Cadastro2 extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri selectedImageUri = data.getData();
 
-            // Salvar o URI da imagem no banco de dados
-            saveImageUri(selectedImageUri.toString());
+            // Verifique se o URI da imagem não é nulo
+            if (selectedImageUri != null) {
+                // Salvar o URI da imagem no banco de dados
+                saveImageUri(selectedImageUri.toString());
 
-            // Exibir a imagem usando Glide
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
-                Glide.with(this)
-                        .load(bitmap)
-                        .apply(RequestOptions.overrideOf(180, 180))
-                        .into(imagemPerfil);
-            } catch (IOException e) {
-                e.printStackTrace();
+                // Exibir a imagem usando Glide
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+                    Glide.with(this)
+                            .load(bitmap)
+                            .apply(RequestOptions.overrideOf(180, 180))
+                            .into(imagemPerfil);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Toast.makeText(this, "Imagem salva com sucesso no banco de dados", Toast.LENGTH_SHORT).show();
+            } else {
+                // O usuário não escolheu uma imagem
+                Toast.makeText(this, "Escolha uma imagem válida", Toast.LENGTH_SHORT).show();
             }
-
-            Toast.makeText(this, "Imagem salva com sucesso no banco de dados", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     private void saveImageUri(String imagePath) {
         // Salvar o URI da imagem na base de dados local

@@ -11,6 +11,7 @@ import persistence.models.LogCashierModel;
 import request.Connection;
 import exception.LogCashierFetchException;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class LogCashierFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("logCashiers");
+                    String result = Connection.connectHttp("cashier");
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -80,6 +81,8 @@ public class LogCashierFetcher {
                     if (listener != null) {
                         listener.onLogCashierFetchError();
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

@@ -16,19 +16,14 @@ public class UserModel implements Serializable {
     private String email;
     private int telefone;
     private int cep;
-    private boolean plano_padrao;
     private Role role;
     private String url_image;
     private CompanyModel cnpj;
 
-    public UserModel(String alice, String password) {
+
+    public UserModel(UUID id, String nome, String login, String password, String email, int telefone, int cep, Role role, String url_image, CompanyModel cnpj) {
 
     }
-
-    /*public UserModel(String UUID id, String nome, String login, String password, String email, int telefone, int cep, boolean plano_padrao, Role role String url_image, CompanyModel cnpj;) {
-
-    }*/
-
 
     public List<String> getAuthorities() {
         if (this.role == Role.SERVICE) {

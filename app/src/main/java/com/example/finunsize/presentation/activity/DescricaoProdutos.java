@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +13,9 @@ import com.example.finunsize.R;
 import java.time.format.DateTimeFormatter;
 
 import persistence.models.ProductModel;
+import request.Connection;
 
 public class DescricaoProdutos extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +29,26 @@ public class DescricaoProdutos extends AppCompatActivity {
             // Agora você pode usar selectedProduct para preencher os campos ou fazer qualquer outra coisa
             preencherCamposDescricao(selectedProduct);
         }
+
+        // Obtém o token da intent, se estiver presente
+        if (intent.hasExtra("token")) {
+            String token = intent.getStringExtra("token");
+
+            try {
+                String apiResponse = Connection.connectHttp("https://finunsize.onrender.com/product/", token);
+                // Lógica para processar a resposta da API, se necessário
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Erro ao obter dados da API", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void preencherCamposDescricao(ProductModel product) {
 
         // Obtenha referências para os TextViews do layout
         TextView nameText = findViewById(R.id.productName);
-        TextView descricaoText = findViewById(R.id.DescicaoText);
+        TextView descricaoText = findViewById(R.id.DescricaoText);
         TextView marcaText = findViewById(R.id.MarcaText);
         TextView validityText = findViewById(R.id.validityText);
         TextView qtdText = findViewById(R.id.qtdText);

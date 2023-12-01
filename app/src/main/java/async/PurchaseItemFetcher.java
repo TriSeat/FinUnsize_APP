@@ -11,6 +11,7 @@ import listener.OnPurchaseItemFetchListener;
 import persistence.models.PurchaseItemModel;
 import request.Connection;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +35,7 @@ public class PurchaseItemFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("purchases/" + purchaseId + "/items");
+                    String result = Connection.connectHttp("purchase/" + purchaseId + "/item");
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -65,6 +66,8 @@ public class PurchaseItemFetcher {
                     if (listener != null) {
                         listener.onPurchaseItemFetchError();
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

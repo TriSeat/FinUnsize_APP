@@ -10,6 +10,7 @@ import persistence.models.SaleItemModel;
 import request.Connection;
 import exception.SaleItemFetchException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -33,7 +34,7 @@ public class SaleItemFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("sales/" + saleId + "/items");
+                    String result = Connection.connectHttp("sale/" + saleId + "/item");
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -62,6 +63,8 @@ public class SaleItemFetcher {
                     if (listener != null) {
                         listener.onSaleItemFetchError();
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

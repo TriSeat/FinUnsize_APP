@@ -11,6 +11,7 @@ import listener.OnProjectionFetchListener;
 import persistence.models.ProjectionModel;
 import request.Connection;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class ProjectionFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("projections");
+                    String result = Connection.connectHttp("finance");
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -75,6 +76,8 @@ public class ProjectionFetcher {
                     if (listener != null) {
                         listener.onProjectionFetchError();
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

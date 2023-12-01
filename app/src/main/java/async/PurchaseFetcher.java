@@ -11,6 +11,7 @@ import listener.OnPurchaseFetchListener;
 import persistence.models.PurchaseModel;
 import request.Connection;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class PurchaseFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("purchases");
+                    String result = Connection.connectHttp("purchase");
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -69,6 +70,8 @@ public class PurchaseFetcher {
                     if (listener != null) {
                         listener.onPurchaseFetchError();
                     }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });
