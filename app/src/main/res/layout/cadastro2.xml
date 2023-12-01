@@ -113,7 +113,7 @@
             android:gravity="center">
 
             <EditText
-                android:id="@+id/empresa"
+                android:id="@+id/nomeEmpresa"
                 android:layout_width="360dp"
                 android:layout_height="45dp"
                 android:layout_marginBottom="15dp"

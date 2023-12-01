@@ -18,6 +18,13 @@ import com.example.finunsize.R;
 
 import java.io.IOException;
 
+import persistence.models.CompanyModel;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class Cadastro2 extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -33,9 +40,115 @@ public class Cadastro2 extends AppCompatActivity {
         imagemPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OpenImage();
+                openGallery();
             }
         });
+    }
+
+
+    public void OpenCadastro3(View view) {
+        String nomeEmpresa = getEditTextValue(R.id.nomeEmpresa);
+        String segmento = getEditTextValue(R.id.segmento);
+        String slogan = getEditTextValue(R.id.slogan);
+        String cnpj = getEditTextValue(R.id.cnpj);
+        String cep = getEditTextValue(R.id.cep);
+        String razao = getEditTextValue(R.id.razao);
+
+        CompanyModel companyModel = new CompanyModel(cnpj, nomeEmpresa, slogan, segmento, Integer.parseInt(cep), null, null, null, razao);
+
+        // Inicie a chamada para a API
+        sendCompanyData(companyModel);
+    }
+
+
+    private String getEditTextValue(int editTextId) {
+        EditText editText = findViewById(editTextId);
+        return editText.getText().toString();
+    }
+
+    private void sendCompanyData(CompanyModel companyModel) {
+        // Verificações adicionais
+        if (companyModel.getNome().isEmpty() || companyModel.getCnpj().isEmpty() || companyModel.getRazao().isEmpty() ||
+                companyModel.getSlogan().isEmpty() || companyModel.getSegmento().isEmpty() || companyModel.getCep() == 0) {
+            Toast.makeText(this, "Preencha todos os campos obrigatórios", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Verifica se o CNPJ possui um formato válido (apenas para fins de exemplo)
+        if (!isValidCNPJ(companyModel.getCnpj())) {
+            Toast.makeText(this, "CNPJ inválido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Continue com a chamada para a API
+        // Configure o Retrofit
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://finunsize.onrender.com/") // Substitua pela base URL da sua API
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // Crie a instância do ApiService
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        // Faça a chamada para o método da API
+        Call<Void> call = apiService.cadastrarEmpresa(companyModel);
+
+        // Faça a solicitação assíncrona
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    // Sucesso na requisição
+                    Toast.makeText(Cadastro2.this, "Cadastro realizado com sucesso", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(Cadastro2.this, Cadastro3.class);
+                    startActivity(intent);
+                } else {
+                    // Erro na requisição
+                    Toast.makeText(Cadastro2.this, "Erro ao cadastrar empresa", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // Falha na requisição
+                Toast.makeText(Cadastro2.this, "Falha na requisição", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private boolean isValidCNPJ(String cnpj) {
+        // Remove caracteres não numéricos
+        cnpj = cnpj.replaceAll("[^0-9]", "");
+
+        // Verifica se o CNPJ tem 14 dígitos
+        if (cnpj.length() != 14) {
+            return false;
+        }
+
+        // Calcula o primeiro dígito verificador
+        int soma = 0;
+        for (int i = 0; i < 12; i++) {
+            soma += Character.getNumericValue(cnpj.charAt(i)) * (13 - i);
+        }
+        int resto = soma % 11;
+        int digito1 = (resto < 2) ? 0 : (11 - resto);
+
+        // Verifica o primeiro dígito verificador
+        if (Character.getNumericValue(cnpj.charAt(12)) != digito1) {
+            return false;
+        }
+
+        // Calcula o segundo dígito verificador
+        soma = 0;
+        for (int i = 0; i < 13; i++) {
+            soma += Character.getNumericValue(cnpj.charAt(i)) * (14 - i);
+        }
+        resto = soma % 11;
+        int digito2 = (resto < 2) ? 0 : (11 - resto);
+
+        // Verifica o segundo dígito verificador
+        return Character.getNumericValue(cnpj.charAt(13)) == digito2;
     }
 
     public void EditImage(View view) {
@@ -64,6 +177,7 @@ public class Cadastro2 extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -71,7 +185,10 @@ public class Cadastro2 extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri selectedImageUri = data.getData();
 
-            // Redimensionar a imagem para 180x180dp usando Glide
+            // Salvar o URI da imagem no banco de dados
+            saveImageUri(selectedImageUri.toString());
+
+            // Exibir a imagem usando Glide
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
                 Glide.with(this)
@@ -82,22 +199,16 @@ public class Cadastro2 extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            // Obtém o caminho da imagem
-            String imagePath = selectedImageUri.toString();
-
-            // Salva o caminho da imagem na base de dados DatabaseImage
-            DatabaseImage databaseImage = new DatabaseImage(this);
-            if (databaseImage.insertImage(imagePath)) {
-                Toast.makeText(this, "Imagem salva com sucesso na base de dados", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Erro ao salvar imagem na base de dados", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(this, "Imagem salva com sucesso no banco de dados", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void OpenCadastro3 (View view) {
-        MainActivity.redirect(this, Cadastro3.class);
+    private void saveImageUri(String imagePath) {
+        // Salvar o URI da imagem na base de dados local
+        DatabaseImage databaseImage = new DatabaseImage(this);
+        databaseImage.insertImage(imagePath);
     }
+
 
     public void OpenLogin (View view) {
         MainActivity.redirect(this, Login.class);

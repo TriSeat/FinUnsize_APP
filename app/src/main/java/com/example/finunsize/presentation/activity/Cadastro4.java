@@ -37,7 +37,7 @@ public class Cadastro4 extends AppCompatActivity {
         return null;
     }
 
-    public void OpenCadastroPerfil(View view) {
+    /*public void OpenCadastroPerfil(View view) {
         String userEmail = email.getText().toString();
         String userPassword = password.getText().toString();
         String userRePassword = repassword.getText().toString();
@@ -79,4 +79,15 @@ public class Cadastro4 extends AppCompatActivity {
             }
         });
     }
+<<<<<<< HEAD
 }
+=======
+
+    private void saveToken(String token) {
+        SharedPreferences sharedPreferences = getSharedPreferences("NomeDaSuaPreference", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token", token);
+        editor.apply();
+    }*/
+}
+>>>>>>> bd9709ce993a7d804ac028a8c5d510ef86a7034d

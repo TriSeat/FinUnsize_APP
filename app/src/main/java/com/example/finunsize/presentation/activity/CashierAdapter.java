@@ -32,11 +32,10 @@ public class CashierAdapter extends RecyclerView.Adapter<CashierAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         CashierModel cashier = cashierList.get(position);
 
-        holder.cashierId.setText(cashier.getId_caixa());
+        holder.cashierId.setText(cashier.getIdcaixa());
         holder.cashierName.setText(cashier.getNome());
         holder.cashierStatus.setText(cashier.getStatus());
 
-        // Adicione outras linhas semelhantes para outros dados do caixa, se necessário
     }
 
     @Override
