@@ -6,6 +6,7 @@ import integration.AuthRequest;
 import integration.AuthResponse;
 import persistence.models.CashierModel;
 import persistence.models.ProductModel;
+
 import persistence.models.UserModel;
 import persistence.models.CompanyModel;
 import retrofit2.Call;

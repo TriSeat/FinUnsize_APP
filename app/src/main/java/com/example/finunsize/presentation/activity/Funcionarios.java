@@ -2,99 +2,125 @@ package com.example.finunsize.presentation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finunsize.R;
 
-import async.EmployeeFetcher;
-import exception.EmployeeFetchException;
-import listener.OnEmployeeFetchListener;
-import persistence.models.EmployeeModel;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+
+import persistence.models.EmployeeModel;
+import request.Connection;
 
 public class Funcionarios extends AppCompatActivity {
 
-    private TextView qtdFuncionarios;
-    private TextView listaFuncionarios; // Adicione um TextView para exibir os nomes dos funcionários
+    private RecyclerView recyclerView;
+    private EmployeeAdapter employeeAdapter;
+    private List<EmployeeModel> employeeList;
+    private TextView qtdFuncionariosTextView;
+    private String token;
+    private final Handler handler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.funcionarios);
 
-        qtdFuncionarios = findViewById(R.id.qtd_prod);
+        token = getIntent().getStringExtra("token");
 
-        fetchEmployees();
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        qtdFuncionariosTextView = findViewById(R.id.qtd_func);
+
+        employeeList = new ArrayList<>();
+        employeeAdapter = new EmployeeAdapter(this, employeeList);
+        recyclerView.setAdapter(employeeAdapter);
+
+        fetchEmployeeListFromApi(token);
     }
 
-    private void fetchEmployees() {
-        EmployeeFetcher employeeFetcher = new EmployeeFetcher(getMainLooper(), new OnEmployeeFetchListener() {
-            @Override
-            public void onEmployeeFetchSuccess(List<EmployeeModel> employees) {
-                if (qtdFuncionarios != null) {
-                    qtdFuncionarios.setText(String.valueOf(employees.size()));
-                }
-
-                StringBuilder funcionariosText = new StringBuilder();
-                for (EmployeeModel employee : employees) {
-                    funcionariosText.append("Nome: ").append(employee.getNome())
-                            .append("\nCargo: ").append(employee.getCargo())
-                            .append("\nTelefone: ").append(employee.getTelefone())
-                            .append("\nSalário: ").append(employee.getSalario())
-                            .append("\n\n");
-                }
-                if (listaFuncionarios != null) {
-                    listaFuncionarios.setText(funcionariosText.toString());
-                }
-            }
-
-            @Override
-            public void onEmployeeFetchError() {
-                Toast.makeText(Funcionarios.this, "Erro ao buscar funcionários", Toast.LENGTH_SHORT).show();
-            }
-        });
+    public void fetchEmployeeListFromApi(String token) {
+        String apiUrl = "https://finunsize.onrender.com/employee/";
 
         try {
-            employeeFetcher.fetchEmployees();
-        } catch (EmployeeFetchException e) {
+            String apiResponse = Connection.connectHttp(apiUrl, token);
+
+            if (apiResponse != null && isValidJsonArray(apiResponse)) {
+                JSONArray jsonArray = new JSONArray(apiResponse);
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    int idFuncionario = jsonObject.getInt("idFuncionario");
+                    String nome = jsonObject.getString("nome");
+                    String cpf = jsonObject.getString("cpf");
+                    String turno = jsonObject.getString("turno");
+                    BigDecimal salario = (BigDecimal) jsonObject.get("salario");
+
+                    // Construindo um objeto EmployeeModel com os dados obtidos da API
+                    EmployeeModel employee = new EmployeeModel(idFuncionario, cpf, nome, turno, salario);
+                    employeeList.add(employee);
+                }
+
+                updateQtdFuncionariosTextView(employeeList.size());
+                employeeAdapter.notifyDataSetChanged();
+
+            } else {
+                showToast("Erro ao obter dados da API. Tente novamente.");
+            }
+        } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Exceção ao buscar funcionários", Toast.LENGTH_SHORT).show();
+            showToast("Erro ao analisar dados da API.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showToast("Erro inesperado. Tente novamente mais tarde.");
         }
     }
 
-    public void OpenNotif(View view){
+    private boolean isValidJsonArray(String json) {
+        try {
+            new JSONArray(json);
+            return true;
+        } catch (JSONException e) {
+            return false;
+        }
+    }
+
+    private void showToast(final String message) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(Funcionarios.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+    public void OpenNotif(View view) {
         Intent intent = new Intent(this, Notification.class);
+        intent.putExtra("token", token);
         startActivity(intent);
     }
 
 
-    // Métodos de intents do menu (não alterados)
-    public void OpenCompras(View view) {
-        Intent intent = new Intent(this, Caixa.class);
-        startActivity(intent);
-    }
-
-    public void OpenProdutos(View view) {
-        Intent intent = new Intent(this, Produtos.class);
-        startActivity(intent);
-    }
-
-    public void OpenHome(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void OpenStats(View view) {
-        Intent intent = new Intent(this, Estatisticas.class);
-        startActivity(intent);
-    }
-
-    public void OpenFunc(View view) {
-        // Não faz nada, pois já está na tela de funcionários
+    private void updateQtdFuncionariosTextView(int qtdFuncionarios) {
+        if (qtdFuncionariosTextView != null) {
+            qtdFuncionariosTextView.setText(String.valueOf(qtdFuncionarios));
+        }
     }
 }

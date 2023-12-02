@@ -109,7 +109,7 @@
                     tools:ignore="ExtraText">
 
                     <TextView
-                        android:id="@+id/qtd_prod"
+                        android:id="@+id/qtd_func"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:fontFamily="@font/poppins_bold"
@@ -269,139 +269,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="380dp"
-                android:layout_height="85dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/retangulo"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/func"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="10dp"
-                        app:srcCompat="@drawable/func_example3" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/nome_func"
-                        android:layout_width="wrap_content"
-                        android:layout_height="27dp"
-                        android:layout_marginStart="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Marcos Augusto"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"></TextView>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="5dp"
-                        android:orientation="horizontal">
-
-                        <ImageButton
-                            android:id="@+id/turno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:background="@color/transparent"
-                            android:src="@drawable/baseline_dark_mode_24" />
-
-                        <ImageButton
-                            android:id="@+id/cargo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:background="@color/transparent"
-                            android:src="@drawable/baseline_person_pin_24" />
-
-                        <ImageButton
-                            android:id="@+id/salario"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginEnd="10dp"
-                            android:background="@color/transparent"
-                            android:src="@drawable/baseline_attach_money_24" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/turno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:text="PM"
-                            android:textColor="@color/white"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:id="@+id/turno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="22dp"
-                            android:text="CAIXA"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:id="@+id/turno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:text="r$ 3000"
-                            android:textAlignment="center"
-                            android:textAllCaps="true"
-                            android:textColor="@color/white"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- Layout para cada item de funcionário -->
+                <!-- Seção para cada item de funcionário -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -461,6 +333,10 @@
                 </LinearLayout>
 
                 <!-- Outros funcionários podem ser adicionados da mesma maneira -->
+
+            </LinearLayout>
+
+                <!-- Outros funcionários podem ser adicionados da mesma maneira -->
             </LinearLayout>
 
 
@@ -468,6 +344,5 @@
 
 
         </LinearLayout>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
