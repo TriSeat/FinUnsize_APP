@@ -77,6 +77,7 @@ public class CadastroPerfil extends AppCompatActivity {
 
         // Faça a chamada para o método da API
         Call<Void> call = apiService.cadastrarUsuário(userModel);
+        Log.d("CadastroPerfil", "URL: " + call.request().url());
 
         // Faça a solicitação assíncrona
         call.enqueue(new Callback<Void>() {
@@ -90,15 +91,30 @@ public class CadastroPerfil extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    // Erro na requisição
-                    Toast.makeText(CadastroPerfil.this, "Erro ao cadastrar empresa", Toast.LENGTH_SHORT).show();
+                    if (response.code() == 404) {
+                        try {
+                            String errorBody = response.errorBody().string();
+                            Log.e("CadastroPerfil", "Erro 404 - Corpo da Resposta: " + errorBody);
+                            Toast.makeText(CadastroPerfil.this, "Recurso não encontrado. Verifique a rota no servidor.", Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        // Erro na requisição, código diferente de 404
+                        Toast.makeText(CadastroPerfil.this, "Erro na requisição, código: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 // Falha na requisição
+                t.printStackTrace(); // Imprime o stack trace da exceção
+                Log.e("CadastroPerfil", "Falha na requisição", t);
                 Toast.makeText(CadastroPerfil.this, "Falha na requisição", Toast.LENGTH_SHORT).show();
+
+                // Exibe a mensagem de erro específica para o usuário
+                Toast.makeText(CadastroPerfil.this, "Erro ao Cadastrar o usuário", Toast.LENGTH_SHORT).show();
             }
         });
     }

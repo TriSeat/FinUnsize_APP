@@ -31,7 +31,9 @@ public class Connection {
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 return readApiResponse(connection);
             } else {
-                throw new IOException("Erro na resposta da API: " + responseCode);
+                // Capturar o corpo da resposta em caso de erro
+                String errorResponse = readApiResponse(connection);
+                throw new IOException("Erro na resposta da API. Código: " + responseCode + ", Resposta: " + errorResponse);
             }
         } finally {
             connection.disconnect();
@@ -51,6 +53,9 @@ public class Connection {
             while ((line = reader.readLine()) != null) {
                 response.append(line);
             }
+        } catch (IOException e) {
+            // Se houver um erro ao ler o corpo da resposta, retorne uma string vazia
+            return "";
         }
         return response.toString();
     }

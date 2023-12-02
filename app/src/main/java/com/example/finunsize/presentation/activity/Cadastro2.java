@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -94,6 +95,7 @@ public class Cadastro2 extends AppCompatActivity {
 
         // Faça a chamada para o método da API
         Call<Void> call = apiService.cadastrarEmpresa(companyModel);
+        Log.d("Cadastro2", "URL: " + call.request().url());
 
         // Faça a solicitação assíncrona
         call.enqueue(new Callback<Void>() {
@@ -106,51 +108,40 @@ public class Cadastro2 extends AppCompatActivity {
                     Intent intent = new Intent(Cadastro2.this, Cadastro3.class);
                     startActivity(intent);
                 } else {
-                    // Erro na requisição
-                    Toast.makeText(Cadastro2.this, "Erro ao cadastrar empresa", Toast.LENGTH_SHORT).show();
+                    if (response.code() == 404) {
+                        try {
+                            String errorBody = response.errorBody().string();
+                            Log.e("Cadastro2", "Erro 404 - Corpo da Resposta: " + errorBody);
+                            Toast.makeText(Cadastro2.this, "Recurso não encontrado. Verifique a rota no servidor.", Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        // Erro na requisição, código diferente de 404
+                        Toast.makeText(Cadastro2.this, "Erro na requisição, código: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 // Falha na requisição
+                t.printStackTrace(); // Imprime o stack trace da exceção
+                Log.e("Cadastro2", "Falha na requisição", t);
                 Toast.makeText(Cadastro2.this, "Falha na requisição", Toast.LENGTH_SHORT).show();
+
+                // Exibe a mensagem de erro específica para o usuário
+                Toast.makeText(Cadastro2.this, "Erro ao Cadastrar empresa", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private boolean isValidCNPJ(String cnpj) {
-        // Remove caracteres não numéricos
-        cnpj = cnpj.replaceAll("[^0-9]", "");
-
         // Verifica se o CNPJ tem 14 dígitos
         if (cnpj.length() != 14) {
             return false;
         }
-
-        // Calcula o primeiro dígito verificador
-        int soma = 0;
-        for (int i = 0; i < 12; i++) {
-            soma += Character.getNumericValue(cnpj.charAt(i)) * (13 - i);
-        }
-        int resto = soma % 11;
-        int digito1 = (resto < 2) ? 0 : (11 - resto);
-
-        // Verifica o primeiro dígito verificador
-        if (Character.getNumericValue(cnpj.charAt(12)) != digito1) {
-            return false;
-        }
-
-        // Calcula o segundo dígito verificador
-        soma = 0;
-        for (int i = 0; i < 13; i++) {
-            soma += Character.getNumericValue(cnpj.charAt(i)) * (14 - i);
-        }
-        resto = soma % 11;
-        int digito2 = (resto < 2) ? 0 : (11 - resto);
-
-        // Verifica o segundo dígito verificador
-        return Character.getNumericValue(cnpj.charAt(13)) == digito2;
+        return true;
     }
 
     public void EditImage(View view) {

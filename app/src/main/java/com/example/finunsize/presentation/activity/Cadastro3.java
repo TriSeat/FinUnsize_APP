@@ -2,6 +2,7 @@ package com.example.finunsize.presentation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 import persistence.models.CompanyModel;
@@ -101,27 +103,45 @@ public class Cadastro3 extends AppCompatActivity {
 
         // Faça a chamada para o método da API
         Call<Void> call = apiService.cadastrarEmpresa(companyModel);
+        Log.d("Cadastro3", "Antes da chamada para cadastrarEmpresa. URL: " + call.request().url());
 
         // Faça a solicitação assíncrona
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d("Cadastro3", "Dentro do onResponse");
                 if (response.isSuccessful()) {
                     // Sucesso na requisição
                     Toast.makeText(Cadastro3.this, "Cadastro realizado com sucesso", Toast.LENGTH_SHORT).show();
 
+                    // Avance para a próxima tela (Cadastro4)
                     Intent intent = new Intent(Cadastro3.this, Cadastro4.class);
                     startActivity(intent);
                 } else {
-                    // Erro na requisição
-                    Toast.makeText(Cadastro3.this, "Erro ao cadastrar empresa", Toast.LENGTH_SHORT).show();
+                    if (response.code() == 404) {
+                        try {
+                            String errorBody = response.errorBody().string();
+                            Log.e("Cadastro3", "Erro 404 - Corpo da Resposta: " + errorBody);
+                            Toast.makeText(Cadastro3.this, "Recurso não encontrado. Verifique a rota no servidor.", Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        // Erro na requisição, código diferente de 404
+                        Toast.makeText(Cadastro3.this, "Erro na requisição, código: " + response.code(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 // Falha na requisição
+                t.printStackTrace(); // Imprime o stack trace da exceção
+                Log.e("Cadastro3", "Falha na requisição", t);
                 Toast.makeText(Cadastro3.this, "Falha na requisição", Toast.LENGTH_SHORT).show();
+
+                // Exibe a mensagem de erro específica para o usuário
+                Toast.makeText(Cadastro3.this, "Erro ao Cadastrar o usuário", Toast.LENGTH_SHORT).show();
             }
         });
     }
