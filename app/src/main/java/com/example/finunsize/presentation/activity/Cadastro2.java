@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.finunsize.R;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import persistence.models.CompanyModel;
 import retrofit2.Call;
@@ -56,17 +57,36 @@ public class Cadastro2 extends AppCompatActivity {
         String cnpj = getEditTextValue(R.id.cnpj);
         String cep = getEditTextValue(R.id.cep);
         String razao = getEditTextValue(R.id.razao);
+        String renda = getEditTextValue(R.id.renda);
+        String gasto = getEditTextValue(R.id.gasto);
+        String balanco = getEditTextValue(R.id.balanco);
 
-        CompanyModel companyModel = new CompanyModel(cnpj, nomeEmpresa, slogan, segmento, Integer.parseInt(cep), null, null, null, razao);
+        // Exemplo de validação de CEP
+        if (cep.length() != 8) {
+            Toast.makeText(this, "CEP inválido. Deve conter 8 dígitos.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        CompanyModel companyModel = new CompanyModel(cnpj, nomeEmpresa, slogan, segmento, Integer.parseInt(cep), convertToBigDecimal(renda), convertToBigDecimal(balanco), convertToBigDecimal(gasto), razao);
 
         // Inicie a chamada para a API
         sendCompanyData(companyModel);
     }
 
-
     private String getEditTextValue(int editTextId) {
         EditText editText = findViewById(editTextId);
         return editText.getText().toString();
+    }
+
+    private BigDecimal convertToBigDecimal(String value) {
+        try {
+            // Tenta converter a string para BigDecimal
+            return new BigDecimal(value);
+        } catch (NumberFormatException e) {
+            // Em caso de falha na conversão, você pode lidar com isso de acordo com sua lógica
+            e.printStackTrace();
+            return BigDecimal.ZERO; // Ou outra lógica adequada para lidar com a falha na conversão
+        }
     }
 
     private void sendCompanyData(CompanyModel companyModel) {
@@ -82,6 +102,7 @@ public class Cadastro2 extends AppCompatActivity {
             Toast.makeText(this, "CNPJ inválido. Certifique-se de inserir um CNPJ válido.", Toast.LENGTH_SHORT).show();
             return;
         }
+
 
         // Continue com a chamada para a API
         // Configure o Retrofit
@@ -137,8 +158,8 @@ public class Cadastro2 extends AppCompatActivity {
     }
 
     private boolean isValidCNPJ(String cnpj) {
-        // Verifica se o CNPJ tem 14 dígitos
-        if (cnpj.length() != 14) {
+        // Verifica se o CNPJ tem 18 dígitos
+        if (cnpj.length() != 18) {
             return false;
         }
         return true;

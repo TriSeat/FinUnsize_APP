@@ -109,7 +109,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void RedefinaSenha (View view) {
-        MainActivity.redirect(this, Cadastro4.class);
+        MainActivity.redirect(this, Cadastro3.class);
     }
 
 }

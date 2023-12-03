@@ -28,7 +28,7 @@ public class CompanyModel implements Serializable {
 
     private String url_image;
 
-    public CompanyModel(String nome, String cnpj) {
+    public CompanyModel(String cnpj) {
     }
 
     public CompanyModel(String cnpj, String nome, String slogan, String segmento, int cep, BigDecimal renda_media,

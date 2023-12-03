@@ -23,13 +23,13 @@ public interface ApiService {
     @GET("cashier/")
     Call<List<CashierModel>> getCashierList(@Header("Authorization") String token);
 
-    @POST("user/")
+    @POST("user/signup")
     Call<Void> cadastrarUsuário(@Body UserModel userModel);
 
-    @POST("user/")
+    @POST("user/login")
     Call<AuthResponse> authenticateUser(@Body AuthRequest authRequest);
 
-    @POST("company/")
+    @POST("https://finunsize.onrender.com/company/create")
     Call<Void> cadastrarEmpresa(@Body CompanyModel companyModel);
 }
 

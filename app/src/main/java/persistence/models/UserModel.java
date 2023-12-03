@@ -16,13 +16,24 @@ public class UserModel implements Serializable {
     private String email;
     private int telefone;
     private int cep;
+    private boolean plano_padrao;
     private Role role;
     private String url_image;
     private CompanyModel cnpj;
 
 
-    public UserModel(UUID id, String nome, String login, String password, String email, int telefone, int cep, Role role, String url_image, CompanyModel cnpj) {
-
+    public UserModel(String nome, String login, String password, String email, int telefone, int cep, boolean plano_padrao, Role role, String url_image, CompanyModel cnpj) {
+        this.id = UUID.randomUUID();
+        this.nome = nome;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.telefone = telefone;
+        this.cep = cep;
+        this.plano_padrao = plano_padrao;
+        this.role = role;
+        this.url_image = url_image;
+        this.cnpj = cnpj;
     }
 
     public List<String> getAuthorities() {
@@ -32,8 +43,6 @@ public class UserModel implements Serializable {
             return Collections.singletonList("ROLE_MANAGER");
         }
     }
-
-
 
     public boolean hasPermission(Role permission) {
         return this.role == permission;
