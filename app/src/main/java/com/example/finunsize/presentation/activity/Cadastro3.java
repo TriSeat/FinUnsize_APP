@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 import persistence.models.CompanyModel;
+import persistence.models.Role;
 import persistence.models.UserModel;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,7 +46,7 @@ public class Cadastro3 extends AppCompatActivity {
         imagemPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openGallery();
+                OpenImage();
             }
         });
     }
@@ -60,6 +61,7 @@ public class Cadastro3 extends AppCompatActivity {
         String cep = getEditTextValue(R.id.cep);
         String cnpj = getEditTextValue(R.id.cnpj);
         String plano = getEditTextValue(R.id.plano);
+        String role = getEditTextValue(R.id.role);
 
         // Verificar se as senhas coincidem
         if (!password.equals(repassword)) {
@@ -90,21 +92,38 @@ public class Cadastro3 extends AppCompatActivity {
             return;
         }
 
-        CompanyModel companyModel = new CompanyModel(cnpj);
+        // Converte a string 'role' para o enum 'Role'
+        Role userRole;
+        try {
+            userRole = Role.valueOf(role.trim());
+
+            // Verifica se o valor é um dos esperados
+            if (userRole != Role.SERVICE && userRole != Role.MANAGER && userRole != Role.CASHIER) {
+                throw new IllegalArgumentException();
+            }
+
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, "Função inválida. Certifique-se de inserir uma função válida.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Verifica se o CNPJ possui um formato válido
-        if (!isValidCNPJ(companyModel.getCnpj())) {
+        if (!isValidCNPJ(cnpj)) {
             Toast.makeText(this, "CNPJ inválido. Certifique-se de inserir um CNPJ válido.", Toast.LENGTH_SHORT).show();
             return;
         }
 
+
+        CompanyModel companyModel = new CompanyModel(cnpj);
+
         // Verifica se o plano é uma string válida antes de convertê-lo para booleano
         boolean planoBoolean = convertToBoolean(plano);
 
-        UserModel userModel = new UserModel(name, username, password, email, Integer.parseInt(telefone), Integer.parseInt(cep), planoBoolean, null, null, companyModel);
+        UserModel userModel = new UserModel(name, username, password, email, Integer.parseInt(telefone), Integer.parseInt(cep), planoBoolean, userRole, null, companyModel);
 
         sendCompanyData(userModel);
     }
+
 
 
     private String getEditTextValue(int editTextId) {
@@ -147,7 +166,15 @@ public class Cadastro3 extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    if (response.code() == 404) {
+                    if (response.code() == 400) {
+                        try {
+                            String errorBody = response.errorBody().string();
+                            Log.e("Cadastro3", "Erro 400 - Corpo da Resposta: " + errorBody);
+                            Toast.makeText(Cadastro3.this, "Erro na requisição: " + errorBody, Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else if (response.code() == 404) {
                         try {
                             String errorBody = response.errorBody().string();
                             Log.e("Cadastro3", "Erro 404 - Corpo da Resposta: " + errorBody);
