@@ -60,7 +60,7 @@ public class Produtos extends AppCompatActivity {
         String apiUrl = "https://finunsize.onrender.com/product/";
 
         try {
-            String apiResponse = Connection.connectHttp(apiUrl, token);
+            String apiResponse = Connection.connectHttpWithHeader(apiUrl, token);
 
             if (apiResponse != null && isValidJsonArray(apiResponse)) {
                 JSONArray jsonArray = new JSONArray(apiResponse);
@@ -93,6 +93,7 @@ public class Produtos extends AppCompatActivity {
         }
         return productList;
     }
+
 
     private boolean isValidJsonArray(String json) {
         try {

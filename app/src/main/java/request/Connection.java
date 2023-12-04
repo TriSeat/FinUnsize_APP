@@ -20,12 +20,12 @@ public class Connection {
         return connectHttp(apiUrl);
     }
 
-    public static String connectHttp(String apiUrl, String token) throws IOException {
+    public static String connectHttpWithHeader(String apiUrl, String token) throws IOException {
         URL url = new URL(apiUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
         try {
-            setAuthorizationHeader(connection, token);
+            connection.setRequestProperty("Authorization", "Bearer " + token);
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {

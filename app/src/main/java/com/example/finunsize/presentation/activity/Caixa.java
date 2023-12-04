@@ -1,5 +1,4 @@
 package com.example.finunsize.presentation.activity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +17,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +44,7 @@ public class Caixa extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        cashierList = fetchCashierListFromApi();
+        cashierList = fetchCashierListFromApi(token);
 
         lancaTextView = findViewById(R.id.lanca);
         updatelancaTextView(cashierList.size());
@@ -55,13 +53,13 @@ public class Caixa extends AppCompatActivity {
         recyclerView.setAdapter(cashierAdapter);
     }
 
-    public List<CashierModel> fetchCashierListFromApi() {
+    public List<CashierModel> fetchCashierListFromApi(String token) {
         List<CashierModel> cashierList = new ArrayList<>();
 
         String apiUrl = "https://finunsize.onrender.com/cashier/";
 
         try {
-            String apiResponse = Connection.connectHttp(apiUrl, token);
+            String apiResponse = Connection.connectHttpWithHeader(apiUrl, token);
 
             if (apiResponse != null && isValidJsonArray(apiResponse)) {
                 JSONArray jsonArray = new JSONArray(apiResponse);
@@ -129,28 +127,28 @@ public class Caixa extends AppCompatActivity {
     }
 
     //INTENTS DO MENU
-    public void OpenCompras(View view){
+    public void OpenCompras(View view) {
         Intent intent = new Intent(this, Caixa.class);
         startActivity(intent);
     }
 
-    public void OpenProdutos(View view){
+    public void OpenProdutos(View view) {
         Intent intent = new Intent(this, Produtos.class);
         intent.putExtra("token", token); // Passa o token para a próxima atividade
         startActivity(intent);
     }
 
-    public void OpenHome(View view){
+    public void OpenHome(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void OpenStats(View view){
+    public void OpenStats(View view) {
         Intent intent = new Intent(this, Estatisticas.class);
         startActivity(intent);
     }
 
-    public void OpenFunc(View view){
+    public void OpenFunc(View view) {
         Intent intent = new Intent(this, Funcionarios.class);
         startActivity(intent);
     }

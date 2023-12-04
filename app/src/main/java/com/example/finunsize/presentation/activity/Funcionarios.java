@@ -57,10 +57,12 @@ public class Funcionarios extends AppCompatActivity {
         String apiUrl = "https://finunsize.onrender.com/employee/";
 
         try {
-            String apiResponse = Connection.connectHttp(apiUrl, token);
+            String apiResponse = Connection.connectHttpWithHeader(apiUrl, token);
 
             if (apiResponse != null && isValidJsonArray(apiResponse)) {
                 JSONArray jsonArray = new JSONArray(apiResponse);
+
+                employeeList.clear(); // Limpa a lista antes de adicionar novos itens
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -69,7 +71,7 @@ public class Funcionarios extends AppCompatActivity {
                     String nome = jsonObject.getString("nome");
                     String cpf = jsonObject.getString("cpf");
                     String turno = jsonObject.getString("turno");
-                    BigDecimal salario = (BigDecimal) jsonObject.get("salario");
+                    BigDecimal salario = new BigDecimal(jsonObject.getString("salario"));
 
                     // Construindo um objeto EmployeeModel com os dados obtidos da API
                     EmployeeModel employee = new EmployeeModel(idFuncionario, cpf, nome, turno, salario);
@@ -108,15 +110,6 @@ public class Funcionarios extends AppCompatActivity {
             }
         });
     }
-
-
-
-    public void OpenNotif(View view) {
-        Intent intent = new Intent(this, Notification.class);
-        intent.putExtra("token", token);
-        startActivity(intent);
-    }
-
 
     private void updateQtdFuncionariosTextView(int qtdFuncionarios) {
         if (qtdFuncionariosTextView != null) {
