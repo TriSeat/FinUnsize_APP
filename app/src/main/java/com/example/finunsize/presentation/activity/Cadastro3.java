@@ -21,6 +21,8 @@ import com.example.finunsize.R;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import persistence.models.CompanyModel;
 import persistence.models.Role;
 import persistence.models.UserModel;
@@ -52,16 +54,16 @@ public class Cadastro3 extends AppCompatActivity {
     }
 
     public void OpenHome(View view) {
-        String name = getEditTextValue(R.id.name);
-        String username = getEditTextValue(R.id.username);
+        String nome = getEditTextValue(R.id.name);
+        String login = getEditTextValue(R.id.username);
         String password = getEditTextValue(R.id.password);
         String repassword = getEditTextValue(R.id.repassword);
         String email = getEditTextValue(R.id.email);
         String telefone = getEditTextValue(R.id.telefone);
         String cep = getEditTextValue(R.id.cep);
-        String cnpj = getEditTextValue(R.id.cnpj);
-        String plano = getEditTextValue(R.id.plano);
+        String plano_padrao = getEditTextValue(R.id.plano);
         String role = getEditTextValue(R.id.role);
+        String cnpj = "01.220.330/0001-30";
 
         // Verificar se as senhas coincidem
         if (!password.equals(repassword)) {
@@ -70,7 +72,7 @@ public class Cadastro3 extends AppCompatActivity {
         }
 
         // Verificar se todos os campos estão preenchidos
-        if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || repassword.isEmpty() || telefone.isEmpty() || cep.isEmpty() || cnpj.isEmpty()) {
+        if (nome.isEmpty() || login.isEmpty() || email.isEmpty() || password.isEmpty() || repassword.isEmpty() || telefone.isEmpty() || cep.isEmpty() || cnpj.isEmpty()) {
             Toast.makeText(this, "Preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -98,7 +100,7 @@ public class Cadastro3 extends AppCompatActivity {
             userRole = Role.valueOf(role.trim());
 
             // Verifica se o valor é um dos esperados
-            if (userRole != Role.SERVICE && userRole != Role.MANAGER && userRole != Role.CASHIER) {
+            if (userRole != Role.PLAN && userRole != Role.MANAGER && userRole != Role.CASHIER) {
                 throw new IllegalArgumentException();
             }
 
@@ -107,52 +109,34 @@ public class Cadastro3 extends AppCompatActivity {
             return;
         }
 
-        // Verifica se o CNPJ possui um formato válido
-        if (!isValidCNPJ(cnpj)) {
-            Toast.makeText(this, "CNPJ inválido. Certifique-se de inserir um CNPJ válido.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-
-        CompanyModel companyModel = new CompanyModel(cnpj);
-
-        // Verifica se o plano é uma string válida antes de convertê-lo para booleano
-        boolean planoBoolean = convertToBoolean(plano);
-
-        UserModel userModel = new UserModel(name, username, password, email, Integer.parseInt(telefone), Integer.parseInt(cep), planoBoolean, userRole, null, companyModel);
+        UserModel userModel = new UserModel(nome, login, password, email, Integer.parseInt(telefone), Integer.parseInt(cep), plano_padrao, userRole, cnpj, null);
 
         sendCompanyData(userModel);
     }
-
-
 
     private String getEditTextValue(int editTextId) {
         EditText editText = findViewById(editTextId);
         return editText.getText().toString();
     }
 
-    private boolean convertToBoolean(String value) {
-        try {
-            // Tenta converter a string para boolean
-            return Boolean.parseBoolean(value);
-        } catch (NumberFormatException e) {
-            // Em caso de falha na conversão, você pode lidar com isso de acordo com sua lógica
-            e.printStackTrace();
-            return false; // Ou outra lógica adequada para lidar com a falha na conversão
-        }
-    }
-
     private void sendCompanyData(UserModel userModel) {
+        // Adicione o interceptor de logging ao cliente Retrofit
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://finunsize.onrender.com/") // Substitua pela base URL da sua API
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(new OkHttpClient.Builder()
+                        .addInterceptor(loggingInterceptor) // Adiciona o interceptor de logging
+                        .build())
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
 
         // Faça a chamada para o método da API
         Call<Void> call = apiService.cadastrarUsuário(userModel);
-        Log.d("Cadastro3", "URL: " + call.request().url());
 
         // Faça a solicitação assíncrona
         call.enqueue(new Callback<Void>() {
@@ -200,14 +184,6 @@ public class Cadastro3 extends AppCompatActivity {
                 Toast.makeText(Cadastro3.this, "Erro ao Cadastrar o usuário", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private boolean isValidCNPJ(String cnpj) {
-        // Verifica se o CNPJ tem 18 dígitos
-        if (cnpj.length() != 18) {
-            return false;
-        }
-        return true;
     }
 
 

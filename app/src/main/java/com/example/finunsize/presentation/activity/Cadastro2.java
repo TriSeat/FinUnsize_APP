@@ -103,7 +103,6 @@ public class Cadastro2 extends AppCompatActivity {
             return;
         }
 
-
         // Continue com a chamada para a API
         // Configure o Retrofit
         Retrofit retrofit = new Retrofit.Builder()

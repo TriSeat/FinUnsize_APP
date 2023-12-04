@@ -1,5 +1,7 @@
 package persistence.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,20 +12,30 @@ public class UserModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private UUID id;
+    @SerializedName("nome")
     private String nome;
+    @SerializedName("login")
     private String login;
+    @SerializedName("password")
     private String password;
+    @SerializedName("email")
     private String email;
+    @SerializedName("telefone")
     private int telefone;
+    @SerializedName("cep")
     private int cep;
-    private boolean plano_padrao;
+    @SerializedName("plano_padrao")
+    private String plano_padrao;
+    @SerializedName("role")
     private Role role;
+    @SerializedName("url_image")
     private String url_image;
-    private CompanyModel cnpj;
+    @SerializedName("cnpj")
+    private String cnpj;
 
 
-    public UserModel(String nome, String login, String password, String email, int telefone, int cep, boolean plano_padrao, Role role, String url_image, CompanyModel cnpj) {
-        this.id = UUID.randomUUID();
+    public UserModel(String nome, String login, String password, String email, int telefone, int cep, String plano_padrao, Role role, String cnpj, String url_image) {
+        this.id = id;
         this.nome = nome;
         this.login = login;
         this.password = password;
@@ -37,10 +49,10 @@ public class UserModel implements Serializable {
     }
 
     public List<String> getAuthorities() {
-        if (this.role == Role.SERVICE) {
-            return Arrays.asList("ROLE_SERVICE", "ROLE_MANAGER", "ROLE_CASHIER");
+        if (this.role == Role.PLAN) {
+            return Arrays.asList("PLAN", "MANAGER", "CASHIER");
         } else {
-            return Collections.singletonList("ROLE_MANAGER");
+            return Collections.singletonList("MANAGER");
         }
     }
 
@@ -68,7 +80,7 @@ public class UserModel implements Serializable {
         return true;
     }
 
-    public CompanyModel getCompany() {
+    public String getCompany() {
         return cnpj;
     }
 }

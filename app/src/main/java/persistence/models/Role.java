@@ -2,9 +2,9 @@ package persistence.models;
 
 public enum Role {
 
-    SERVICE("ROLE_SERVICE"),
-    MANAGER("ROLE_MANAGER"),
-    CASHIER("ROLE_CASHIER");
+    PLAN("PLAN"),
+    MANAGER("MANAGER"),
+    CASHIER("CASHIER");
 
     private String role;
 

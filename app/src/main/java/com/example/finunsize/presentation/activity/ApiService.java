@@ -17,16 +17,16 @@ import retrofit2.http.POST;
 
 public interface ApiService {
 
-    @GET("product/")
+    @GET("https://finunsize.onrender.com/product/")
     Call<List<ProductModel>> getProductList(@Header("Authorization") String token);
 
-    @GET("cashier/")
+    @GET("https://finunsize.onrender.com/cashier/")
     Call<List<CashierModel>> getCashierList(@Header("Authorization") String token);
 
-    @POST("user/signup")
+    @POST("https://finunsize.onrender.com/user/signup")
     Call<Void> cadastrarUsuário(@Body UserModel userModel);
 
-    @POST("user/login")
+    @POST("https://finunsize.onrender.com/user/login")
     Call<AuthResponse> authenticateUser(@Body AuthRequest authRequest);
 
     @POST("https://finunsize.onrender.com/company/create")
