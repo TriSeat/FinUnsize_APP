@@ -130,7 +130,7 @@
                     android:textSize="12sp"/>
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/Login"
                 android:layout_width="350dp"
                 android:layout_height="45dp"
                 android:layout_marginBottom="15dp"

@@ -19,11 +19,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.finunsize.R;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
-import persistence.models.CompanyModel;
 import persistence.models.Role;
 import persistence.models.UserModel;
 import retrofit2.Call;
@@ -58,12 +58,14 @@ public class Cadastro3 extends AppCompatActivity {
         String login = getEditTextValue(R.id.username);
         String password = getEditTextValue(R.id.password);
         String repassword = getEditTextValue(R.id.repassword);
-        String email = getEditTextValue(R.id.email);
+        String email = getEditTextValue(R.id.Login);
         String telefone = getEditTextValue(R.id.telefone);
         String cep = getEditTextValue(R.id.cep);
         String plano_padrao = getEditTextValue(R.id.plano);
         String role = getEditTextValue(R.id.role);
-        String cnpj = "01.220.330/0001-30";
+        String cnpjText = getEditTextValue(R.id.cnpj);
+        String cnpj = formatCnpj(cnpjText);
+
 
         // Verificar se as senhas coincidem
         if (!password.equals(repassword)) {
@@ -94,6 +96,11 @@ public class Cadastro3 extends AppCompatActivity {
             return;
         }
 
+        if (plano_padrao.length() != 1) {
+            Toast.makeText(this, "Plano inválido. Deve conter 1 dígito.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Converte a string 'role' para o enum 'Role'
         Role userRole;
         try {
@@ -109,7 +116,8 @@ public class Cadastro3 extends AppCompatActivity {
             return;
         }
 
-        UserModel userModel = new UserModel(nome, login, password, email, Integer.parseInt(telefone), Integer.parseInt(cep), plano_padrao, userRole, cnpj, null);
+
+        UserModel userModel = new UserModel(nome, login, password, email, Integer.parseInt(telefone), Integer.parseInt(cep), Integer.parseInt(plano_padrao), userRole, cnpj, null);
 
         sendCompanyData(userModel);
     }
@@ -117,6 +125,19 @@ public class Cadastro3 extends AppCompatActivity {
     private String getEditTextValue(int editTextId) {
         EditText editText = findViewById(editTextId);
         return editText.getText().toString();
+    }
+
+    private String formatCnpj(String cnpj) {
+        // Remove caracteres não numéricos
+        String numericCnpj = cnpj.replaceAll("[^0-9]", "");
+
+        // Formata o CNPJ
+        return String.format("%s.%s.%s/%s-%s",
+                numericCnpj.substring(0, 2),
+                numericCnpj.substring(2, 5),
+                numericCnpj.substring(5, 8),
+                numericCnpj.substring(8, 12),
+                numericCnpj.substring(12));
     }
 
     private void sendCompanyData(UserModel userModel) {
@@ -136,7 +157,9 @@ public class Cadastro3 extends AppCompatActivity {
         ApiService apiService = retrofit.create(ApiService.class);
 
         // Faça a chamada para o método da API
-        Call<Void> call = apiService.cadastrarUsuário(userModel);
+        String jsonBody = userModel.toJson();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), jsonBody);
+        Call<Void> call = apiService.cadastrarUsuario(requestBody);
 
         // Faça a solicitação assíncrona
         call.enqueue(new Callback<Void>() {

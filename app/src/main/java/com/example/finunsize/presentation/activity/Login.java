@@ -13,12 +13,23 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
 
 import integration.AuthRequest;
 import integration.AuthResponse;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Login extends AppCompatActivity {
 
@@ -28,29 +39,20 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
-        // Inicialize o ApiService (certifique-se de ter retrofit configurado)
-        apiService = RetrofitClient.getClient().create(ApiService.class);
     }
 
     public void OpenHome(View view) {
-        String email = getEditTextValue(R.id.email);
+        String login = getEditTextValue(R.id.login);
         String password = getEditTextValue(R.id.password);
 
         // Verifique se os campos de e-mail e senha estão preenchidos
-        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Adicione validação de e-mail
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "E-mail inválido. Por favor, insira um e-mail válido.", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(login) || TextUtils.isEmpty(password)) {
+            showToast("Preencha todos os campos");
             return;
         }
 
         // Faça a chamada para autenticar o usuário
-        authenticateUser(email, password);
+        authenticateUser(login, password);
     }
 
     private String getEditTextValue(int editTextId) {
@@ -58,33 +60,66 @@ public class Login extends AppCompatActivity {
         return editText.getText().toString();
     }
 
-    private void authenticateUser(String email, String password) {
+    private void authenticateUser(String login, String password) {
+        // Adicione o interceptor de logging ao cliente Retrofit
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        Gson gson = new GsonBuilder().setLenient().create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://finunsize.onrender.com/") // Substitua pela base URL da sua API
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(new OkHttpClient.Builder()
+                        .addInterceptor(loggingInterceptor) // Adiciona o interceptor de logging
+                        .build())
+                .build();
+
+        // Inicialize o ApiService (certifique-se de ter retrofit configurado)
+        ApiService apiService = retrofit.create(ApiService.class);
+
         // Crie a instância do modelo de autenticação
-        AuthRequest authRequest = new AuthRequest(email, password);
+        AuthRequest authRequest = new AuthRequest(login, password);
 
         // Faça a chamada para autenticar o usuário
-        Call<AuthResponse> call = apiService.authenticateUser(authRequest);
-        call.enqueue(new Callback<AuthResponse>() {
+        Call<ResponseBody> call = apiService.authenticateUser(authRequest);
+
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                // Adicione o log do corpo da resposta aqui
+                Log.d("Login", "Resposta do Servidor: " + response.body());
+
                 handleAuthenticationResponse(response);
             }
+
             @Override
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 handleAuthenticationFailure(t);
             }
         });
     }
 
-    private void handleAuthenticationResponse(Response<AuthResponse> response) {
+    private void handleAuthenticationResponse(Response<ResponseBody> response) {
         if (response.isSuccessful()) {
-            AuthResponse authResponse = response.body();
-            String token = authResponse.getToken();
-            saveToken(token);
+            try {
+                // Convert the response body to a string
+                String responseBody = response.body().string();
 
-            Intent intent = new Intent(Login.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+                // Assuming the token is directly returned as a string
+                AuthResponse authResponse = new AuthResponse(responseBody);
+
+                String token = authResponse.getToken();
+                saveToken(token);
+
+                showToast("Autenticação bem-sucedida");
+
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } catch (IOException e) {
+                e.printStackTrace();
+                showToast("Falha na conversão da resposta");
+            }
         } else {
             showToast("Credenciais inválidas");
         }
@@ -104,12 +139,11 @@ public class Login extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void OpenCadastro (View view) {
+    public void OpenCadastro(View view) {
         MainActivity.redirect(this, Cadastro.class);
     }
 
-    public void RedefinaSenha (View view) {
+    public void RedefinaSenha(View view) {
         MainActivity.redirect(this, Cadastro3.class);
     }
-
 }

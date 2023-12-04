@@ -4,6 +4,8 @@ import java.util.List;
 
 import integration.AuthRequest;
 import integration.AuthResponse;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import persistence.models.CashierModel;
 import persistence.models.ProductModel;
 
@@ -24,10 +26,10 @@ public interface ApiService {
     Call<List<CashierModel>> getCashierList(@Header("Authorization") String token);
 
     @POST("https://finunsize.onrender.com/user/signup")
-    Call<Void> cadastrarUsuário(@Body UserModel userModel);
+    Call<Void> cadastrarUsuario(@Body RequestBody requestBody);
 
     @POST("https://finunsize.onrender.com/user/login")
-    Call<AuthResponse> authenticateUser(@Body AuthRequest authRequest);
+    Call<ResponseBody> authenticateUser(@Body AuthRequest authRequest);
 
     @POST("https://finunsize.onrender.com/company/create")
     Call<Void> cadastrarEmpresa(@Body CompanyModel companyModel);

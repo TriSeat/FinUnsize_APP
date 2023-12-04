@@ -1,16 +1,16 @@
 package integration;
 
 public class AuthRequest {
-    private String email;
+    private String login;
     private String password;
 
-    public AuthRequest(String email, String password) {
-        this.email = email;
+    public AuthRequest(String login, String password) {
+        this.login = login;
         this.password = password;
     }
 
     public String getEmail() {
-        return email;
+        return login;
     }
 
     public String getPassword() {

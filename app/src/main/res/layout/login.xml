@@ -42,20 +42,20 @@
         android:layout_gravity="center">
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/login"
             android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/border"
             android:ems="10"
             android:fontFamily="@font/poppins"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:hint="Nome de Usuário"
+            android:inputType="text"
             android:paddingLeft="15dp"
             android:singleLine="false"
             android:textColor="@color/white"
             android:textColorHint="#CCCCCC"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <EditText
             android:id="@+id/password"

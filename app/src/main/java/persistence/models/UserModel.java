@@ -2,6 +2,9 @@ package persistence.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,29 +15,19 @@ public class UserModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private UUID id;
-    @SerializedName("nome")
     private String nome;
-    @SerializedName("login")
     private String login;
-    @SerializedName("password")
     private String password;
-    @SerializedName("email")
     private String email;
-    @SerializedName("telefone")
     private int telefone;
-    @SerializedName("cep")
     private int cep;
-    @SerializedName("plano_padrao")
-    private String plano_padrao;
-    @SerializedName("role")
+    private int plano_padrao;
     private Role role;
-    @SerializedName("url_image")
     private String url_image;
-    @SerializedName("cnpj")
     private String cnpj;
 
 
-    public UserModel(String nome, String login, String password, String email, int telefone, int cep, String plano_padrao, Role role, String cnpj, String url_image) {
+    public UserModel(String nome, String login, String password, String email, int telefone, int cep, int plano_padrao, Role role, String cnpj, String url_image) {
         this.id = id;
         this.nome = nome;
         this.login = login;
@@ -58,6 +51,27 @@ public class UserModel implements Serializable {
 
     public boolean hasPermission(Role permission) {
         return this.role == permission;
+    }
+
+    public String toJson() {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("nome", nome);
+            jsonObject.put("login", login);
+            jsonObject.put("password", password);
+            jsonObject.put("email", email);
+            jsonObject.put("telefone", telefone);
+            jsonObject.put("cep", cep);
+            jsonObject.put("plano_padrao", plano_padrao);
+            jsonObject.put("role", role.toString()); // assumindo que Role é uma enumeração
+            jsonObject.put("url_image", url_image);
+            jsonObject.put("cnpj", cnpj);
+
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "{}"; // ou outra representação padrão em caso de erro
+        }
     }
 
     public String getUsername() {
