@@ -16,6 +16,7 @@ public class EmployeeModel implements Serializable {
     private int telefone;
     private LocalDate admissao;
     private AddressModel id_logradouro;
+    private AddressModel address;
     private BigDecimal salario;
     private String observacao;
     private boolean demitido;
@@ -150,4 +151,7 @@ public class EmployeeModel implements Serializable {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+    public AddressModel getAddress() {return address;}
+
+    public void setAddress(AddressModel address) {this.address = address;}
 }

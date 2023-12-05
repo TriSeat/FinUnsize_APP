@@ -26,16 +26,14 @@ public class DescricaoProdutos extends AppCompatActivity {
         if (intent.hasExtra("selectedProduct")) {
             ProductModel selectedProduct = (ProductModel) intent.getSerializableExtra("selectedProduct");
 
-            // Agora você pode usar selectedProduct para preencher os campos ou fazer qualquer outra coisa
             preencherCamposDescricao(selectedProduct);
         }
 
-        // Obtém o token da intent, se estiver presente
         if (intent.hasExtra("token")) {
             String token = intent.getStringExtra("token");
 
             try {
-                String apiResponse = Connection.connectHttp("https://finunsize.onrender.com/product/", token);
+                String apiResponse = Connection.connectHttpWithHeader("https://finunsize.onrender.com/product/", token);
                 // Lógica para processar a resposta da API, se necessário
             } catch (Exception e) {
                 e.printStackTrace();
@@ -45,8 +43,6 @@ public class DescricaoProdutos extends AppCompatActivity {
     }
 
     public void preencherCamposDescricao(ProductModel product) {
-
-        // Obtenha referências para os TextViews do layout
         TextView nameText = findViewById(R.id.productName);
         TextView descricaoText = findViewById(R.id.DescricaoText);
         TextView marcaText = findViewById(R.id.MarcaText);
@@ -56,11 +52,9 @@ public class DescricaoProdutos extends AppCompatActivity {
         TextView precoAta = findViewById(R.id.PrecoAta);
         TextView fornecedorText = findViewById(R.id.FornecedorText);
 
-        // Preencha os campos com os dados do produto
         if (nameText != null && descricaoText != null && marcaText != null && validityText != null &&
                 qtdText != null && precoVar != null && precoAta != null && fornecedorText != null) {
 
-            // Preencha os campos com os dados do produto
             nameText.setText(product.getNome());
             descricaoText.setText(product.getDescricao());
             marcaText.setText(product.getInformacoes().getMarca());
@@ -72,8 +66,7 @@ public class DescricaoProdutos extends AppCompatActivity {
         }
     }
 
-
-    public void OpenProdutos (View view) {
+    public void openProdutos(View view) {
         MainActivity.redirect(this, Produtos.class);
     }
 }

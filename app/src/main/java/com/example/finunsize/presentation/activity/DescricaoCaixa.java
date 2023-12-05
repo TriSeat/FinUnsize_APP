@@ -14,7 +14,6 @@ import java.time.format.DateTimeFormatter;
 
 import persistence.models.CashierModel;
 import persistence.models.LogCashierModel;
-import persistence.models.ProductModel;
 import request.Connection;
 
 public class DescricaoCaixa extends AppCompatActivity {
@@ -29,16 +28,14 @@ public class DescricaoCaixa extends AppCompatActivity {
             CashierModel selectedCashier = (CashierModel) intent.getSerializableExtra("selectedCashier");
             LogCashierModel logCashier = (LogCashierModel) intent.getSerializableExtra("logCashier");
 
-            // Agora você pode usar selectedCashier e logCashier para preencher os campos
             preencherCamposDescricao(selectedCashier, logCashier);
         }
 
-        // Obtém o token da intent, se estiver presente
         if (intent.hasExtra("token")) {
             String token = intent.getStringExtra("token");
 
             try {
-                String apiResponse = Connection.connectHttp("https://finunsize.onrender.com/cashier/", token);
+                String apiResponse = Connection.connectHttpWithHeader("https://finunsize.onrender.com/cashier/", token);
                 // Lógica para processar a resposta da API, se necessário
             } catch (Exception e) {
                 e.printStackTrace();
@@ -47,36 +44,31 @@ public class DescricaoCaixa extends AppCompatActivity {
         }
     }
 
-    public void preencherCamposDescricao(CashierModel cashier, LogCashierModel logcashier) {
-
-        // Obtenha referências para os TextViews do layout
-        TextView NomeId = findViewById(R.id.caixaName);
-        TextView Status = findViewById(R.id.caixaStatus);
+    public void preencherCamposDescricao(CashierModel cashier, LogCashierModel logCashier) {
+        TextView nomeId = findViewById(R.id.caixaName);
+        TextView status = findViewById(R.id.caixaStatus);
         TextView dataFunc = findViewById(R.id.dataFuncionamentoText);
-        TextView ValorIni = findViewById(R.id.valor_inicial);
-        TextView ValorFin = findViewById(R.id.valor_final);
-        TextView DataAber = findViewById(R.id.abertura);
-        TextView DataFecha = findViewById(R.id.fechamento);
+        TextView valorIni = findViewById(R.id.valor_inicial);
+        TextView valorFin = findViewById(R.id.valor_final);
+        TextView dataAber = findViewById(R.id.abertura);
+        TextView dataFecha = findViewById(R.id.fechamento);
 
-
-        // Preencha os campos com os dados do produto
-        if (NomeId != null && Status != null && dataFunc != null && ValorIni != null &&
-                ValorFin != null && DataAber != null && DataFecha != null) {
+        if (nomeId != null && status != null && dataFunc != null && valorIni != null &&
+                valorFin != null && dataAber != null && dataFecha != null) {
 
             String nomeComId = cashier.getNome() + " (" + cashier.getIdcaixa() + ")";
 
-            // Preencha os campos com os dados do produto
-            NomeId.setText(nomeComId);
-            Status.setText(cashier.getStatus());
-            dataFunc.setText(logcashier.getData_funcionamento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            ValorIni.setText("R$ " + logcashier.getValor_inicial().toString());
-            ValorFin.setText("R$ " + logcashier.getValor_final().toString());
-            DataAber.setText(logcashier.getAbertura().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            DataFecha.setText(logcashier.getFechamento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            nomeId.setText(nomeComId);
+            status.setText(cashier.getStatus());
+            dataFunc.setText(logCashier.getData_funcionamento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            valorIni.setText("R$ " + logCashier.getValor_inicial().toString());
+            valorFin.setText("R$ " + logCashier.getValor_final().toString());
+            dataAber.setText(logCashier.getAbertura().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            dataFecha.setText(logCashier.getFechamento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         }
     }
 
-    public void OpenCaixa (View view) {
+    public void openCaixa(View view) {
         MainActivity.redirect(this, Caixa.class);
     }
 }

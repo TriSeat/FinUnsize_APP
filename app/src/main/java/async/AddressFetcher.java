@@ -18,7 +18,7 @@ public class AddressFetcher {
     private Handler handler;
     private OnAddressFetchListener listener;
 
-    public AddressFetcher(Handler handler, OnAddressFetchListener listener) {
+    public AddressFetcher() {
         this.handler = handler;
         this.listener = listener;
     }
