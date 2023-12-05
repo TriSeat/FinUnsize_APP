@@ -66,7 +66,7 @@ public class DescricaoProdutos extends AppCompatActivity {
         }
     }
 
-    public void openProdutos(View view) {
+    public void OpenProdutos(View view) {
         MainActivity.redirect(this, Produtos.class);
     }
 }

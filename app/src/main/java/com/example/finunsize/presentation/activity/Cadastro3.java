@@ -24,6 +24,7 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 
+import okhttp3.logging.HttpLoggingInterceptor;
 import persistence.models.Role;
 import persistence.models.UserModel;
 import retrofit2.Call;
@@ -116,7 +117,6 @@ public class Cadastro3 extends AppCompatActivity {
             return;
         }
 
-
         UserModel userModel = new UserModel(nome, login, password, email, Integer.parseInt(telefone), Integer.parseInt(cep), Integer.parseInt(plano_padrao), userRole, cnpj, null);
 
         sendCompanyData(userModel);
@@ -141,8 +141,9 @@ public class Cadastro3 extends AppCompatActivity {
     }
 
     private void sendCompanyData(UserModel userModel) {
-        // Cria uma instância do LoggingInterceptor
-        LoggingInterceptor loggingInterceptor = new LoggingInterceptor();
+        // Adicione o interceptor de logging ao cliente Retrofit
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         // Configura o Retrofit com o cliente OkHttp que inclui o LoggingInterceptor
         Retrofit retrofit = new Retrofit.Builder()

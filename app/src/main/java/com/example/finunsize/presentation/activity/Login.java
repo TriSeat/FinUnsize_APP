@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
-import com.example.finunsize.presentation.activity.ApiService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -21,14 +20,14 @@ import java.io.IOException;
 
 import integration.AuthRequest;
 import integration.AuthResponse;
-import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
-
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -62,16 +61,20 @@ public class Login extends AppCompatActivity {
     }
 
     private void authenticateUser(String login, String password) {
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new LoggingInterceptor())
-                .build();
+        // Adicione o interceptor de logging ao cliente Retrofit
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
+        Gson gson = new GsonBuilder().setLenient().create();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://finunsize.onrender.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client) // Configurando o cliente com o interceptor
+                .baseUrl("https://finunsize.onrender.com/") // Substitua pela base URL da sua API
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(new OkHttpClient.Builder()
+                        .addInterceptor(loggingInterceptor) // Adiciona o interceptor de logging
+                        .build())
                 .build();
 
+        // Inicialize o ApiService (certifique-se de ter retrofit configurado)
         ApiService apiService = retrofit.create(ApiService.class);
 
         // Crie a instância do modelo de autenticação
@@ -81,18 +84,12 @@ public class Login extends AppCompatActivity {
         Call<ResponseBody> call = apiService.authenticateUser(authRequest);
 
         call.enqueue(new Callback<ResponseBody>() {
-
-
-            public void onResponse(Call<ResponseBody> call, Response response) {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 // Adicione o log do corpo da resposta aqui
                 Log.d("Login", "Resposta do Servidor: " + response.body());
 
                 handleAuthenticationResponse(response);
-            }
-
-            @Override
-            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-
             }
 
             @Override
@@ -102,7 +99,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    private void handleAuthenticationResponse(Response response) {
+    private void handleAuthenticationResponse(Response<ResponseBody> response) {
         if (response.isSuccessful()) {
             try {
                 // Convert the response body to a string
@@ -148,45 +145,5 @@ public class Login extends AppCompatActivity {
 
     public void RedefinaSenha(View view) {
         MainActivity.redirect(this, Cadastro3.class);
-    }
-
-    private class LoggingInterceptor implements Interceptor {
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request();
-
-            long t1 = System.nanoTime();
-            Log.d("Request", String.format("Sending request %s on %s%n%s",
-                    request.url(), chain.connection(), request.headers()));
-
-            if ("post".equalsIgnoreCase(request.method())) {
-                Log.d("Request", bodyToString(request));
-            }
-
-            Response response = chain.proceed(request);
-
-            long t2 = System.nanoTime();
-            Log.d("Response", String.format("Received response for %s in %.1fms%n%s",
-                    response.request().url(), (t2 - t1) / 1e6d, response.headers()));
-
-            String bodyString = response.body().string();
-            Log.d("Response", bodyString);
-
-            return response.newBuilder()
-                    .body(ResponseBody.create(response.body().contentType(), bodyString))
-                    .build();
-        }
-
-        private String bodyToString(final Request request) {
-            try {
-                final Request copy = request.newBuilder().build();
-                final okio.Buffer buffer = new okio.Buffer();
-                if (copy.body() == null) return "";
-                copy.body().writeTo(buffer);
-                return buffer.readUtf8();
-            } catch (final IOException e) {
-                return "did not work";
-            }
-        }
     }
 }
