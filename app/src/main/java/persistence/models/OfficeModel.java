@@ -6,16 +6,16 @@ import java.util.UUID;
 public class OfficeModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private UUID id_cargo;
+    private int id_cargo;
     private String nome;
     private String descricao;
     private String cnpj;
 
     // Construtores
-    public OfficeModel(UUID idCargo, String nome, String descricao) {
+    public OfficeModel(String nome) {
     }
 
-    public OfficeModel(UUID id_cargo, String nome, String descricao, String cnpj) {
+    public OfficeModel(int id_cargo, String nome, String descricao, String cnpj) {
         this.id_cargo = id_cargo;
         this.nome = nome;
         this.descricao = descricao;
@@ -23,11 +23,11 @@ public class OfficeModel implements Serializable {
     }
 
     // Getters e setters
-    public UUID getId_cargo() {
+    public int getId_cargo() {
         return id_cargo;
     }
 
-    public void setId_cargo(UUID id_cargo) {
+    public void setId_cargo(int id_cargo) {
         this.id_cargo = id_cargo;
     }
 

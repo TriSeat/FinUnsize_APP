@@ -46,11 +46,11 @@ public class OfficeFetcher {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject officeJson = jsonArray.getJSONObject(i);
 
-                            UUID idCargo = UUID.fromString(officeJson.getString("idCargo"));
+                            int idCargo = officeJson.getInt(officeJson.getString("idCargo"));
                             String nome = officeJson.getString("nome");
                             String descricao = officeJson.getString("descricao");
 
-                            OfficeModel office = new OfficeModel(idCargo, nome, descricao);
+                            OfficeModel office = new OfficeModel(nome);
                             offices.add(office);
                         }
 

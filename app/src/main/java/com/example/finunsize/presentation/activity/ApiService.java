@@ -19,12 +19,6 @@ import retrofit2.http.POST;
 
 public interface ApiService {
 
-    @GET("https://finunsize.onrender.com/product/")
-    Call<List<ProductModel>> getProductList(@Header("Authorization") String token);
-
-    @GET("https://finunsize.onrender.com/cashier/")
-    Call<List<CashierModel>> getCashierList(@Header("Authorization") String token);
-
     @POST("https://finunsize.onrender.com/user/signup")
     Call<Void> cadastrarUsuario(@Body RequestBody requestBody);
 

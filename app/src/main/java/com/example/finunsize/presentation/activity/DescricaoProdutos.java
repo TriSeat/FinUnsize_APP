@@ -35,7 +35,7 @@ public class DescricaoProdutos extends AppCompatActivity {
             String token = intent.getStringExtra("token");
 
             try {
-                String apiResponse = Connection.connectHttp("https://finunsize.onrender.com/product/", token);
+                String apiResponse = Connection.connectHttpWithHeader("https://finunsize.onrender.com/product/", token);
                 // Lógica para processar a resposta da API, se necessário
             } catch (Exception e) {
                 e.printStackTrace();

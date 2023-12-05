@@ -7,7 +7,7 @@ public class AddressModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private UUID id_logradouro;
+    private int id_logradouro;
     private int cep;
     private String rua;
     private String numero;
@@ -16,10 +16,10 @@ public class AddressModel implements Serializable {
     private String cidade;
 
     // Construtores
-    public AddressModel(UUID idLogradouro) {
+    public AddressModel(int id_logradouro) {
     }
 
-    public AddressModel(UUID id_logradouro, int cep, String rua, String numero,
+    public AddressModel(int id_logradouro, int cep, String rua, String numero,
                         String complemento, String referencia, String cidade) {
         this.id_logradouro = id_logradouro;
         this.cep = cep;
@@ -31,11 +31,11 @@ public class AddressModel implements Serializable {
     }
 
     // Getters e setters
-    public UUID getId_logradouro() {
+    public int getId_logradouro() {
         return id_logradouro;
     }
 
-    public void setId_logradouro(UUID id_logradouro) {
+    public void setId_logradouro(int id_logradouro) {
         this.id_logradouro = id_logradouro;
     }
 

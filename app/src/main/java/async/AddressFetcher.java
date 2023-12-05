@@ -18,12 +18,12 @@ public class AddressFetcher {
     private Handler handler;
     private OnAddressFetchListener listener;
 
-    public AddressFetcher(Handler handler, OnAddressFetchListener listener) {
+    public AddressFetcher() {
         this.handler = handler;
         this.listener = listener;
     }
 
-    public void fetchAddress(UUID idLogradouro) {
+    public void fetchAddress(int id_logradouro) {
         HandlerThread handlerThread = new HandlerThread("AddressFetcherThread");
         handlerThread.start();
 
@@ -32,7 +32,7 @@ public class AddressFetcher {
             @Override
             public void run() {
                 try {
-                    String result = Connection.connectHttp("addresses/" + idLogradouro);
+                    String result = Connection.connectHttp("addresses/" + id_logradouro);
 
                     if (result != null) {
                         JSONObject jsonObject = new JSONObject(result);
@@ -45,7 +45,7 @@ public class AddressFetcher {
                         String referencia = addressJson.optString("referencia", null);
                         String cidade = addressJson.getString("cidade");
 
-                        AddressModel address = new AddressModel(idLogradouro, cep, rua, numero, complemento, referencia, cidade);
+                        AddressModel address = new AddressModel(id_logradouro, cep, rua, numero, complemento, referencia, cidade);
 
                         if (listener != null) {
                             listener.onAddressFetchSuccess(address);

@@ -91,16 +91,16 @@ public class EmployeeFetcher {
     }
 
     private OfficeModel parseOfficeModel(JSONObject officeJson) throws JSONException {
-        UUID idCargo = UUID.fromString(officeJson.getString("idCargo"));
+        int idCargo = officeJson.getInt(officeJson.getString("idCargo"));
         String nome = officeJson.getString("nome");
         String descricao = officeJson.getString("descricao");
 
-        return new OfficeModel(idCargo, nome, descricao);
+        return new OfficeModel(nome);
     }
 
     private AddressModel parseAddressModel(JSONObject addressJson) throws JSONException {
-        UUID idLogradouro = UUID.fromString(addressJson.getString("idLogradouro"));
+        int id_logradouro = addressJson.getInt(addressJson.getString("idLogradouro"));
 
-        return new AddressModel(idLogradouro);
+        return new AddressModel(id_logradouro);
     }
 }

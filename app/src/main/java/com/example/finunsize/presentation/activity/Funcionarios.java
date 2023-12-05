@@ -19,15 +19,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.logging.HttpLoggingInterceptor;
+import persistence.models.AddressModel;
 import persistence.models.EmployeeModel;
+import persistence.models.OfficeModel;
 import request.Connection;
 
 public class Funcionarios extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private EmployeeAdapter employeeAdapter;
     private List<EmployeeModel> employeeList;
     private TextView qtdFuncionariosTextView;
@@ -41,14 +44,10 @@ public class Funcionarios extends AppCompatActivity {
 
         token = getIntent().getStringExtra("token");
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         qtdFuncionariosTextView = findViewById(R.id.qtd_func);
 
         employeeList = new ArrayList<>();
         employeeAdapter = new EmployeeAdapter(this, employeeList);
-        recyclerView.setAdapter(employeeAdapter);
 
         fetchEmployeeListFromApi(token);
     }
@@ -67,14 +66,34 @@ public class Funcionarios extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                    int idFuncionario = jsonObject.getInt("idFuncionario");
-                    String nome = jsonObject.getString("nome");
+                    int idFuncionario = jsonObject.getInt("id_funcionario");
                     String cpf = jsonObject.getString("cpf");
+                    String nome = jsonObject.getString("nome");
+                    String cargo = jsonObject.getString("cargo");
                     String turno = jsonObject.getString("turno");
+                    int telefone = jsonObject.getInt("telefone");
+                    String admissao = jsonObject.getString("admissao");
+                    int id_logradouro = jsonObject.getInt("id_logradouro");
+                    int cep = jsonObject.getInt("cep");
+                    String rua = jsonObject.getString("rua");
+                    String numero = jsonObject.getString("numero");
+                    String complemento = jsonObject.getString("complemento");
+                    String referencia = jsonObject.getString("referencia");
+                    String cidade = jsonObject.getString("cidade");
+                    String observacao = jsonObject.getString("observacao");
                     BigDecimal salario = new BigDecimal(jsonObject.getString("salario"));
 
+
+                    OfficeModel officeModel = new OfficeModel(cargo);
+
+                    // Criar LocalDate (considerando que admissaoString esteja no formato apropriado)
+                    LocalDate admissaoo = LocalDate.parse(admissao);
+
+                    // Criar AdressModel
+                    AddressModel adressModel = new AddressModel(id_logradouro, cep, rua, numero, complemento, referencia, cidade);
+
                     // Construindo um objeto EmployeeModel com os dados obtidos da API
-                    EmployeeModel employee = new EmployeeModel(idFuncionario, cpf, nome, turno, salario);
+                    EmployeeModel employee = new EmployeeModel(idFuncionario, cpf, nome, officeModel, turno, telefone, admissaoo, adressModel, salario, observacao, false, null, null);
                     employeeList.add(employee);
                 }
 
