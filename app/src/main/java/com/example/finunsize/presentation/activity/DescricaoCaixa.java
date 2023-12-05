@@ -14,7 +14,6 @@ import java.time.format.DateTimeFormatter;
 
 import persistence.models.CashierModel;
 import persistence.models.LogCashierModel;
-import persistence.models.ProductModel;
 import request.Connection;
 
 public class DescricaoCaixa extends AppCompatActivity {
@@ -29,11 +28,9 @@ public class DescricaoCaixa extends AppCompatActivity {
             CashierModel selectedCashier = (CashierModel) intent.getSerializableExtra("selectedCashier");
             LogCashierModel logCashier = (LogCashierModel) intent.getSerializableExtra("logCashier");
 
-            // Agora você pode usar selectedCashier e logCashier para preencher os campos
             preencherCamposDescricao(selectedCashier, logCashier);
         }
 
-        // Obtém o token da intent, se estiver presente
         if (intent.hasExtra("token")) {
             String token = intent.getStringExtra("token");
 
@@ -56,14 +53,20 @@ public class DescricaoCaixa extends AppCompatActivity {
         TextView dataAber = findViewById(R.id.abertura);
         TextView dataFecha = findViewById(R.id.fechamento);
 
+<<<<<<< HEAD
 
         // Preencha os campos com os dados do produto
+=======
+>>>>>>> 69a4631e9a9a13b9ab7998c6b4abf04452f707f8
         if (nomeId != null && status != null && dataFunc != null && valorIni != null &&
                 valorFin != null && dataAber != null && dataFecha != null) {
 
             String nomeComId = cashier.getNome() + " (" + cashier.getIdcaixa() + ")";
 
+<<<<<<< HEAD
             // Preencha os campos com os dados do produto
+=======
+>>>>>>> 69a4631e9a9a13b9ab7998c6b4abf04452f707f8
             nomeId.setText(nomeComId);
             status.setText(cashier.getStatus());
             dataFunc.setText(logCashier.getData_funcionamento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -74,7 +77,11 @@ public class DescricaoCaixa extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     public void OpenCaixa(View view) {
+=======
+    public void openCaixa(View view) {
+>>>>>>> 69a4631e9a9a13b9ab7998c6b4abf04452f707f8
         MainActivity.redirect(this, Caixa.class);
     }
 }

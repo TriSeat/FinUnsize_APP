@@ -151,7 +151,10 @@ public class EmployeeModel implements Serializable {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 69a4631e9a9a13b9ab7998c6b4abf04452f707f8
     public AddressModel getAddress() {return address;}
 
     public void setAddress(AddressModel address) {this.address = address;}

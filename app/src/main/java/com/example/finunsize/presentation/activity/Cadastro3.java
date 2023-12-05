@@ -23,7 +23,7 @@ import java.io.IOException;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
-import okhttp3.logging.HttpLoggingInterceptor;
+
 import persistence.models.Role;
 import persistence.models.UserModel;
 import retrofit2.Call;
@@ -141,11 +141,10 @@ public class Cadastro3 extends AppCompatActivity {
     }
 
     private void sendCompanyData(UserModel userModel) {
-        // Adicione o interceptor de logging ao cliente Retrofit
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        // Cria uma instância do LoggingInterceptor
+        LoggingInterceptor loggingInterceptor = new LoggingInterceptor();
 
-
+        // Configura o Retrofit com o cliente OkHttp que inclui o LoggingInterceptor
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://finunsize.onrender.com/") // Substitua pela base URL da sua API
                 .addConverterFactory(GsonConverterFactory.create())
@@ -153,6 +152,7 @@ public class Cadastro3 extends AppCompatActivity {
                         .addInterceptor(loggingInterceptor) // Adiciona o interceptor de logging
                         .build())
                 .build();
+
 
         ApiService apiService = retrofit.create(ApiService.class);
 

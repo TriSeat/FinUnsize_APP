@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finunsize.R;
 
+import async.AddressFetcher;
 import async.EmployeeCashierFetcher;
 import exception.EmployeeCashierFetchException;
 import listener.OnEmployeeCashierFetchListener;
+import persistence.models.AddressModel;
 import persistence.models.CashierModel;
 import persistence.models.EmployeeCashierModel;
 import persistence.models.EmployeeModel;
@@ -67,6 +69,9 @@ public class FuncionarioCaixa extends AppCompatActivity implements OnEmployeeCas
         textViewCargo.setText("Cargo: " + idFuncionario.getCargo());
         textViewTurno.setText("Turno: " + idFuncionario.getTurno());
         textViewSalario.setText("Salário: " + idFuncionario.getSalario());
+
+
+
     }
 
     @Override

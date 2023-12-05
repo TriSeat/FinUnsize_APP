@@ -69,6 +69,10 @@ public class Produtos extends AppCompatActivity {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                     String nome = jsonObject.getString("nome");
+                    String cod_barras = jsonObject.getString("cod_barras");
+                    int quantidade = jsonObject.getInt("quantidade");
+
+
 
                     // Tratamento de datas
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -78,7 +82,7 @@ public class Produtos extends AppCompatActivity {
                     String url_image = jsonObject.getString("url_image");
 
                     // Construindo um objeto ProductModel com os dados obtidos da API
-                    ProductModel product = new ProductModel(null, nome, 0, null, validade, null, null, null, null, data_cadastro, url_image);
+                    ProductModel product = new ProductModel(cod_barras, nome, quantidade, null, validade, null, null, null, null, data_cadastro, url_image);
                     productList.add(product);
                 }
             } else {
